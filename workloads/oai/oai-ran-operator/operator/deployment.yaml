@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: oai-ran-operators
+  name: oai-ran-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: oai-ran-operator
+      app.kubernetes.io/component: controller
+  template:
+    metadata:
+      name: oai-ran-operator
+      labels:
+        app.kubernetes.io/name: oai-ran-operator
+        app.kubernetes.io/component: controller
+    spec:
+      serviceAccountName: oai-ran-operator
+      containers:
+      - name: operator
+        image: 10.0.0.12:5001/oai-ran-operator:latest
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL

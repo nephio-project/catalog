@@ -1,0 +1,22 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: pkg-ue
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: example cucp blueprint package
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/starlark:v0.4
+    configPath: interface-fn.yaml
+status:
+  conditions:
+  - message: Initial
+    reason: req.nephio.org/v1alpha1.Interface.rfsim
+    status: "False"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.du-rfsim-edge01-ipv4
+  - message: Initial
+    reason: req.nephio.org/v1alpha1.Interface.rfsim
+    status: "False"
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.ue-edge01-rfsim-ipv4

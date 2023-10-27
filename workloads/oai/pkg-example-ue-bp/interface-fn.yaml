@@ -1,0 +1,47 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: StarlarkRun
+metadata: # kpt-merge: /set-annotation
+  name: set-configuration
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: fn.kpt.dev|StarlarkRun|default|set-configuration
+source: |-
+  cu_cp_ip = ""
+  ue_rf_sim_ip_gw = ""
+  ue_rf_sim_ip = ""
+  nad_flag = False
+  for resource in ctx.resource_list["items"]:
+    if resource.get("kind") == "IPClaim" and resource["metadata"]["name"] == "du-rfsim-edge01-ipv4":
+       if resource.get("status") != None:
+          cu_cp_ip = resource["status"]["prefix"]
+    
+    if resource.get("kind") == "IPClaim" and resource["metadata"]["name"] == "ue-edge01-rfsim-ipv4":
+       if resource.get("status") != None:
+          ue_rf_sim_ip = resource["status"]["prefix"]
+          ue_rf_sim_ip_gw = resource["status"]["gateway"]
+
+    if resource["metadata"]["name"] == "cucp-edge01-rfsim":
+        nad_flag = True
+
+  if cu_cp_ip != "":
+    for resource in ctx.resource_list["items"]:
+      if resource.get("kind") == "ConfigMap" and resource["metadata"]["name"] == "oai-nr-ue-configmap":
+        resource["data"]["rfSimulator"] = cu_cp_ip.split('/')[0]
+
+
+   
+  if not nad_flag and cu_cp_ip != "":
+    ue_address_info = "\"address\":\"{}\", \"gateway\":\"{}\"".format(ue_rf_sim_ip,ue_rf_sim_ip_gw)
+    networkdefinitions_json = {
+        "apiVersion": "k8s.cni.cncf.io/v1",
+        "kind": "NetworkAttachmentDefinition",
+        "metadata": {
+          "name": "cucp-edge01-rfsim",
+          "namespace": "oai-ue"
+          },
+        "spec": {
+          "config": "{\"cniVersion\": \"0.3.1\", \"plugins\":[{\"capabilities\":{\"ips\":true},\"type\": \"macvlan\", \"master\":\"eth1.4\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"static\", \"addresses\": [ { " + ue_address_info +"  } ] } },{\"type\":\"tuning\",\"capabilities\":{\"mac\":true},\"ipam\":{}}]}"
+        }
+      }
+
+    ctx.resource_list["items"].append(networkdefinitions_json)

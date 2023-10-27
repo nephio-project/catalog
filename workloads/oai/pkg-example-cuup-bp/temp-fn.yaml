@@ -1,0 +1,41 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: StarlarkRun
+metadata: # kpt-merge: /set-annotation
+  name: set-configuration-cuup
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: fn.kpt.dev|StarlarkRun|default|set-configuration
+source: |-
+  nad_flag = False
+  for resource in ctx.resource_list["items"]:
+    if resource.get("kind") == "NFDeployment" and resource.get("spec") != None:
+      if resource["spec"].get("parametersRefs") != None and resource["spec"].get("interfaces") != None:
+        if len(resource["spec"]["interfaces"]) == 2:
+          resource["spec"]["interfaces"].append(
+                   {
+                    "name": "n3",
+                    "ipv4": {
+                      "address": "172.21.8.97/22",
+                      "gateway": "172.21.8.97"
+                    },
+                    "vlanID": 5
+                  }
+          )
+
+    if resource["metadata"]["name"] == "cuup-edge01-n3":
+      nad_flag = True
+   
+  if not nad_flag:
+    networkdefinitions_json = {
+        "apiVersion": "k8s.cni.cncf.io/v1",
+        "kind": "NetworkAttachmentDefinition",
+        "metadata": {
+          "name": "cuup-edge01-n3",
+          "namespace": "oai-ran-cuup"
+          },
+        "spec": {
+          "config": "{ \"cniVersion\": \"0.3.1\", \"plugins\":[{\"capabilities\":{\"ips\":true},\"type\": \"macvlan\", \"master\":\"eth0\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"static\", \"addresses\": [ { \"address\":\"172.21.8.97/22\" } ] } }]}"
+        }
+      }
+
+    ctx.resource_list["items"].append(networkdefinitions_json)

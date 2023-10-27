@@ -1,0 +1,17 @@
+apiVersion: ipam.resource.nephio.org/v1alpha1
+kind: IPClaim
+metadata:
+  name: ue-edge01-rfsim-ipv4
+  namespace: oai-ue
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    specializer.nephio.org/owner: apps/v1.Deployment.oai-nr-ue
+    specializer.nephio.org/namespace: oai-ue
+spec:
+  kind: network
+  selector:
+    matchLabels:
+      nephio.org/address-family: ipv4
+      nephio.org/cluster-name: edge01
+  networkInstance:
+    name: vpc-internal

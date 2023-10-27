@@ -1,0 +1,10 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: 
+  name: du-example
+  namespace: example
+spec:
+  provider: oai-du.nephio.org
+  capacity:
+    maxDownlinkThroughput: 100M
+    maxUplinkThroughput: 1M
