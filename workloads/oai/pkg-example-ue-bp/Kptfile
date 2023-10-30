@@ -15,8 +15,8 @@ status:
   - message: Initial
     reason: req.nephio.org/v1alpha1.Interface.rfsim
     status: "False"
-    type: ipam.resource.nephio.org/v1alpha1.IPClaim.du-rfsim-edge01-ipv4
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.du-ue-rfsim-edge01-ipv4
   - message: Initial
     reason: req.nephio.org/v1alpha1.Interface.rfsim
     status: "False"
-    type: ipam.resource.nephio.org/v1alpha1.IPClaim.ue-edge01-rfsim-ipv4
+    type: ipam.resource.nephio.org/v1alpha1.IPClaim.ue-edge01-ue-rfsim-ipv4

@@ -11,11 +11,11 @@ source: |-
   ue_rf_sim_ip = ""
   nad_flag = False
   for resource in ctx.resource_list["items"]:
-    if resource.get("kind") == "IPClaim" and resource["metadata"]["name"] == "du-rfsim-edge01-ipv4":
+    if resource.get("kind") == "IPClaim" and resource["metadata"]["name"] == "du-ue-rfsim-edge01-ipv4":
        if resource.get("status") != None:
           cu_cp_ip = resource["status"]["prefix"]
     
-    if resource.get("kind") == "IPClaim" and resource["metadata"]["name"] == "ue-edge01-rfsim-ipv4":
+    if resource.get("kind") == "IPClaim" and resource["metadata"]["name"] == "ue-edge01-ue-rfsim-ipv4":
        if resource.get("status") != None:
           ue_rf_sim_ip = resource["status"]["prefix"]
           ue_rf_sim_ip_gw = resource["status"]["gateway"]
@@ -40,7 +40,7 @@ source: |-
           "namespace": "oai-ue"
           },
         "spec": {
-          "config": "{\"cniVersion\": \"0.3.1\", \"plugins\":[{\"capabilities\":{\"ips\":true},\"type\": \"macvlan\", \"master\":\"eth1.4\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"static\", \"addresses\": [ { " + ue_address_info +"  } ] } },{\"type\":\"tuning\",\"capabilities\":{\"mac\":true},\"ipam\":{}}]}"
+          "config": "{\"cniVersion\": \"0.3.1\", \"plugins\":[{\"capabilities\":{\"ips\":true},\"type\": \"macvlan\", \"master\":\"eth1.8\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"static\", \"addresses\": [ { " + ue_address_info +"  } ] } },{\"type\":\"tuning\",\"capabilities\":{\"mac\":true},\"ipam\":{}}]}"
         }
       }
 

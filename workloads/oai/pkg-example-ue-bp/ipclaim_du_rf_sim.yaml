@@ -1,7 +1,7 @@
 apiVersion: ipam.resource.nephio.org/v1alpha1
 kind: IPClaim
 metadata:
-  name: du-rfsim-edge01-ipv4
+  name: du-ue-rfsim-edge01-ipv4
   namespace: oai-ue
   annotations:
     nephio.org/action: get
@@ -13,6 +13,6 @@ spec:
   selector:
     matchLabels:
       nephio.org/address-family: ipv4
-      nephio.org/nsn-name: du-edge01-f1-ipv4
+      nephio.org/nsn-name: du-edge01-ue-rfsim-ipv4
   networkInstance:
-    name: vpc-internal
+    name: vpc-ue-rfsim
