@@ -1,13 +1,13 @@
 apiVersion: req.nephio.org/v1alpha1
 kind: Dependency
 metadata:
-  name: 3gpp-config
+  name: rannf-config
   annotations:
     config.kubernetes.io/local-config: "true"
     specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.cuup-example
     specializer.nephio.org/namespace: example
 spec:
-  packageName: 3gpp-config
+  packageName: rannf-config
   injectors:
-  - apiVersion: workload.nephio.org/v1alpha1
-    kind: Params3gpp
+  - apiVersion: nfconfig.nephio.org/v1alpha1
+    kind: RanNfConfig

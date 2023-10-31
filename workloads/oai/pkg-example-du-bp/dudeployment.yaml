@@ -4,7 +4,7 @@ metadata:
   name: du-example
   namespace: example
 spec:
-  provider: oai-du.nephio.org
+  provider: du.openairinterface.org
   capacity:
     maxDownlinkThroughput: 100M
     maxUplinkThroughput: 1M

@@ -11,7 +11,7 @@ spec:
       name: amf-regional
       namespace: oaicp
     spec:
-      provider: oai-amf.nephio.org
+      provider: amf.openairinterface.org
       capacity:
         maxDownlinkThroughput: "0"
         maxSubscribers: 64

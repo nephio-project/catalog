@@ -4,7 +4,7 @@ metadata:
   name: cucp-example
   namespace: example
 spec:
-  provider: oai-cucp.nephio.org
+  provider: cucp.openairinterface.org
   capacity:
     maxDownlinkThroughput: 100M
     maxUplinkThroughput: 1M
