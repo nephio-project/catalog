@@ -1,0 +1,13 @@
+apiVersion: configsync.gke.io/v1beta1
+kind: RootSync
+metadata:
+  name: root-sync
+  namespace: config-management-system
+spec:
+  sourceFormat: unstructured
+  git:
+    repo: https://source.developers.google.com/p/example/r/config-control # kpt-set: https://source.developers.google.com/p/${project-id}/r/config-control
+    branch: main
+    dir: /
+    auth: gcpserviceaccount
+    gcpServiceAccountEmail: nephio-config-sync@example.iam.gserviceaccount.com # kpt-set: nephio-config-sync@${project-id}.iam.gserviceaccount.com

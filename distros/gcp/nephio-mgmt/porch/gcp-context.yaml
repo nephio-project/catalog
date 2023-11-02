@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: # kpt-merge: /gcp-context
+  name: gcp-context
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    kpt.dev/config-injection: required
+    internal.kpt.dev/upstream-identifier: '|ConfigMap|default|gcp-context'
+data:
+  project-id: example
+  location: example

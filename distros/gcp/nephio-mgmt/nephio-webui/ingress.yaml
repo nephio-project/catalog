@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: nephio-cluster-issuer
+    networking.gke.io/v1beta1.FrontendConfig: nephio-webui
+  name: nephio-webui
+  namespace: nephio-webui
+spec:
+  rules:
+  - host: webui.nephio.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: nephio-webui
+            port:
+              number: 7007
+  tls:
+  - hosts:
+    - webui.nephio.example.com
+    secretName: nephio-webui-cert # < cert-manager will store the created certificate in this secret.

@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: Namespace
+metadata: # kpt-merge: /network-config
+  name: network-config
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Namespace|default|network-config'
