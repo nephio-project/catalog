@@ -1,0 +1,14 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: nephio-workload-cluster-gke
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: nephio workload gke cluster package
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements.yaml
+  - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+    configPath: setters.yaml

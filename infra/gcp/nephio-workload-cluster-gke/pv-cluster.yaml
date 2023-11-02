@@ -1,0 +1,22 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: example
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    package: cc-cluster-gke-std-csr-cs
+    repo: blueprints-infra-gcp
+    revision: main
+  downstream:
+    package: example
+    repo: config-control
+  injectors:
+  - kind: ConfigMap
+    name: example
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+      configMap:
+        nephio.org/cluster-name: example
