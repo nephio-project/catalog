@@ -15,8 +15,8 @@ pipeline:
     configPath: apply-replacements-namespace.yaml
   - image: gcr.io/kpt-fn/set-namespace:v0.4.1
     configPath: package-context.yaml
-  - image: 10.0.0.12:5001/nf-deploy:v0.2
+  - image: nephio/nfdeploy-fn:1719676323732918272
   - image: docker.io/nephio/interface-fn:v1.0.1
   - image: docker.io/nephio/nad-fn:v1.0.1
   - image: docker.io/nephio/interface-fn:v1.0.1
-  - image: 10.0.0.12:5001/nf-deploy:v0.3
+  - image: nephio/nfdeploy-fn:1719676323732918272

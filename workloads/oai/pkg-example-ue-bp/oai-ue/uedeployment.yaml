@@ -20,7 +20,7 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: >-
           [{
-                 "name": "cucp-edge01-rfsim"
+                 "name": "du-edge01-rfsim"
           }]
     spec:
       securityContext:
