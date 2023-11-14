@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: example-auth # kpt-set: ${name}-auth
+  namespace: default
+type: kpt.dev/workload-identity-auth
+---
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: Repository
+metadata:
+  name: example # kpt-set: ${name}
+  namespace: default
+  labels:
+    kpt.dev/repository-content: organizational-blueprints
+spec:
+  content: Package
+  deployment: false
+  git:
+    branch: main
+    createBranch: true
+    directory: /
+    repo: https://source.developers.google.com/p/example/r/example # kpt-set: https://source.developers.google.com/p/${project-id}/r/${name}
+    secretRef:
+      name: example-auth # kpt-set: ${name}-auth
+  type: git
