@@ -1,0 +1,8 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: FleetSync
+metadata:
+  name: fleetsync
+  namespace: default
+spec:
+  projectIds:
+  - example # kpt-set: ${project-id}

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  # Note: this is not a local-config, it should be in the cluster
+  # It will be used for injection for the GCP context for the primary location
+  name: gcp-context
+  namespace: default
+data:
+  project-id: example
+  location: example
