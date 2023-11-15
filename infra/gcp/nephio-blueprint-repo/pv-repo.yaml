@@ -1,0 +1,17 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: example-repo
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    package: cc-repo-csr
+    repo: blueprints-infra-gcp
+    revision: main
+  downstream:
+    package: example
+    repo: config-control
+  injectors:
+  - kind: ConfigMap
+    name: gcp-context
