@@ -10,6 +10,6 @@ data:
   nssaiSd: "16777215"
   nssaiSst: "1"
   opc: "C42449363BBAD02B66D16BC975D77CC1"
-  rfSimulator: "172.21.16.100"
+  rfSimulator: "oai-gnb-du.oai-ran-du"
   timeZone: "Europe/Paris"
   useAdditionalOptions: "--sa --rfsim -r 106 --numerology 1 -C 3619200000 --nokrnmod --log_config.global_log_options level,nocolor,time"

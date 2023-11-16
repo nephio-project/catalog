@@ -17,11 +17,6 @@ spec:
         app.kubernetes.io/name: oai-nr-ue
         app.kubernetes.io/instance: nrue
         app: oai-nr-ue
-      annotations:
-        k8s.v1.cni.cncf.io/networks: >-
-          [{
-                 "name": "du-edge01-rfsim"
-          }]
     spec:
       securityContext:
         runAsGroup: 0

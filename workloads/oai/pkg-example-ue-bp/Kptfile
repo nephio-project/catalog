@@ -6,21 +6,3 @@ metadata:
     config.kubernetes.io/local-config: "true"
 info:
   description: example oai ue sim blueprint package
-pipeline:
-  mutators:
-  - image: gcr.io/kpt-fn/starlark:v0.4
-    configPath: interface-fn.yaml
-status:
-  conditions:
-  - message: Initial
-    reason: req.nephio.org/v1alpha1.Interface.rfsim
-    status: "False"
-    type: ipam.resource.nephio.org/v1alpha1.IPClaim.du-ue-rfsim-edge01-ipv4
-  - message: Initial
-    reason: req.nephio.org/v1alpha1.Interface.rfsim
-    status: "False"
-    type: ipam.resource.nephio.org/v1alpha1.IPClaim.ue-edge01-ue-rfsim-ipv4
-  - message: Initial
-    reason: req.nephio.org/v1alpha1.Interface.ue-rfsim
-    status: "False"
-    type: vlan.resource.nephio.org/v1alpha1.VLANClaim.ue-edge01-ue-rfsim-vlan
