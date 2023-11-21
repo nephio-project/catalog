@@ -8,7 +8,9 @@ metadata:
 spec:
   location: example # kpt-set: ${location}
   autoscaling:
-    minNodeCount: 4
-    maxNodeCount: 10
+    totalMinNodeCount: 4
+    totalMaxNodeCount: 10
   clusterRef:
     name: example # kpt-set: ${name}
+  nodeConfig:
+    machineType: e2-standard-4
