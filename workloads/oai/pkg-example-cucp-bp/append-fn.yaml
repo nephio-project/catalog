@@ -1,0 +1,75 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: StarlarkRun
+metadata: # kpt-merge: /set-annotation
+  name: set-configuration
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: fn.kpt.dev|StarlarkRun|default|set-configuration
+source: |-
+  nad_flag = False
+  append_flag = False
+  for resource in ctx.resource_list["items"]:
+    if resource.get("kind") == "Kptfile" and resource.get("status") != None:
+      for status in resource["status"]["conditions"]:
+        if "NFDeployment" in status["type"] and status["status"] == "True":
+          append_flag = True
+    if resource["metadata"]["name"] == "cucp-edge01-n2":
+      nad_flag = True
+
+  if append_flag == True:
+    for resource in ctx.resource_list["items"]:
+      if resource.get("kind") == "NFDeployment" and resource.get("spec") != None:
+        if resource["spec"].get("parametersRefs") != None:
+          
+          resource["spec"]["parametersRefs"].append({"name": "cucp-nf-config-edge01",
+                                                "apiVersion": "workload.nephio.org/v1alpha1", 
+                                                "kind": "NFConfig"
+                                                })
+          
+        else:
+          resource["spec"]["parametersRefs"] = [{"name": "cucp-nf-config-edge01",
+                                                "apiVersion": "workload.nephio.org/v1alpha1", 
+                                                "kind": "NFConfig"
+                                                }]
+        
+        resource["spec"]["parametersRefs"].append({"name": "amf-regional-gnb-edge01",
+                                                "apiVersion": "ref.nephio.org/v1alpha1", 
+                                                "kind": "Config"
+                                                })
+          
+        if resource["spec"].get("interfaces") != None:
+          resource["spec"]["interfaces"].append(
+                  {
+                    "name": "n2",
+                    "ipv4": {
+                      "address": "172.21.6.98/22",
+                      "gateway": "172.21.6.98"
+                    },
+                    "vlanID": 4
+                  }
+            )
+        else:
+          resource["spec"]["interfaces"] = [{
+                    "name": "n2",
+                    "ipv4": {
+                      "address": "172.21.6.98/22",
+                      "gateway": "172.21.6.98"
+                    },
+                    "vlanID": 4
+                  }]
+    
+   
+  if not nad_flag:
+    networkdefinitions_json = {
+        "apiVersion": "k8s.cni.cncf.io/v1",
+        "kind": "NetworkAttachmentDefinition",
+        "metadata": {
+          "name": "cucp-edge01-n2",
+          "namespace": "oai-cucp"
+          },
+        "spec": {
+          "config": "{ \"cniVersion\": \"0.3.1\", \"plugins\":[{\"capabilities\":{\"ips\":true},\"type\": \"macvlan\", \"master\":\"eth0\", \"mode\": \"bridge\", \"ipam\": { \"type\": \"static\", \"addresses\": [ { \"address\":\"172.21.6.98/22\" } ] } }]}"
+        }
+      }
+
+    ctx.resource_list["items"].append(networkdefinitions_json)

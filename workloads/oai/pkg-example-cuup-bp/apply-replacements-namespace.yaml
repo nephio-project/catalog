@@ -15,6 +15,12 @@ replacements:
     fieldPaths:
     - metadata.namespace
   - select:
+      kind: NFConfig
+    fieldPaths:
+    - metadata.namespace
+    - spec.configRefs.0.metadata.namespace
+    - spec.configRefs.1.metadata.namespace
+  - select:
       kind: NFDeployment
     fieldPaths:
     - spec.configRefs.[kind=Config].namespace
