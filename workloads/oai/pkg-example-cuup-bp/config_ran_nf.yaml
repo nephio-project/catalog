@@ -6,7 +6,7 @@ metadata:
 spec:
   configRefs:
   - apiVersion: workload.nephio.org/v1alpha1
-    kind: RanConfig
+    kind: RANConfig
     metadata:
       name: ranconfig-edge01
       namespace: default
@@ -14,12 +14,12 @@ spec:
       cellIdentity: 12345678L
       physicalCellID: 0
       tac: 1
-      downlinkFrequencyBand: 0
-      downlinkSubCarrierSpacing: 0 
-      downlinkCarrierBandwidth: 0
-      uplinkFrequencyBand: 0
-      uplinkSubCarrierSpacing: 0
-      uplinkCarrierBandwidth: 0
+      downlinkFrequencyBand: 78
+      downlinkSubCarrierSpacing: 1
+      downlinkCarrierBandwidth: 106
+      uplinkFrequencyBand: 78
+      uplinkSubCarrierSpacing: 1
+      uplinkCarrierBandwidth: 106
   - apiVersion: workload.nephio.org/v1alpha1
     kind: PLMN
     metadata:
@@ -34,7 +34,10 @@ spec:
         nssai:
         - sd: ffffff
           sst: 1
-        dnnInfo:
-          name: "test"
-          sessionType: "ipv4"
-          dns: "test"
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: OAIConfig
+    metadata:
+      name: oai-nf-config-edge01
+      namespace: default
+    spec:
+      image: "docker.io/oaisoftwarealliance/oai-nr-cuup:2023.w19"

@@ -8,3 +8,7 @@ spec:
   capacity:
     maxDownlinkThroughput: 100M
     maxUplinkThroughput: 1M
+  parametersRefs:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: NFConfig
+    name: cucp-nf-config-edge01

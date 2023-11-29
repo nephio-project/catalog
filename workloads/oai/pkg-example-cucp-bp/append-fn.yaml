@@ -21,21 +21,18 @@ source: |-
       if resource.get("kind") == "NFDeployment" and resource.get("spec") != None:
         if resource["spec"].get("parametersRefs") != None:
           
-          resource["spec"]["parametersRefs"].append({"name": "cucp-nf-config-edge01",
-                                                "apiVersion": "workload.nephio.org/v1alpha1", 
-                                                "kind": "NFConfig"
-                                                })
-          
-        else:
-          resource["spec"]["parametersRefs"] = [{"name": "cucp-nf-config-edge01",
-                                                "apiVersion": "workload.nephio.org/v1alpha1", 
-                                                "kind": "NFConfig"
-                                                }]
-        
-        resource["spec"]["parametersRefs"].append({"name": "amf-regional-gnb-edge01",
+          resource["spec"]["parametersRefs"].append({"name": "amf-regional-gnb-edge01",
                                                 "apiVersion": "ref.nephio.org/v1alpha1", 
                                                 "kind": "Config"
                                                 })
+          
+        else:
+          resource["spec"]["parametersRefs"] = [{"name": "amf-regional-gnb-edge01",
+                                                "apiVersion": "ref.nephio.org/v1alpha1", 
+                                                "kind": "Config"
+                                                }]
+        
+
           
         if resource["spec"].get("interfaces") != None:
           resource["spec"]["interfaces"].append(

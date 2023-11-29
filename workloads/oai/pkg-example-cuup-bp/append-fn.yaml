@@ -19,16 +19,6 @@ source: |-
     for resource in ctx.resource_list["items"]:
       if resource.get("kind") == "NFDeployment" and resource.get("spec") != None:
         if resource["spec"].get("parametersRefs") != None and resource["spec"].get("interfaces") != None:
-          if resource["spec"].get("parametersRefs") != None:
-            resource["spec"]["parametersRefs"].append({"name": "cuup-nf-config-edge01",
-                                                    "apiVersion": "workload.nephio.org/v1alpha1", 
-                                                    "kind": "NFConfig"
-                                                    })
-          else:
-            resource["spec"]["parametersRefs"] =[{"name": "cuup-nf-config-edge01",
-                                                    "apiVersion": "workload.nephio.org/v1alpha1", 
-                                                    "kind": "NFConfig"
-                                                    }]
           if resource["spec"].get("interfaces") != None:
             resource["spec"]["interfaces"].append(
                     {
@@ -38,7 +28,7 @@ source: |-
                         "gateway": "172.21.8.97"
                       },
                       "vlanID": 5
-                    }
+                    })
           else:
             resource["spec"]["interfaces"] = [{
                       "name": "n3",
@@ -48,7 +38,6 @@ source: |-
                       },
                       "vlanID": 5
                     }]
-            )
    
   if not nad_flag:
     networkdefinitions_json = {
