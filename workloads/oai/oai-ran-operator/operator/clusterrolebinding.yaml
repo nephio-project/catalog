@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oai-ran-operator-rolebinding-cluster
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: oai-ran-operator-cluster-role
+subjects:
+  - kind: ServiceAccount
+    name: oai-ran-operator
+    namespace: oai-ran-operators
+

@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-nr-ue
+  namespace: oai-ue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: oai-nr-ue
+      app.kubernetes.io/instance: nrue
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: oai-nr-ue
+        app.kubernetes.io/instance: nrue
+        app: oai-nr-ue
+    spec:
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 0
+      imagePullSecrets:
+                - name: regcred
+      containers:
+      - name: nr-ue
+        image: "docker.io/oaisoftwarealliance/oai-nr-ue:2023.w19"
+        securityContext:
+           privileged: true
+        env:
+          - name: TZ
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: timeZone
+          - name: RFSIMULATOR
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: rfSimulator
+          - name: FULL_IMSI
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: fullImsi
+          - name: FULL_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: fullKey
+          - name: OPC
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: opc
+          - name: DNN
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: dnn
+          - name: NSSAI_SST
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: nssaiSst
+          - name: NSSAI_SD
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: nssaiSd
+          - name: USE_ADDITIONAL_OPTIONS
+            valueFrom:
+              configMapKeyRef:
+                name: oai-nr-ue-configmap
+                key: useAdditionalOptions
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccountName: oai-nr-ue-sa
+      terminationGracePeriodSeconds: 5

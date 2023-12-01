@@ -1,0 +1,43 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFConfig
+metadata:
+  name: cuup-nf-config-edge01
+  namespace: example
+spec:
+  configRefs:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: RANConfig
+    metadata:
+      name: ranconfig-edge01
+      namespace: default
+    spec:
+      cellIdentity: 12345678L
+      physicalCellID: 0
+      tac: 1
+      downlinkFrequencyBand: 78
+      downlinkSubCarrierSpacing: 1
+      downlinkCarrierBandwidth: 106
+      uplinkFrequencyBand: 78
+      uplinkSubCarrierSpacing: 1
+      uplinkCarrierBandwidth: 106
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: PLMN
+    metadata:
+      name: plmn-edge01
+      namespace: default
+    spec:
+      PLMNInfo:
+      - plmnID:
+          mcc: "001"
+          mnc: "01"
+        tac: 1
+        nssai:
+        - sd: ffffff
+          sst: 1
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: OAIConfig
+    metadata:
+      name: oai-nf-config-edge01
+      namespace: default
+    spec:
+      image: "docker.io/oaisoftwarealliance/oai-nr-cuup:2023.w19"
