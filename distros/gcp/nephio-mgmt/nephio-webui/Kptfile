@@ -1,0 +1,31 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: nephio-webui
+  annotations:
+    config.kubernetes.io/local-config: "true"
+upstream:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/nephio-packages
+    directory: /nephio-webui
+    ref: main
+  updateStrategy: resource-merge
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/nephio-packages
+    directory: /nephio-webui
+    ref: main
+    commit: 67cb0a7b146b66d8fd1e89d1a13349fbc98eb003
+info:
+  site: https://nephio.org
+  description: Package for the Nephio Web UI.
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+      configPath: apply-replacements.yaml
+    - image: gcr.io/kpt-fn/starlark:v0.5.0
+      configPath: set-auth.yaml
+    - image: docker.io/nephio/gen-configmap-fn:2023-09-14-01
+      configPath: gen-configmap.yaml

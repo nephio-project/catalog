@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: porch
+upstream:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/nephio-example-packages
+    directory: /porch-dev
+    ref: main
+  updateStrategy: resource-merge
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/nephio-example-packages
+    directory: /porch-dev
+    ref: main
+    commit: 913c67b5cbea36cab270e6e634d47bb127e401b5
+info:
+  description: porch dev package
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+      configPath: apply-replacements.yaml
+    - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+      configPath: setters.yaml
