@@ -1,0 +1,17 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: edge-oai-ue
+spec:
+  upstream:
+    repo: oai-ran-packages
+    package: pkg-example-ue-bp
+    revision: v1
+  downstream:
+    repo: edge01
+    package: oai-ran-ue
+  annotations:
+    approval.nephio.org/policy: initial
+    approval.nephio.org/delay: 3m
+  injectors:
+  - name: edge01

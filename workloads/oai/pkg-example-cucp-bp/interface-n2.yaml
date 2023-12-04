@@ -1,14 +1,14 @@
 apiVersion: req.nephio.org/v1alpha1
 kind: Interface
 metadata:
-  name: ue-rfsim
+  name: n2
   annotations:
-    nephio.org/network-name: ue-rfsim
+    nephio.org/network-name: n2
     config.kubernetes.io/local-config: "true"
-    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.du-example
+    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.cucp-example
     specializer.nephio.org/namespace: example
 spec:
   networkInstance:
-    name: vpc-ue-rfsim
+    name: vpc-ran
   cniType: macvlan
   attachmentType: vlan

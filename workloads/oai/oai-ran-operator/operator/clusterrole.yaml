@@ -100,3 +100,11 @@ rules:
   - get
   - list
   - watch
+- apiGroups:
+  - workload.nephio.org
+  resources:
+  - nfconfigs
+  verbs:
+  - get
+  - list
+  - watch

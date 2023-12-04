@@ -20,5 +20,3 @@ pipeline:
   - image: docker.io/nephio/nad-fn:v1.0.1
   - image: docker.io/nephio/interface-fn:v1.0.1
   - image: nephio/nfdeploy-fn:1729579664202010624
-  - image: gcr.io/kpt-fn/starlark:v0.4
-    configPath: append-fn.yaml
