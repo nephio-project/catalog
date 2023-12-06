@@ -4,7 +4,7 @@ metadata:
   name: edge-oai-du
 spec:
   upstream:
-    repo: oai-ran-packages
+    repo: catalog 
     package: pkg-example-du-bp
     revision: v1
   downstream:

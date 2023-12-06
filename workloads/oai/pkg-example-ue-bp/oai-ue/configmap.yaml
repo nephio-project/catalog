@@ -4,7 +4,7 @@ metadata:
   name: oai-nr-ue-configmap
   namespace: oai-ue
 data:
-  dnn: "oai"
+  dnn: "internet"
   fullImsi: "001010000000100"
   fullKey: "fec86ba6eb707ed08905757b1bb44b8f"
   nssaiSd: "16777215"

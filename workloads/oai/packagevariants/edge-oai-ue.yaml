@@ -4,7 +4,7 @@ metadata:
   name: edge-oai-ue
 spec:
   upstream:
-    repo: oai-ran-packages
+    repo: catalog
     package: pkg-example-ue-bp
     revision: v1
   downstream:
@@ -12,6 +12,5 @@ spec:
     package: oai-ran-ue
   annotations:
     approval.nephio.org/policy: initial
-    approval.nephio.org/delay: 3m
   injectors:
   - name: edge01

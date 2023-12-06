@@ -4,7 +4,7 @@ metadata:
   name: edge-oai-cuup
 spec:
   upstream:
-    repo: oai-ran-packages
+    repo: catalog 
     package: pkg-example-cuup-bp
     revision: v1
   downstream:

@@ -4,13 +4,13 @@ metadata:
   name: edge-oai-cucp
 spec:
   upstream:
-    repo: oai-ran-packages
+    repo: catalog
     package: pkg-example-cucp-bp
     revision: v1
   downstream:
-    repo: edge01
+    repo: edge02
     package: oai-ran-cucp
   annotations:
     approval.nephio.org/policy: initial
   injectors:
-  - name: edge01
+  - name: edge02
