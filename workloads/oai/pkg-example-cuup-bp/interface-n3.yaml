@@ -1,14 +1,14 @@
 apiVersion: req.nephio.org/v1alpha1
 kind: Interface
 metadata:
-  name: e1
+  name: n3
   annotations:
-    nephio.org/network-name: e1
+    nephio.org/network-name: n3
     config.kubernetes.io/local-config: "true"
     specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.cuup-example
     specializer.nephio.org/namespace: example
 spec:
   networkInstance:
-    name: vpc-cu-e1
+    name: vpc-ran
   cniType: macvlan
   attachmentType: vlan

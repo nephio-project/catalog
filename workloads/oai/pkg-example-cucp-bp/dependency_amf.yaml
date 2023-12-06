@@ -1,14 +1,13 @@
 apiVersion: req.nephio.org/v1alpha1
-kind: Interface
+kind: Dependency
 metadata:
-  name: e1
+  name: amf
   annotations:
-    nephio.org/network-name: e1
     config.kubernetes.io/local-config: "true"
     specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.cucp-example
     specializer.nephio.org/namespace: example
 spec:
-  networkInstance:
-    name: vpc-cu-e1
-  cniType: macvlan
-  attachmentType: vlan
+  packageName: oai-amf
+  injectors:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: NFDeployment
