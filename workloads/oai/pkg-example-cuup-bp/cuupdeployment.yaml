@@ -5,10 +5,7 @@ metadata:
   namespace: example
 spec:
   provider: cuup.openairinterface.org
-  capacity:
-    maxDownlinkThroughput: 100M
-    maxUplinkThroughput: 1M
   parametersRefs:
     - apiVersion: workload.nephio.org/v1alpha1
       kind: NFConfig
-      name: cuup-nf-config-edge01
+      name: cuup-nf-config
