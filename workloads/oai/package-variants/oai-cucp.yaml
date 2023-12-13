@@ -1,16 +1,16 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: edge-oai-cucp
+  name: regional-oai-cucp
 spec:
   upstream:
     repo: catalog
     package: pkg-example-cucp-bp
     revision: v1
   downstream:
-    repo: edge02
+    repo: regional
     package: oai-ran-cucp
   annotations:
     approval.nephio.org/policy: initial
   injectors:
-  - name: edge02
+  - name: regional

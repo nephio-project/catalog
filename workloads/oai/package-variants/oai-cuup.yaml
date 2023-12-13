@@ -8,9 +8,9 @@ spec:
     package: pkg-example-cuup-bp
     revision: v1
   downstream:
-    repo: edge01
+    repo: edge
     package: oai-ran-cuup
   annotations:
     approval.nephio.org/policy: initial
   injectors:
-  - name: edge01
+  - name: edge
