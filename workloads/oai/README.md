@@ -19,6 +19,19 @@ PackageVariant and PackageVariantSets for deploying OAI RAN are also stored in t
 1. Nephio should be installed.
 2. Verify Network required for OAI RAN and Core should should be installed.
    Perform the following to verify in the Nephio management cluster.
+3. Catalog repository need to be registered. 
+   Since the OAI RAN packages are in workloads/oai of https://github.com/josephthaliath/catalog.git repository,
+   we need to register the repository with --directory option
+
+   e.g. kpt alpha repo register --namespace default https://github.com/josephthaliath/catalog.git --directory=workloads/oai
+
+   Also the following tags need to be created for upstream repository(https://github.com/josephthaliath/catalog.git) used:
+   1. workloads/oai/oai-ran-operator/v1
+   2. workloads/oai/pkg-example-cucp-bp/v1
+   3. workloads/oai/pkg-example-cuup-bp/v1
+   4. workloads/oai/pkg-example-du-bp/v1
+   5. workloads/oai/pkg-example-ue-bp/v1
+   
 ```bash
 kubectl get networks
 ```
