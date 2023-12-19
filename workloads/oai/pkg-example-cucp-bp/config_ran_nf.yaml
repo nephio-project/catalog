@@ -1,14 +1,14 @@
 apiVersion: workload.nephio.org/v1alpha1
 kind: NFConfig
 metadata:
-  name: cucp-nf-config-edge01
+  name: cucp-nf-config
   namespace: example
 spec:
   configRefs:
   - apiVersion: workload.nephio.org/v1alpha1
     kind: RANConfig
     metadata:
-      name: ranconfig-edge01
+      name: ranconfig
       namespace: default
     spec:
       cellIdentity: 12345678L
@@ -23,7 +23,7 @@ spec:
   - apiVersion: workload.nephio.org/v1alpha1
     kind: PLMN
     metadata:
-      name: plmn-edge01
+      name: plmn
       namespace: default
     spec:
       PLMNInfo:
@@ -37,7 +37,7 @@ spec:
   - apiVersion: workload.nephio.org/v1alpha1
     kind: OAIConfig
     metadata:
-      name: oai-nf-config-edge01
+      name: oai-nf-config
       namespace: default
     spec:
       image: "docker.io/oaisoftwarealliance/oai-gnb:2023.w19"
