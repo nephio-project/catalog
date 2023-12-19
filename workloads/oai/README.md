@@ -12,7 +12,9 @@ Packages for deploying the following are stored in the folder
 
 PackageVariant and PackageVariantSets for deploying OAI RAN are also stored in this folder.
 
-# Steps to deploy OAI RAN on Nephio
+# Steps to manually deploy OAI RAN on Nephio
+
+Note: Scripts to automatically deploy OAI RAN on Nephio, will be available here: https://github.com/nephio-project/test-infra/tree/main/e2e/tests/oai
 
 ## Step 0: Prerequisite
 
@@ -20,12 +22,12 @@ PackageVariant and PackageVariantSets for deploying OAI RAN are also stored in t
 2. Verify Network required for OAI RAN and Core should should be installed.
    Perform the following to verify in the Nephio management cluster.
 3. Catalog repository need to be registered. 
-   Since the OAI RAN packages are in workloads/oai of https://github.com/josephthaliath/catalog.git repository,
+   Since the OAI RAN packages are in workloads/oai of https://github.com/nephio-project/catalog.git repository,
    we need to register the repository with --directory option
 
-   e.g. kpt alpha repo register --namespace default https://github.com/josephthaliath/catalog.git --directory=workloads/oai
+   e.g. kpt alpha repo register --namespace default https://github.com/nephio-project/catalog.git --directory=workloads/oai
 
-   Also the following tags need to be created for upstream repository(https://github.com/josephthaliath/catalog.git) used:
+   Also the following tags need to be created for upstream repository(https://github.com/nephio-project/catalog.git) used:
    1. workloads/oai/oai-ran-operator/v1
    2. workloads/oai/pkg-example-cucp-bp/v1
    3. workloads/oai/pkg-example-cuup-bp/v1
