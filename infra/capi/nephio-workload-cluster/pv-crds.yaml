@@ -1,0 +1,19 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: example-crds
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    package: nephio-workload-crds
+    repo: catalog
+    revision: v1
+  downstream:
+    package: example-crds
+    repo: mgmt-staging
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+      configMap:
+        nephio.org/cluster-name: example
