@@ -7,8 +7,8 @@ spec:
     approval.nephio.org/policy: initial
   upstream:
     package: nephio-workload-crds
-    repo: catalog
-    revision: v1
+    repo: nephio-workload-crds
+    revision: main
   downstream:
     package: example-crds
     repo: mgmt-staging
