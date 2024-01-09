@@ -1,4 +1,4 @@
-# nephio
+# nephio-operator
 
 ## Description
 nephio controller
