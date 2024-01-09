@@ -1,7 +1,7 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
 metadata:
-  name: oai-ran-packages
+  name: catalog-workloads-oai-ran
   namespace: default
   labels:
     kpt.dev/repository-access: read-only
@@ -11,6 +11,6 @@ spec:
   deployment: false
   git:
     branch: main
-    directory: /workloads/free5gc
+    directory: /workloads/oai
     repo: https://github.com/nephio-project/catalog.git
   type: git

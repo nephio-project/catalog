@@ -1,7 +1,7 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
 metadata:
-  name: free5gc-packages
+  name: catalog-workloads-free5gc
   namespace: default
   labels:
     kpt.dev/repository-access: read-only

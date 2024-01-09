@@ -1,7 +1,7 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
 metadata:
-  name: catalog-workloads-oai-core
+  name: catalog-infra-capi
   namespace: default
   labels:
     kpt.dev/repository-access: read-only
@@ -10,7 +10,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: r2
-    directory: /
-    repo: https://github.com/OPENAIRINTERFACE/oai-packages.git
+    branch: main
+    directory: /infra/capi
+    repo: https://github.com/nephio-project/catalog.git
   type: git

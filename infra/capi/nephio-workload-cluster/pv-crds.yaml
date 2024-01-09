@@ -6,8 +6,8 @@ spec:
   annotations:
     approval.nephio.org/policy: initial
   upstream:
-    package: nephio-workload-crds
-    repo: nephio-workload-crds
+    package: workload-crds
+    repo: catalog-nephio-core
     revision: main
   downstream:
     package: example-crds

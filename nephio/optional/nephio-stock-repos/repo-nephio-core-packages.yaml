@@ -1,7 +1,7 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
 metadata:
-  name: nephio-workload-crds
+  name: catalog-nephio-core
   namespace: default
   labels:
     kpt.dev/repository-access: read-only
@@ -11,6 +11,6 @@ spec:
   deployment: false
   git:
     branch: main
-    directory: /nephio/core/nephio-workload-crds
+    directory: /nephio/core
     repo: https://github.com/nephio-project/catalog.git
   type: git
