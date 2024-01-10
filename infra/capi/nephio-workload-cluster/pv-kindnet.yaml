@@ -7,8 +7,8 @@ spec:
     approval.nephio.org/policy: initial
   upstream:
     package: kindnet
-    repo: nephio-example-packages
-    revision: v1
+    repo: catalog-infra-capi
+    revision: main
   downstream:
     package: example-kindnet
     repo: mgmt-staging

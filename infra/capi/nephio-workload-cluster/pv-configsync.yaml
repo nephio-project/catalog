@@ -7,8 +7,8 @@ spec:
     approval.nephio.org/policy: initial
   upstream:
     package: configsync
-    repo: nephio-example-packages
-    revision: v1
+    repo: catalog-nephio-core
+    revision: main
   downstream:
     package: example-configsync
     repo: mgmt-staging
