@@ -1,3 +1,3 @@
-# Nephio Core
+# Nephio Core Packages
 
-This directory contains all those things that should be in any given Nephio installation.
+This directory contains packages that are part of the Nephio core system.
