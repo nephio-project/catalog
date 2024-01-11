@@ -7,8 +7,8 @@ spec:
     approval.nephio.org/policy: initial
   upstream:
     package: rootsync
-    repo: nephio-example-packages
-    revision: v3
+    repo: catalog-nephio-catalog
+    revision: main
   downstream:
     package: example-rootsync
     repo: mgmt-staging
