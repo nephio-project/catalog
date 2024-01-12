@@ -4,9 +4,9 @@ metadata:
   name: edge-oai-cuup
 spec:
   upstream:
-    repo: catalog 
+    repo: catalog-workloads-oai
     package: pkg-example-cuup-bp
-    revision: v1
+    revision: main
   downstream:
     repo: edge
     package: oai-ran-cuup
