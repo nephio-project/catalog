@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: free5gc-pcf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: free5gc
+    nf: pcf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: free5gc
+      nf: pcf
+  template:
+    metadata:
+      labels:
+        project: free5gc
+        nf: pcf
+    spec:
+      initContainers:
+      - name: wait-nrf
+        image: towards5gs/initcurl:1.0.0
+        env:
+        - name: DEPENDENCIES
+          value: http://nrf-nnrf:8000
+        command: ['sh', '-c', 'set -x; for dependency in $DEPENDENCIES; do while [ $(curl --insecure --connect-timeout 1 -s -o /dev/null -w "%{http_code}" $dependency) -ne 200 ]; do echo waiting for dependencies; sleep 1; done; done;']
+
+      containers:
+      - name: pcf
+        image: towards5gs/free5gc-pcf:v3.1.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        command: ["./pcf"]
+        args: ["-c", "../config/pcfcfg.yaml"]
+        env:
+          - name: GIN_MODE
+            value: release
+        volumeMounts:
+        - mountPath: /free5gc/config/
+          name: pcf-volume
+        resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+
+      volumes:
+      - name: pcf-volume
+        projected:
+          sources:
+          - configMap:
+              name: pcf-configmap

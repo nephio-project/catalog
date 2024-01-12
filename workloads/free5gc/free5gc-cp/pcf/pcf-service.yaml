@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pcf-npcf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: free5gc
+    nf: pcf
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    project: free5gc
+    nf: pcf

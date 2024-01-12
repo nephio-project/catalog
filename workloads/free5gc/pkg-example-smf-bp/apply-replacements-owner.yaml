@@ -1,0 +1,47 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata:
+  name: propagate-name
+  annotations:
+    config.kubernetes.io/local-config: "true"
+replacements:
+- source:
+    kind: WorkloadCluster
+    name: workload-cluster
+    fieldPath: spec.clusterName
+  targets:
+  - select:
+      kind: NFDeployment
+    fieldPaths:
+    - metadata.name
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: Interface
+    fieldPaths:
+    - metadata.annotations.[specializer.nephio.org/owner]
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: Capacity
+    fieldPaths:
+    - metadata.annotations.[specializer.nephio.org/owner]
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: DataNetwork
+    fieldPaths:
+    - metadata.annotations.[specializer.nephio.org/owner]
+    options:
+      delimiter: '-'
+      index: 1
+  - select:
+      kind: Dependency
+    fieldPaths:
+    - metadata.annotations.[specializer.nephio.org/owner]
+    options:
+      delimiter: '-'
+      index: 1
