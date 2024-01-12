@@ -7,7 +7,7 @@ spec:
     approval.nephio.org/policy: initial
   upstream:
     package: rootsync
-    repo: catalog-nephio-catalog
+    repo: catalog-nephio-optional
     revision: main
   downstream:
     package: example-rootsync
