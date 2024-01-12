@@ -1,0 +1,11 @@
+apiVersion: req.nephio.org/v1alpha1
+kind: Capacity
+metadata:
+  name: control-plane
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    specializer.nephio.org/owner: workload.nephio.org/v1alpha1.NFDeployment.smf-example
+    specializer.nephio.org/namespace: example
+spec:
+  maxSessions: 500
+  maxNFConnections: 5

@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ausf-nausf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: free5gc
+    nf: ausf
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    project: free5gc
+    nf: ausf

@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ausf-configmap
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    app: free5gc
+data:
+  ausfcfg.yaml: |
+    info:
+      version: 1.0.2
+      description: AUSF initial local configuration
+
+    configuration:
+      serviceNameList:
+        - nausf-auth
+      
+      sbi:
+        scheme: http
+        registerIPv4: ausf-nausf  # IP used to register to NRF
+        bindingIPv4: 0.0.0.0      # IP used to bind the service
+        port: 80
+        tls:
+          key: config/TLS/ausf.key
+          pem: config/TLS/ausf.pem
+      
+      nrfUri: http://nrf-nnrf:8000
+      plmnSupportList:
+        - mcc: 208
+          mnc: 93
+        - mcc: 123
+          mnc: 45
+      groupId: ausfGroup001
+      eapAkaSupiImsiPrefix: false
+
+    logger:
+      AUSF:
+        ReportCaller: false
+        debugLevel: info

@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: udr-configmap
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    app: free5gc
+data:
+  udrcfg.yaml: |
+    info:
+      version: 1.0.1
+      description: UDR initial local configuration
+
+    configuration:
+      sbi:
+        scheme: http
+        registerIPv4: udr-nudr # IP used to register to NRF
+        bindingIPv4: 0.0.0.0  # IP used to bind the service
+        port: 80
+        tls:
+          key: config/TLS/udr.key
+          pem: config/TLS/udr.pem
+
+      mongodb:
+        name: free5gc
+        url: mongodb://mongodb:27017       
+      
+      nrfUri: http://nrf-nnrf:8000
+
+    logger:
+      MongoDBLibrary:
+        ReportCaller: false
+        debugLevel: info
+      OpenApi:
+        ReportCaller: false
+        debugLevel: info
+      PathUtil:
+        ReportCaller: false
+        debugLevel: info
+      UDR:
+        ReportCaller: false
+        debugLevel: info
