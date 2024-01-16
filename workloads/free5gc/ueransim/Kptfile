@@ -5,7 +5,7 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 info:
-  description: this package represents ueransim NFs, which are required to perfirm E2E conn testing
+  description: this package represents ueransim NFs, which are required to perform E2E connectivity testing
 pipeline:
   mutators:
     - image: gcr.io/kpt-fn/set-namespace:v0.4.1
