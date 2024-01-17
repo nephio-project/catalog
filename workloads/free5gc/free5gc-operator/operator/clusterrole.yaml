@@ -62,12 +62,8 @@ rules:
   resources:
   - nfdeployments
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
   - watch
 - apiGroups:
   - workload.nephio.org
@@ -77,3 +73,11 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - workload.nephio.org
+  resources:
+  - nfconfigs
+  verbs:
+  - get
+  - list
+  - watch
