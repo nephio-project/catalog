@@ -1,21 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
-
 metadata:
   name: free5gc-operator-role
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
 - apiGroups:
   - ""
   resources:
@@ -73,19 +60,15 @@ rules:
 - apiGroups:
   - workload.nephio.org
   resources:
-  - amfdeployments
+  - nfdeployments
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
   - watch
 - apiGroups:
   - workload.nephio.org
   resources:
-  - amfdeployments/status
+  - nfdeployments/status
   verbs:
   - get
   - patch
@@ -93,47 +76,7 @@ rules:
 - apiGroups:
   - workload.nephio.org
   resources:
-  - smfdeployments
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - workload.nephio.org
-  resources:
-  - smfdeployments/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - workload.nephio.org
-  resources:
-  - upfdeployments
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - workload.nephio.org
-  resources:
-  - upfdeployments/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - ref.nephio.org
-  resources:
-  - configs
+  - nfconfigs
   verbs:
   - get
   - list
