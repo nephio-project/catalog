@@ -7,7 +7,20 @@ rules:
   - ""
   resources:
   - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
   - services
+  - serviceaccounts
   verbs:
   - create
   - delete
@@ -57,13 +70,18 @@ rules:
   - get
   - list
   - watch
+  - create
 - apiGroups:
   - workload.nephio.org
   resources:
   - nfdeployments
   verbs:
+  - create
+  - delete
   - get
   - list
+  - patch
+  - update
   - watch
 - apiGroups:
   - workload.nephio.org
@@ -73,6 +91,14 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - ref.nephio.org
+  resources:
+  - configs
+  verbs:
+  - get
+  - list
+  - watch
 - apiGroups:
   - workload.nephio.org
   resources:
