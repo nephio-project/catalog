@@ -1,7 +1,0 @@
-apiVersion: kpt.dev/v1alpha1
-kind: ResourceGroup
-metadata:
-  name: inventory-31092982
-  namespace: free5gc-cp
-  labels:
-    cli-utils.sigs.k8s.io/inventory-id: a7c869a5ddec76901d4208ee5c416d2b58657fca-1688422532719692295
