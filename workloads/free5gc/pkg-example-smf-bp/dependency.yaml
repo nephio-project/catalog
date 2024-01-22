@@ -10,4 +10,6 @@ spec:
   packageName: free5gc-upf
   injectors:
   - apiVersion: workload.nephio.org/v1alpha1
-    kind: UPFDeployment
+    kind: NFDeployment
+    spec:
+      provider: upf.free5gc.io

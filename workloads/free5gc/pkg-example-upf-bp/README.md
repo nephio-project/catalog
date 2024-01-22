@@ -17,7 +17,7 @@ deployed to a workload cluster.
 ## Usage
 
 ### Fetch the package
-`kpt pkg get https://github.com/nephio-project/free5gc-packages/pkg-example-upf-bp@main`
+`kpt pkg get https://github.com/nephio-project/catalog/workloads/free5gc/pkg-example-upf-bp@main`
 Details: https://kpt.dev/reference/cli/pkg/get/
 
 ### View package content
