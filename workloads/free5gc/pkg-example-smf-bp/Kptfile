@@ -20,4 +20,3 @@ pipeline:
     - image: docker.io/nephio/nad-fn:latest
     - image: docker.io/nephio/dnn-fn:latest
     - image: docker.io/nephio/interface-fn:latest
-    - image: docker.io/nephio/nfdeploy-fn:1745600386007306240
