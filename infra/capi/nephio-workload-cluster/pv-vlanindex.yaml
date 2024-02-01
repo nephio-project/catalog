@@ -8,7 +8,7 @@ spec:
   upstream:
     package: vlanindex
     repo: catalog-infra-capi
-    revision: main
+    revision: v2.0.0
   downstream:
     package: example-vlanindex
     repo: mgmt
