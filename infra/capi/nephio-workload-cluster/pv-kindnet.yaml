@@ -8,7 +8,7 @@ spec:
   upstream:
     package: kindnet
     repo: catalog-infra-capi
-    revision: infra/capi/nephio-workload-cluster/kindnet/v2.0.0
+    revision: v2.0.0
   downstream:
     package: example-kindnet
     repo: mgmt-staging

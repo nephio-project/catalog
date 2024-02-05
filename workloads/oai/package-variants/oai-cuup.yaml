@@ -6,7 +6,7 @@ spec:
   upstream:
     repo: catalog-workloads-oai
     package: pkg-example-cuup-bp
-    revision: workloads/oai/package-variants/pkg-example-cuup-bp/v2.0.0
+    revision: v2.0.0
   downstream:
     repo: edge
     package: oai-ran-cuup
