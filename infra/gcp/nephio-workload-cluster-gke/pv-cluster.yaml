@@ -8,7 +8,7 @@ spec:
   upstream:
     package: cc-cluster-gke-std-csr-cs
     repo: blueprints-infra-gcp
-    revision: main
+    revision: v2.0.0
   downstream:
     package: example
     repo: config-control
