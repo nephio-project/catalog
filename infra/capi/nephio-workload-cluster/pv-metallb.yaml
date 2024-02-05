@@ -8,7 +8,7 @@ spec:
   upstream:
     package: metallb
     repo: catalog-distros-sandbox
-    revision: infra/capi/nephio-workload-cluster/v2.0.0
+    revision: infra/capi/nephio-workload-cluster/metallb/v2.0.0
   downstream:
     package: example-metallb
     repo: mgmt-staging

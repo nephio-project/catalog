@@ -8,7 +8,7 @@ spec:
   upstream:
     package: repository
     repo: catalog-distros-sandbox
-    revision: infra/capi/nephio-workload-cluster/v2.0.0
+    revision: infra/capi/nephio-workload-cluster/repository/v2.0.0
   downstream:
     package: example-repo
     repo: mgmt
