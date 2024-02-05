@@ -8,7 +8,7 @@ spec:
   upstream:
     package: configsync
     repo: catalog-nephio-core
-    revision: v2.0.0
+    revision: infra/capi/nephio-workload-cluster/configsync/v2.0.0
   downstream:
     package: example-configsync
     repo: mgmt-staging
