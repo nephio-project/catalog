@@ -10,7 +10,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: v2.0.0
+    branch: main
     directory: /workloads/free5gc
     repo: https://github.com/nephio-project/catalog.git
   type: git
