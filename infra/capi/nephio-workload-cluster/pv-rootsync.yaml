@@ -8,7 +8,7 @@ spec:
   upstream:
     package: rootsync
     repo: catalog-nephio-optional
-    revision: infra/capi/nephio-workload-cluster/rootsync/v2.0.0
+    revision: v2.0.0
   downstream:
     package: example-rootsync
     repo: mgmt-staging
