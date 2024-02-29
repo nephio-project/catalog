@@ -16,6 +16,6 @@ roleRef:
   kind: ClusterRole
   name: resource-backend-controller-controller-role
 subjects:
-- kind: ServiceAccount
-  name: resource-backend-controller
-  namespace: backend-system
+  - kind: ServiceAccount
+    name: resource-backend-controller
+    namespace: backend-system

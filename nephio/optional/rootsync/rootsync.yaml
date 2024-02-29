@@ -1,6 +1,6 @@
 apiVersion: configsync.gke.io/v1beta1
 kind: RootSync
-metadata: 
+metadata:
   name: example-cluster-name
   namespace: config-management-system
 spec:

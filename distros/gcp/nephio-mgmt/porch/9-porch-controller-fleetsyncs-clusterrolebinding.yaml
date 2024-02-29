@@ -21,6 +21,6 @@ roleRef:
   kind: ClusterRole
   name: porch-controllers-fleetsyncs
 subjects:
-- kind: ServiceAccount
-  name: porch-controllers
-  namespace: porch-system
+  - kind: ServiceAccount
+    name: porch-controllers
+    namespace: porch-system

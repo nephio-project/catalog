@@ -15,4 +15,3 @@ spec:
   selector:
     app: ueransim
     component: gnb
-

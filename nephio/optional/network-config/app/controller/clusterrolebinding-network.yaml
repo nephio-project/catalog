@@ -16,6 +16,6 @@ roleRef:
   kind: ClusterRole
   name: network-config-controller-network-role
 subjects:
-- kind: ServiceAccount
-  name: network-config-controller
-  namespace: network-config
+  - kind: ServiceAccount
+    name: network-config-controller
+    namespace: network-config

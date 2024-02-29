@@ -13,5 +13,5 @@ spec:
     package: example
     repo: config-control
   injectors:
-  - kind: ConfigMap
-    name: gcp-context
+    - kind: ConfigMap
+      name: gcp-context
