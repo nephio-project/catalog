@@ -5,38 +5,38 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 replacements:
-- source:
-    kind: ConfigMap
-    name: kptfile.kpt.dev
-    fieldPath: data.name
-  targets:
-  - select:
-      kind: PackageVariant
-    fieldPaths:
-    - metadata.name
-    - spec.downstream.package
-  - select:
+  - source:
       kind: ConfigMap
-      name: setters
-    fieldPaths:
-    - data.name
-- source:
-    kind: ConfigMap
-    name: gcp-context
-    fieldPath: data.project-id
-  targets:
-  - select:
+      name: kptfile.kpt.dev
+      fieldPath: data.name
+    targets:
+      - select:
+          kind: PackageVariant
+        fieldPaths:
+          - metadata.name
+          - spec.downstream.package
+      - select:
+          kind: ConfigMap
+          name: setters
+        fieldPaths:
+          - data.name
+  - source:
       kind: ConfigMap
-      name: setters
-    fieldPaths:
-    - data.project-id
-- source:
-    kind: ConfigMap
-    name: gcp-context
-    fieldPath: data.location
-  targets:
-  - select:
+      name: gcp-context
+      fieldPath: data.project-id
+    targets:
+      - select:
+          kind: ConfigMap
+          name: setters
+        fieldPaths:
+          - data.project-id
+  - source:
       kind: ConfigMap
-      name: setters
-    fieldPaths:
-    - data.location
+      name: gcp-context
+      fieldPath: data.location
+    targets:
+      - select:
+          kind: ConfigMap
+          name: setters
+        fieldPaths:
+          - data.location

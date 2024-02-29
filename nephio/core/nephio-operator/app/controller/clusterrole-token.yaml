@@ -12,47 +12,47 @@ metadata:
     app.kubernetes.io/version: tbd
   name: nephio-controller-token-role
 rules:
-- apiGroups:
-  - '*'
-  resources:
-  - services
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - infra.nephio.org
-  resources:
-  - tokens
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
-- apiGroups:
-  - infra.nephio.org
-  resources:
-  - tokens/status
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - secrets
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
+  - apiGroups:
+      - '*'
+    resources:
+      - services
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - infra.nephio.org
+    resources:
+      - tokens
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete
+  - apiGroups:
+      - infra.nephio.org
+    resources:
+      - tokens/status
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete

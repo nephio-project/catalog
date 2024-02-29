@@ -5,9 +5,9 @@ metadata: # kpt-merge: /nephio-webui
   annotations:
     internal.kpt.dev/upstream-identifier: rbac.authorization.k8s.io|ClusterRoleBinding|default|nephio-webui
 subjects:
-- kind: ServiceAccount
-  name: nephio-webui-sa
-  namespace: nephio-webui
+  - kind: ServiceAccount
+    name: nephio-webui-sa
+    namespace: nephio-webui
 roleRef:
   kind: ClusterRole
   name: cluster-admin

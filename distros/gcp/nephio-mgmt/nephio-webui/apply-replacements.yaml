@@ -5,13 +5,13 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 replacements:
-- source:
-    kind: GenConfigMap
-    name: gen-app-config
-    fieldPath: params.hostname
-  targets:
-  - select:
-      kind: Ingress
-    fieldPaths:
-    - spec.rules.0.host
-    - spec.tls.0.hosts.0
+  - source:
+      kind: GenConfigMap
+      name: gen-app-config
+      fieldPath: params.hostname
+    targets:
+      - select:
+          kind: Ingress
+        fieldPaths:
+          - spec.rules.0.host
+          - spec.tls.0.hosts.0

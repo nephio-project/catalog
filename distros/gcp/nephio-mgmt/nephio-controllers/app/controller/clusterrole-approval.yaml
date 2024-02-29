@@ -13,31 +13,31 @@ metadata: # kpt-merge: /nephio-controller-approval-role
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|nephio-controller-approval-role'
 rules:
-- apiGroups:
-  - porch.kpt.dev
-  resources:
-  - packagerevisions
-  - packagerevisions/status
-  - packagerevisions/approval
-  verbs:
-  - get
-  - list
-  - watch
-  - patch
-  - update
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - packagevariants
-  - packagevariants/status
-  verbs:
-  - get
-  - list
-  - watch
+  - apiGroups:
+      - porch.kpt.dev
+    resources:
+      - packagerevisions
+      - packagerevisions/status
+      - packagerevisions/approval
+    verbs:
+      - get
+      - list
+      - watch
+      - patch
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - packagevariants
+      - packagevariants/status
+    verbs:
+      - get
+      - list
+      - watch

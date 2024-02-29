@@ -7,6 +7,6 @@ roleRef:
   kind: ClusterRole
   name: kindnet
 subjects:
-- kind: ServiceAccount
-  name: kindnet
-  namespace: kube-system
+  - kind: ServiceAccount
+    name: kindnet
+    namespace: kube-system

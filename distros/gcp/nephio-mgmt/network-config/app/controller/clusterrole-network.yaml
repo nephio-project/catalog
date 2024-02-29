@@ -13,27 +13,27 @@ metadata: # kpt-merge: /network-config-controller-network-role
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|network-config-controller-network-role'
 rules:
-- apiGroups:
-  - config.nephio.org
-  resources:
-  - networks
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
-- apiGroups:
-  - config.nephio.org
-  resources:
-  - networks/status
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
+  - apiGroups:
+      - config.nephio.org
+    resources:
+      - networks
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete
+  - apiGroups:
+      - config.nephio.org
+    resources:
+      - networks/status
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete

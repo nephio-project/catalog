@@ -12,13 +12,13 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - name: ssh
-    port: 22
-    targetPort: 22
-    protocol: TCP
-  - name: http
-    port: 3000
-    targetPort: 3000
+    - name: ssh
+      port: 22
+      targetPort: 22
+      protocol: TCP
+    - name: http
+      port: 3000
+      targetPort: 3000
   selector:
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea

@@ -9,5 +9,5 @@ metadata:
 spec:
   packageName: oai-ran-cucp
   injectors:
-  - apiVersion: workload.nephio.org/v1alpha1
-    kind: NFDeployment
+    - apiVersion: workload.nephio.org/v1alpha1
+      kind: NFDeployment
