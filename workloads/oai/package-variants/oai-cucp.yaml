@@ -13,4 +13,4 @@ spec:
   annotations:
     approval.nephio.org/policy: initial
   injectors:
-  - name: regional
+    - name: regional

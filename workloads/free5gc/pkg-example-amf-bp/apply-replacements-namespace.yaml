@@ -5,24 +5,24 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 replacements:
-- source:
-    kind: ConfigMap
-    name: namespace
-    fieldPath: data.namespace
-  targets:
-  - select:
-      kind: Interface
-    fieldPaths:
-    - metadata.annotations.[specializer.nephio.org/namespace]
-  - select:
-      kind: Capacity
-    fieldPaths:
-    - metadata.annotations.[specializer.nephio.org/namespace]
-  - select:
-      kind: DataNetwork
-    fieldPaths:
-    - metadata.annotations.[specializer.nephio.org/namespace]
-  - select:
-      kind: Dependency
-    fieldPaths:
-    - metadata.annotations.[specializer.nephio.org/namespace]
+  - source:
+      kind: ConfigMap
+      name: namespace
+      fieldPath: data.namespace
+    targets:
+      - select:
+          kind: Interface
+        fieldPaths:
+          - metadata.annotations.[specializer.nephio.org/namespace]
+      - select:
+          kind: Capacity
+        fieldPaths:
+          - metadata.annotations.[specializer.nephio.org/namespace]
+      - select:
+          kind: DataNetwork
+        fieldPaths:
+          - metadata.annotations.[specializer.nephio.org/namespace]
+      - select:
+          kind: Dependency
+        fieldPaths:
+          - metadata.annotations.[specializer.nephio.org/namespace]

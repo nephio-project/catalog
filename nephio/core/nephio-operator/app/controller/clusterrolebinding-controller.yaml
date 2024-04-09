@@ -16,6 +16,6 @@ roleRef:
   kind: ClusterRole
   name: nephio-controller-controller-role
 subjects:
-- kind: ServiceAccount
-  name: nephio-controller
-  namespace: nephio-system
+  - kind: ServiceAccount
+    name: nephio-controller
+    namespace: nephio-system

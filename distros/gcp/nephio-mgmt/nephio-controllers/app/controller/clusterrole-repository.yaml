@@ -13,35 +13,35 @@ metadata: # kpt-merge: /nephio-controller-repository-role
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|nephio-controller-repository-role'
 rules:
-- apiGroups:
-  - '*'
-  resources:
-  - services
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - infra.nephio.org
-  resources:
-  - repositories
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
-- apiGroups:
-  - infra.nephio.org
-  resources:
-  - repositories/status
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
+  - apiGroups:
+      - '*'
+    resources:
+      - services
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - infra.nephio.org
+    resources:
+      - repositories
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete
+  - apiGroups:
+      - infra.nephio.org
+    resources:
+      - repositories/status
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete

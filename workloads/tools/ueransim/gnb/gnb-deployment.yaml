@@ -19,28 +19,28 @@ spec:
         component: gnb
     spec:
       containers:
-      - image: towards5gs/ueransim-gnb:v3.2.6
-        imagePullPolicy: IfNotPresent
-        name: gnb
-        ports:
-        - name: gnb-ue
-          containerPort: 4997
-          protocol: UDP
-        securityContext:
-          capabilities:
-            add: ["NET_ADMIN"]
-        command: ["./nr-gnb"]
-        args: ["-c", "/ueransim/config/gnb-config.yaml"]
-        volumeMounts:
-        - mountPath: /ueransim/config
-          name: gnb-volume
-        resources:
-          requests:
-            cpu: 250m
-            memory: 256Mi
+        - image: towards5gs/ueransim-gnb:v3.2.6
+          imagePullPolicy: IfNotPresent
+          name: gnb
+          ports:
+            - name: gnb-ue
+              containerPort: 4997
+              protocol: UDP
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          command: ["./nr-gnb"]
+          args: ["-c", "/ueransim/config/gnb-config.yaml"]
+          volumeMounts:
+            - mountPath: /ueransim/config
+              name: gnb-volume
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
-      - name: gnb-volume
-        configMap:
-          name: gnb-configmap
+        - name: gnb-volume
+          configMap:
+            name: gnb-configmap

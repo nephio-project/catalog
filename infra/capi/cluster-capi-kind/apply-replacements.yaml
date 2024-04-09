@@ -5,12 +5,12 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 replacements:
-- source:
-    kind: WorkloadCluster
-    name: workload-cluster
-    fieldPath: spec.clusterName
-  targets:
-  - select:
-      kind: Cluster
-    fieldPaths:
-    - metadata.name
+  - source:
+      kind: WorkloadCluster
+      name: workload-cluster
+      fieldPath: spec.clusterName
+    targets:
+      - select:
+          kind: Cluster
+        fieldPaths:
+          - metadata.name

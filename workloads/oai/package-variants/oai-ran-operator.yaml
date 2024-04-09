@@ -8,9 +8,9 @@ spec:
     package: oai-ran-operator
     revision: v2.0.0
   targets:
-  - objectSelector:
-      apiVersion: infra.nephio.org/v1alpha1
-      kind: WorkloadCluster
-    template:
-      annotations:
-        approval.nephio.org/policy: initial
+    - objectSelector:
+        apiVersion: infra.nephio.org/v1alpha1
+        kind: WorkloadCluster
+      template:
+        annotations:
+          approval.nephio.org/policy: initial

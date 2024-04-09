@@ -60,3 +60,5 @@ fi
 multus_version="v$(get_github_latest_release k8snetworkplumbingwg/multus-cni)"
 curl -sL -o multus/multus-daemonset-thick.yml "https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/$multus_version/deployments/multus-daemonset-thick.yml"
 sed -i "s/snapshot-thick/$multus_version-thick/g" ./infra/capi/multus/multus-daemonset-thick.yml
+
+make fmt

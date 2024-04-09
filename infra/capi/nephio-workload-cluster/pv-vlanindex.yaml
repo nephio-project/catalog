@@ -13,10 +13,10 @@ spec:
     package: example-vlanindex
     repo: mgmt
   injectors:
-  - kind: WorkloadCluster
-    name: example
+    - kind: WorkloadCluster
+      name: example
   pipeline:
     mutators:
-    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
-      configMap:
-        nephio.org/cluster-name: example
+      - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+        configMap:
+          nephio.org/cluster-name: example
