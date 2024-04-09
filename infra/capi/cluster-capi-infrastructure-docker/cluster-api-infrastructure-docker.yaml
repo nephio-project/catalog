@@ -2142,7 +2142,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.uid
             - name: DOCKER_HOST
-          image: gcr.io/k8s-staging-cluster-api/capd-manager:v1.6.2
+          image: gcr.io/k8s-staging-cluster-api/capd-manager:v1.6.3
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:

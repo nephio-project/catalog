@@ -4504,7 +4504,20 @@ spec:
             - --bootstrap-token-ttl=15m
           command:
             - /manager
-          image: registry.k8s.io/cluster-api/kubeadm-bootstrap-controller:v1.6.2
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+          image: registry.k8s.io/cluster-api/kubeadm-bootstrap-controller:v1.6.3
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
