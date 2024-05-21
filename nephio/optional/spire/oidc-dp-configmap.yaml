@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oidc-discovery-provider
+  namespace: spire
+data:
+  oidc-discovery-provider.conf: |
+    log_level = "INFO"
+    # TODO: Replace MY_DISCOVERY_DOMAIN with the FQDN of the Discovery Provider that you will configure in DNS
+    domains = ["localhost"]
+    allow_insecure_scheme = "true"
+    insecure_addr = "localhost:8888"
+    server_api {
+            address = "unix:///tmp/spire-server/private/api.sock"
+    }
+    health_checks {}
