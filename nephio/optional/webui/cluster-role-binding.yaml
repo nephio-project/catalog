@@ -3,9 +3,9 @@ kind: ClusterRoleBinding
 metadata:
   name: nephio-webui
 subjects:
-- kind: ServiceAccount
-  name: nephio-webui-sa
-  namespace: nephio-webui
+  - kind: ServiceAccount
+    name: nephio-webui-sa
+    namespace: nephio-webui
 roleRef:
   kind: ClusterRole
   name: cluster-admin

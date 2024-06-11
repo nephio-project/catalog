@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,61 +19,60 @@ spec:
         nf: nrf
     spec:
       initContainers:
-      - name: wait-mongo
-        image: busybox:1.32.0
-        env:
-        - name: DEPENDENCIES
-          value: mongodb:27017
-        command: ["sh", "-c", "until nc -z $DEPENDENCIES; do echo waiting for the MongoDB; sleep 2; done;"]
+        - name: wait-mongo
+          image: busybox:1.32.0
+          env:
+            - name: DEPENDENCIES
+              value: mongodb:27017
+          command: ["sh", "-c", "until nc -z $DEPENDENCIES; do echo waiting for the MongoDB; sleep 2; done;"]
       containers:
-      - name: nrf
-        image: towards5gs/free5gc-nrf:v3.1.1
-        imagePullPolicy: IfNotPresent
-        securityContext:
-            {}
-        ports:
-        - containerPort: 8000
-        command: ["./nrf"]
-        args: ["-c", "../config/nrfcfg.yaml"]
-        env: 
-          - name: DB_URI
-            value: mongodb://mongodb/free5gc
-          - name: GIN_MODE
-            value: release
-        volumeMounts:
-        - mountPath: /free5gc/config/
-          name: nrf-volume
-        resources:
+        - name: nrf
+          image: towards5gs/free5gc-nrf:v3.1.1
+          imagePullPolicy: IfNotPresent
+          securityContext: {}
+          ports:
+            - containerPort: 8000
+          command: ["./nrf"]
+          args: ["-c", "../config/nrfcfg.yaml"]
+          env:
+            - name: DB_URI
+              value: mongodb://mongodb/free5gc
+            - name: GIN_MODE
+              value: release
+          volumeMounts:
+            - mountPath: /free5gc/config/
+              name: nrf-volume
+          resources:
             limits:
               cpu: 100m
               memory: 128Mi
             requests:
               cpu: 100m
               memory: 128Mi
-        readinessProbe:
-          initialDelaySeconds: 0
-          periodSeconds: 1
-          timeoutSeconds: 1
-          failureThreshold:  40
-          successThreshold: 1
-          httpGet:
-            scheme: "HTTP"
-            port: 8000
-        livenessProbe:
-          initialDelaySeconds: 120
-          periodSeconds: 10
-          timeoutSeconds: 10
-          failureThreshold: 3
-          successThreshold: 1
-          httpGet:
-            scheme: "HTTP"
-            port: 8000
+          readinessProbe:
+            initialDelaySeconds: 0
+            periodSeconds: 1
+            timeoutSeconds: 1
+            failureThreshold: 40
+            successThreshold: 1
+            httpGet:
+              scheme: "HTTP"
+              port: 8000
+          livenessProbe:
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            timeoutSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+            httpGet:
+              scheme: "HTTP"
+              port: 8000
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 
       volumes:
-      - name: nrf-volume
-        projected:
-          sources:
-          - configMap:
-              name: nrf-configmap
+        - name: nrf-volume
+          projected:
+            sources:
+              - configMap:
+                  name: nrf-configmap

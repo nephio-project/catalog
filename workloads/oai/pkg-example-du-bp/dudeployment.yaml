@@ -1,6 +1,6 @@
 apiVersion: workload.nephio.org/v1alpha1
 kind: NFDeployment
-metadata: 
+metadata:
   name: du-example
   namespace: example
 spec:

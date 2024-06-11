@@ -22,6 +22,6 @@ roleRef:
   kind: ClusterRole
   name: porch-controllers-packagevariants
 subjects:
-- kind: ServiceAccount
-  name: porch-controllers
-  namespace: porch-system
+  - kind: ServiceAccount
+    name: porch-controllers
+    namespace: porch-system

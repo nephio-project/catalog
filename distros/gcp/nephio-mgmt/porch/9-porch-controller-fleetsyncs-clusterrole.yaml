@@ -12,69 +12,68 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   creationTimestamp: null
   name: porch-controllers-fleetsyncs
 rules:
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - fleetmembershipbindings
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - fleetmemberships
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - fleetscopes
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - fleetsyncs
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - fleetsyncs/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - fleetsyncs/status
-  verbs:
-  - get
-  - patch
-  - update
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - fleetmembershipbindings
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - fleetmemberships
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - fleetscopes
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - fleetsyncs
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - fleetsyncs/finalizers
+    verbs:
+      - update
+  - apiGroups:
+      - config.porch.kpt.dev
+    resources:
+      - fleetsyncs/status
+    verbs:
+      - get
+      - patch
+      - update

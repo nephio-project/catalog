@@ -19,17 +19,17 @@ spec:
         component: ue
     spec:
       containers:
-      - image: towards5gs/ueransim-ue:v3.2.6
-        imagePullPolicy: IfNotPresent
-        name: ue
-        securityContext:
-          capabilities:
-            add: ["NET_ADMIN"]
-        command: ["/ueransim/config/wrapper.sh"]
-        volumeMounts:
-        - mountPath: /ueransim/config
-          name: ue-volume
-        resources:
+        - image: towards5gs/ueransim-ue:v3.2.6
+          imagePullPolicy: IfNotPresent
+          name: ue
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          command: ["/ueransim/config/wrapper.sh"]
+          volumeMounts:
+            - mountPath: /ueransim/config
+              name: ue-volume
+          resources:
             requests:
               cpu: 120m
               memory: 128Mi
@@ -37,12 +37,12 @@ spec:
       restartPolicy: Always
 
       volumes:
-      - name: ue-volume
-        configMap:
-          name: ue-configmap
-          items:
-          - key: ue-config.yaml
-            path: ue-config.yaml
-          - key: wrapper.sh
-            path: wrapper.sh
-            mode: 0755
+        - name: ue-volume
+          configMap:
+            name: ue-configmap
+            items:
+              - key: ue-config.yaml
+                path: ue-config.yaml
+              - key: wrapper.sh
+                path: wrapper.sh
+                mode: 0755

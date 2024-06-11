@@ -8,17 +8,17 @@ metadata:
   namespace: nephio-webui
 spec:
   rules:
-  - host: webui.nephio.example.com
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: nephio-webui
-            port:
-              number: 7007
+    - host: webui.nephio.example.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: nephio-webui
+                port:
+                  number: 7007
   tls:
-  - hosts:
-    - webui.nephio.example.com
-    secretName: nephio-webui-cert # < cert-manager will store the created certificate in this secret.
+    - hosts:
+        - webui.nephio.example.com
+      secretName: nephio-webui-cert # < cert-manager will store the created certificate in this secret.

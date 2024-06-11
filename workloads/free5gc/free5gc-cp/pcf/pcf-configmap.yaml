@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -31,11 +30,11 @@ data:
         tls:
           key: config/TLS/pcf.key
           pem: config/TLS/pcf.pem
-      
+
       mongodb:       # the mongodb connected by this PCF
         name: free5gc                  # name of the mongodb
         url: mongodb://mongodb:27017 # a valid URL of the mongodb
-      
+
       nrfUri: http://nrf-nnrf:8000
       pcfName: PCF
       timeFormat: 2019-01-02 15:04:05

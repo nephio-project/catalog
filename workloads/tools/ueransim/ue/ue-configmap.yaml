@@ -56,7 +56,7 @@ data:
     integrityMaxRate:
       uplink: 'full'
       downlink: 'full'
-    
+
     # List of gNB IP addresses for Radio Link Simulation
     gnbSearchList:
       - gnb-service

@@ -20,6 +20,6 @@ roleRef:
   kind: ClusterRole
   name: system:auth-delegator
 subjects:
-- kind: ServiceAccount
-  name: porch-server
-  namespace: porch-system
+  - kind: ServiceAccount
+    name: porch-server
+    namespace: porch-system

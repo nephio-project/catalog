@@ -12,27 +12,27 @@ metadata:
     app.kubernetes.io/version: tbd
   name: network-config-controller-network-role
 rules:
-- apiGroups:
-  - config.nephio.org
-  resources:
-  - networks
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
-- apiGroups:
-  - config.nephio.org
-  resources:
-  - networks/status
-  verbs:
-  - get
-  - list
-  - watch
-  - update
-  - patch
-  - create
-  - delete
+  - apiGroups:
+      - config.nephio.org
+    resources:
+      - networks
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete
+  - apiGroups:
+      - config.nephio.org
+    resources:
+      - networks/status
+    verbs:
+      - get
+      - list
+      - watch
+      - update
+      - patch
+      - create
+      - delete

@@ -18,17 +18,17 @@ spec:
     spec:
       serviceAccountName: oai-ran-operator
       containers:
-      - name: operator
-        image: docker.io/nephio/oai-ran-controller:v2.0.0
-        resources:
-          limits:
-            cpu: 500m
-            memory: 128Mi
-          requests:
-            cpu: 10m
-            memory: 64Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
+        - name: operator
+          image: docker.io/nephio/oai-ran-controller:v2.0.0
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
