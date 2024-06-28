@@ -1,0 +1,14 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFConfig
+metadata:
+  name: ric-nf-config
+  namespace: example
+spec:
+  configRefs:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: RICConfig
+    metadata:
+      name: ric-nf-config
+      namespace: default
+    spec:
+      image: "docker.io/oaisoftwarealliance/oai-gnb:2023.w19"
