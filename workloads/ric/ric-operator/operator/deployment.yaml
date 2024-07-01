@@ -19,7 +19,7 @@ spec:
       serviceAccountName: ric-operator
       containers:
       - name: operator
-        image: docker.io/nephio/ric-controller:v2.0.0
+        image: guptanaman641/osc-controller:2.0.0 # Once Official public git hub repo is created this will be replced.
         resources:
           limits:
             cpu: 500m
