@@ -1,0 +1,33 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: packagerev-deletion-validating-webhook
+  annotations:
+    cert-manager.io/inject-ca-from: porch-system/porch-system-server-certificate
+webhooks:
+- admissionReviewVersions:
+  - v1
+  - v1beta1
+  clientConfig:
+    service:
+      name: api
+      namespace: porch-system
+      path: /validate-deletion
+      port: 8443
+  failurePolicy: Fail
+  matchPolicy: Equivalent
+  name: packagerevdeletion.google.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - porch.kpt.dev
+    apiVersions:
+    - v1alpha1
+    operations:
+    - DELETE
+    resources:
+    - packagerevisions
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
