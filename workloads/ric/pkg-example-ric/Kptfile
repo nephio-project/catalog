@@ -15,4 +15,3 @@ pipeline:
     configPath: apply-replacements-namespace.yaml
   - image: gcr.io/kpt-fn/set-namespace:v0.4.1
     configPath: package-context.yaml
-  - image: nephio/nfdeploy-fn:v2.0.0
