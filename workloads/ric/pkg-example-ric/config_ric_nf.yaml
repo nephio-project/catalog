@@ -20,7 +20,6 @@ spec:
           a1_rcv_retry_times: 20
           ins_del_no_resp_ttl: 5
           ins_del_resp_ttl: 10
-
       appmgr:
         image:
         init:
@@ -35,8 +34,6 @@ spec:
           registry: "docker.io"
           name: chartmuseum/chartmuseum
           tag: v0.8.2
-
-
       dbaas:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
@@ -45,8 +42,6 @@ spec:
         enableHighAvailability: false
         # Enable pod anti affinity only if you have more than 3 k8s nodes
         enablePodAntiAffinity: false
-
-
       e2mgr:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
@@ -76,47 +71,37 @@ spec:
           storageClassName: local-storage
           pizpub:
             enabled: false
-
-
       jaegeradapter:
         image:
           registry: "docker.io"
           name: jaegertracing/all-in-one
           tag: 1.12
-
-
       rtmgr:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
           name: ric-plt-rtmgr
           tag: 0.9.6
-
       submgr:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
           name: ric-plt-submgr
           tag: 0.10.2
-
       vespamgr:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
           name: ric-plt-vespamgr
           tag: 0.7.5
         prometheusurl: "http://r4-infrastructure-prometheus-server.ricplt"
-
       o1mediator:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
           name: ric-plt-o1
           tag: 0.6.3
-
-
       alarmmanager:
         image:
           registry: "nexus3.o-ran-sc.org:10002/o-ran-sc"
           name: ric-plt-alarmmanager
           tag: 0.5.16
-
       influxdb:
         image:
           registry: "influxdb"
