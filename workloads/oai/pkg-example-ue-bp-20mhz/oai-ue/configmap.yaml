@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oai-nr-ue-configmap-20mhz
+  namespace: oai-ue
+data:
+  nr-ue.conf: |
+    uicc0 = {
+      imsi = "001010000000100";
+      key = "fec86ba6eb707ed08905757b1bb44b8f";
+      opc= "C42449363BBAD02B66D16BC975D77CC1";
+      dnn= "internet";
+      nssai_sst=1;
+      nssai_sd=16777215;
+    }
