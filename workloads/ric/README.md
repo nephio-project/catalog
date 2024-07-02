@@ -1,4 +1,5 @@
 # RIC packages
+We will be deploying [OSC RIC](https://docs.o-ran-sc.org/en/latest/projects.html#near-realtime-ran-intelligent-controller-ric) using Nephio.
 
 Packages for deploying the following are stored in the folder
 
@@ -12,20 +13,20 @@ PackageVariant and PackageVariantSets for deploying RIC are also stored in this 
 
 ## Step 0: Prerequisite
 
-1. Nephio should be installed.
-2. Since RIc will be deployed on Regional Cluster regional cluster should be running.
-3. Catalog repository need to be registered. 
-   Since the RIC packages are in workloads/ric of https://github.com/nephio-project/catalog.git repository,
-   we need to register the repository with --directory option
+1. Install Nephio as per the [user guide](https://github.com/nephio-project/docs/blob/main/content/en/docs/guides/install-guides/_index.md)
+2. Follow [exercise to install OAI components](https://github.com/nephio-project/docs/blob/main/content/en/docs/guides/user-guides/exercise-2-oai.md) to setup regional cluster.RIC will be installed on the regional cluster.
+3. Register the RIC repository using
 
-   e.g. kpt alpha repo register --namespace default https://github.com/nephio-project/catalog.git --directory=workloads/ric
+```bash
+ kpt alpha repo register --namespace default https://github.com/nephio-project/catalog.git --directory=workloads/ric
+```
 
    Also the following tags need to be created for upstream repository(https://github.com/nephio-project/catalog.git) used:
-   1. workloads/oai/ric-operator/v1
-   2. workloads/oai/pkg-example-ric/v1
+   1. workloads/ric/ric-operator/v1
+   2. workloads/ric/pkg-example-ric/v1
 
 
-## Step 2: Deploy RIC NF operator
+## Step 2: Deploy OSC-RIC operator
 
 Execute the command as shown below in Nephio Management cluster
 
@@ -38,7 +39,7 @@ Check RIC operator pod is in running state in regional clusters.
 kubectl get pods -n ric-operators --context regional-admin@regional
 ```
 
-## Step 3: Deploy RIC NF
+## Step 3: Deploy OSC-RIC
 
 Deploy RIC using the below command in Nephio Management cluster
 
