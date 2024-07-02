@@ -1,11 +1,10 @@
-# RIC packages
+# OSC RIC packages
 We will be deploying [OSC RIC](https://docs.o-ran-sc.org/en/latest/projects.html#near-realtime-ran-intelligent-controller-ric) using Nephio.
 
 Packages for deploying the following are stored in the folder
 
 - RIC custom controller
 - RIC
-- Workload cluster for RIC deployments
 
 PackageVariant and PackageVariantSets for deploying RIC are also stored in this folder.
 
@@ -20,11 +19,6 @@ PackageVariant and PackageVariantSets for deploying RIC are also stored in this 
 ```bash
  kpt alpha repo register --namespace default https://github.com/nephio-project/catalog.git --directory=workloads/ric
 ```
-
-   Also the following tags need to be created for upstream repository(https://github.com/nephio-project/catalog.git) used:
-   1. workloads/ric/ric-operator/v1
-   2. workloads/ric/pkg-example-ric/v1
-
 
 ## Step 2: Deploy OSC-RIC operator
 
