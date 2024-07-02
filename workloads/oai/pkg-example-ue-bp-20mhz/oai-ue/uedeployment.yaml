@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oai-nr-ue-20mhz
+  namespace: oai-ue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: oai-nr-ue-20mhz
+      app.kubernetes.io/instance: nrue
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: oai-nr-ue-20mhz
+        app.kubernetes.io/instance: nrue
+        app: oai-nr-ue
+    spec:
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 0
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: nr-ue
+        image: "oaisoftwarealliance/oai-nr-ue:v2.1.0"
+        securityContext:
+          privileged: true
+        env:
+        - name: USE_ADDITIONAL_OPTIONS
+        # oai-gnb-du.oai-ran-du
+          value: "--sa --rfsim --log_config.global_log_options level,nocolor,time -r 51 --numerology 1 -C 3450720000 --ssb 186 --uicc0.imsi 001010000000100"
+        command: ["/bin/bash", "-c"]
+        args:
+        - RFSIM_IP_ADDRESS=$(getent hosts oai-gnb-du.oai-ran-du | awk '{print $1}');
+          exec /opt/oai-nr-ue/bin/nr-uesoftmodem -O /opt/oai-nr-ue/etc/nr-ue.conf $USE_ADDITIONAL_OPTIONS --rfsimulator.serveraddr $RFSIM_IP_ADDRESS;
+        volumeMounts:
+        - mountPath: /opt/oai-nr-ue/etc/nr-ue.conf
+          name: configuration
+          subPath: nr-ue.conf
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccountName: oai-nr-ue-sa
+      terminationGracePeriodSeconds: 5
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: oai-nr-ue-configmap-20mhz
+        name: configuration

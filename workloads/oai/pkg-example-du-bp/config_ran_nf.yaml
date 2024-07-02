@@ -16,10 +16,10 @@ spec:
       tac: 1
       downlinkFrequencyBand: 78
       downlinkSubCarrierSpacing: 1
-      downlinkCarrierBandwidth: 106
+      downlinkCarrierBandwidth: 51
       uplinkFrequencyBand: 78
       uplinkSubCarrierSpacing: 1
-      uplinkCarrierBandwidth: 106
+      uplinkCarrierBandwidth: 51
   - apiVersion: workload.nephio.org/v1alpha1
     kind: PLMN
     metadata:
@@ -40,4 +40,5 @@ spec:
       name: oai-nf-config
       namespace: default
     spec:
-      image: "docker.io/oaisoftwarealliance/oai-gnb:2023.w19"
+    # The following image is temporary and will be replaced in the future
+      image: "arorasagar/testing-images:oai-gnb-telnet"
