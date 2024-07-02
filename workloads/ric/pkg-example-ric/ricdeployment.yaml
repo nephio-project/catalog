@@ -1,0 +1,12 @@
+apiVersion: workload.nephio.org/v1alpha1
+kind: NFDeployment
+metadata: 
+  name: ric-example
+  namespace: example
+spec:
+  provider: ric.oransc.org
+  capacity:
+  parametersRefs:
+  - apiVersion: workload.nephio.org/v1alpha1
+    kind: NFConfig
+    name: ric-nf-config

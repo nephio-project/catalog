@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ric-operators
+  name: ric-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ric-operator
+      app.kubernetes.io/component: controller
+  template:
+    metadata:
+      name: ric-operator
+      labels:
+        app.kubernetes.io/name: ric-operator
+        app.kubernetes.io/component: controller
+    spec:
+      serviceAccountName: ric-operator
+      containers:
+      - name: operator
+        image: guptanaman641/osc-controller:3.0.0 # Once Official public git hub repo is created this will be replced.
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL

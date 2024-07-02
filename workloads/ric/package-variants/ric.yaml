@@ -1,0 +1,16 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: regional-ric
+spec:
+  upstream:
+    repo: catalog-workloads-ric
+    package: pkg-example-ric
+    revision: v3.0.0
+  downstream:
+    repo: regional
+    package: ric
+  annotations:
+    approval.nephio.org/policy: initial
+  injectors:
+  - name: regional
