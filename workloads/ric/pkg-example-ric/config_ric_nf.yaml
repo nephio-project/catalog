@@ -55,7 +55,6 @@ spec:
         rnibWriter:
           stateChangeMessageChannel: RAN_CONNECTION_STATUS_CHANGE
           ranManipulationMessageChannel: RAN_MANIPULATION
-
       e2term:
         alpha:
           image:
