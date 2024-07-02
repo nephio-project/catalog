@@ -36,3 +36,17 @@ Check RIC operator pod is in running state in regional clusters.
 
 ```bash
 kubectl get pods -n ric-operators --context regional-admin@regional
+```
+
+## Step 3: Deploy RIC NF
+
+Deploy RIC using the below command in Nephio Management cluster
+
+```bash
+kubectl apply -f package-variants/ric.yaml
+```
+Check RIC pods is in running state in regional cluster.
+
+```bash
+kubectl get pods -n ricplt --context regional-admin@regional
+```
