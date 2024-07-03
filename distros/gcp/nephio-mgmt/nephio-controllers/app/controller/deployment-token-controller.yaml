@@ -76,7 +76,7 @@ spec:
           value: gitea
         - name: ENABLE_TOKENS
           value: "true"
-        image: docker.io/nephio/nephio-operator:v2.0.0
+        image: docker.io/nephio/nephio-operator:latest
         livenessProbe:
           httpGet:
             path: /healthz

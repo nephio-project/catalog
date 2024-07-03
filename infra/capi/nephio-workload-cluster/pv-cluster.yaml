@@ -8,7 +8,7 @@ spec:
   upstream:
     package: cluster-capi-kind
     repo: catalog-infra-capi
-    revision: v2.0.0
+    revision: main
   downstream:
     package: example-cluster
     repo: mgmt
