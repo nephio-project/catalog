@@ -86,7 +86,7 @@ spec:
           value: "true"
         - name: ENABLE_RAWTOPOLOGIES
           value: "true"
-        image: docker.io/nephio/resource-backend-controller:v2.0.0
+        image: docker.io/nephio/resource-backend-controller:v3.0.0
         livenessProbe:
           httpGet:
             path: /healthz
