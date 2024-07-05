@@ -22,10 +22,6 @@ replacements:
     - spec.configRefs.1.metadata.namespace
     - spec.configRefs.2.metadata.namespace
   - select:
-      kind: NFDeployment
-    fieldPaths:
-    - spec.configRefs.[kind=Config].namespace
-  - select:
       kind: Interface
     fieldPaths:
     - metadata.annotations.[specializer.nephio.org/namespace]
