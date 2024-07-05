@@ -22,59 +22,30 @@ spec:
         runAsGroup: 0
         runAsUser: 0
       imagePullSecrets:
-                - name: regcred
+      - name: regcred
       containers:
       - name: nr-ue
-        image: "docker.io/oaisoftwarealliance/oai-nr-ue:2023.w19"
+        image: "oaisoftwarealliance/oai-nr-ue:v2.1.0"
         securityContext:
-           privileged: true
+          privileged: true
         env:
-          - name: TZ
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: timeZone
-          - name: RFSIMULATOR
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: rfSimulator
-          - name: FULL_IMSI
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: fullImsi
-          - name: FULL_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: fullKey
-          - name: OPC
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: opc
-          - name: DNN
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: dnn
-          - name: NSSAI_SST
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: nssaiSst
-          - name: NSSAI_SD
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: nssaiSd
-          - name: USE_ADDITIONAL_OPTIONS
-            valueFrom:
-              configMapKeyRef:
-                name: oai-nr-ue-configmap
-                key: useAdditionalOptions
+        - name: USE_ADDITIONAL_OPTIONS
+        # oai-gnb-du.oai-ran-du
+          value: "--sa --rfsim --log_config.global_log_options level,nocolor,time -r 51 --numerology 1 -C 3450720000 --ssb 186 --uicc0.imsi 001010000000100"
+        command: ["/bin/bash", "-c"]
+        args:
+        - RFSIM_IP_ADDRESS=$(getent hosts oai-gnb-du.oai-ran-du | awk '{print $1}');
+          exec /opt/oai-nr-ue/bin/nr-uesoftmodem -O /opt/oai-nr-ue/etc/nr-ue.conf $USE_ADDITIONAL_OPTIONS --rfsimulator.serveraddr $RFSIM_IP_ADDRESS;
+        volumeMounts:
+        - mountPath: /opt/oai-nr-ue/etc/nr-ue.conf
+          name: configuration
+          subPath: nr-ue.conf
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       serviceAccountName: oai-nr-ue-sa
       terminationGracePeriodSeconds: 5
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: oai-nr-ue-configmap
+        name: configuration
