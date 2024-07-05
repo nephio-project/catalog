@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: oai-nr-ue-configmap-20mhz
+  name: oai-nr-ue-configmap
   namespace: oai-ue
 data:
   nr-ue.conf: |

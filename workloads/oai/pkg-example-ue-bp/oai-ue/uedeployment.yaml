@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oai-nr-ue-20mhz
+  name: oai-nr-ue
   namespace: oai-ue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: oai-nr-ue-20mhz
+      app.kubernetes.io/name: oai-nr-ue
       app.kubernetes.io/instance: nrue
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: oai-nr-ue-20mhz
+        app.kubernetes.io/name: oai-nr-ue
         app.kubernetes.io/instance: nrue
         app: oai-nr-ue
     spec:
@@ -47,5 +47,5 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
-          name: oai-nr-ue-configmap-20mhz
+          name: oai-nr-ue-configmap
         name: configuration
