@@ -10,7 +10,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: main
+    branch: v3.0.0
     directory: /nephio/core
     repo: https://github.com/nephio-project/catalog.git
   type: git
