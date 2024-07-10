@@ -5,4 +5,4 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 info:
-  description: example oai ue sim blueprint package
+  description: example oai ue sim blueprint package for bandwidth=20 Mhz

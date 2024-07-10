@@ -4,12 +4,12 @@ metadata:
   name: oai-nr-ue-configmap
   namespace: oai-ue
 data:
-  dnn: "internet"
-  fullImsi: "001010000000100"
-  fullKey: "fec86ba6eb707ed08905757b1bb44b8f"
-  nssaiSd: "16777215"
-  nssaiSst: "1"
-  opc: "C42449363BBAD02B66D16BC975D77CC1"
-  rfSimulator: "oai-gnb-du.oai-ran-du"
-  timeZone: "Europe/Paris"
-  useAdditionalOptions: "--sa --rfsim -r 106 --numerology 1 -C 3619200000 --nokrnmod --log_config.global_log_options level,nocolor,time"
+  nr-ue.conf: |
+    uicc0 = {
+      imsi = "001010000000100";
+      key = "fec86ba6eb707ed08905757b1bb44b8f";
+      opc= "C42449363BBAD02B66D16BC975D77CC1";
+      dnn= "internet";
+      nssai_sst=1;
+      nssai_sd=16777215;
+    }
