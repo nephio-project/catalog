@@ -9,14 +9,14 @@ upstream:
   git:
     repo: https://github.com/nephio-project/nephio-packages
     directory: /nephio-webui
-    ref: main
+    ref: v3.0.0
   updateStrategy: resource-merge
 upstreamLock:
   type: git
   git:
     repo: https://github.com/nephio-project/nephio-packages
     directory: /nephio-webui
-    ref: main
+    ref: v3.0.0
     commit: 67cb0a7b146b66d8fd1e89d1a13349fbc98eb003
 info:
   site: https://nephio.org

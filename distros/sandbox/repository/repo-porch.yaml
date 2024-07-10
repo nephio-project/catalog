@@ -7,7 +7,7 @@ spec:
   content: Package
   deployment: true
   git:
-    branch: main
+    branch: v3.0.0
     directory: /
     repo: http://172.18.0.200:3000/nephio/example-cluster-name.git
     secretRef:
