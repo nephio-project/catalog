@@ -10,7 +10,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: R3
+    branch: v3.0.0
     directory: /infra/capi
     repo: https://github.com/nephio-project/catalog.git
   type: git

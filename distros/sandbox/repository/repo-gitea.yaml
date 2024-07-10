@@ -5,4 +5,4 @@ metadata:
   namespace: default
 spec:
   description: example-cluster-name repository
-  defaultBranch: main
+  defaultBranch: v3.0.0
