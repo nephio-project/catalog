@@ -1,4 +1,4 @@
-# Copyright 2022 The kpt Authors
+# Copyright 2022-2024 The kpt and Nephio Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -71,6 +71,7 @@ spec:
             - --cache-directory=/cache
             - --cert-dir=/tmp/certs
             - --secure-port=4443
+            - --repo-sync-frequency=60s
 ---
 apiVersion: v1
 kind: Service
