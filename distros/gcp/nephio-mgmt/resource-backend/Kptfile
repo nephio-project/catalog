@@ -9,14 +9,14 @@ upstream:
   git:
     repo: https://github.com/nephio-project/nephio-example-packages
     directory: /resource-backend
-    ref: main
+    ref: v3.0.0
   updateStrategy: resource-merge
 upstreamLock:
   type: git
   git:
     repo: https://github.com/nephio-project/nephio-example-packages
     directory: /resource-backend
-    ref: main
+    ref: v3.0.0
     commit: 913c67b5cbea36cab270e6e634d47bb127e401b5
 info:
   description: resource-backend controller which hold ipam/vlan
