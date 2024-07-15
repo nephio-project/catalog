@@ -7,7 +7,7 @@ spec:
   sourceFormat: unstructured
   git:
     repo: http://172.18.0.200:3000/nephio/example-cluster-name.git
-    branch: v3.0.0
+    branch: main
     auth: token
     secretRef:
       name: example-cluster-name-access-token-configsync
