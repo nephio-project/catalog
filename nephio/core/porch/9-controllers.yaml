@@ -1,4 +1,4 @@
-# Copyright 2022 The kpt Authors
+# Copyright 2022-2024 The kpt and Nephio Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,14 +36,14 @@ spec:
     spec:
       serviceAccountName: porch-controllers
       containers:
-        - name: porch-controllers
-          # Update to the image of your porch-controllers build.
-          image: docker.io/nephio/porch-controllers:v3.0.0
-          imagePullPolicy: IfNotPresent
-          # Note: only the existence of the variable matters for enabling the reconciler
-          # So, be sure to remove the var not just change the value to false
-          env:
-            - name: ENABLE_PACKAGEVARIANTSETS
-              value: "true"
-            - name: ENABLE_PACKAGEVARIANTS
-              value: "true"
+      - name: porch-controllers
+        # Update to the image of your porch-controllers build.
+        image: docker.io/nephio/porch-controllers:v3.0.0
+        imagePullPolicy: IfNotPresent
+        # Note: only the existence of the variable matters for enabling the reconciler
+        # So, be sure to remove the var not just change the value to false
+        env:
+        - name: ENABLE_PACKAGEVARIANTS
+          value: "true"
+        - name: ENABLE_PACKAGEVARIANTSETS
+          value: "true"

@@ -3,4 +3,4 @@ kind: Kptfile
 metadata:
   name: porch
 info:
-  description: porch package
+  description: porch
