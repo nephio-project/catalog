@@ -6,6 +6,8 @@ metadata:
     app.kubernetes.io/version: "v3.2.6"
     app: ueransim
     component: ue
+  annotations:
+    specializer.nephio.org/namespace: example
 data:
   ue-config.yaml: |
     supi: "imsi-208930000000003"  # IMSI number
