@@ -6,7 +6,6 @@ metadata:
     config.kubernetes.io/local-config: "true"
 info:
   description: example cuup blueprint package
-
 pipeline:
   mutators:
   - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
@@ -15,8 +14,8 @@ pipeline:
     configPath: apply-replacements-namespace.yaml
   - image: gcr.io/kpt-fn/set-namespace:v0.4.1
     configPath: package-context.yaml
-  - image: nephio/nfdeploy-fn:latest
+  - image: docker.io/nephio/nfdeploy-fn:latest
   - image: docker.io/nephio/interface-fn:latest
   - image: docker.io/nephio/nad-fn:latest
   - image: docker.io/nephio/interface-fn:latest
-  - image: nephio/nfdeploy-fn:latest
+  - image: docker.io/nephio/nfdeploy-fn:latest
