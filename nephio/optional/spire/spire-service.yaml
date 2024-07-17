@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spire-server
+  namespace: spire
+  annotations:
+    metallb.universe.tf/ip-allocated-from-pool: nephio
+    metallb.universe.tf/loadBalancerIPs: 172.18.0.222
+spec:
+  type: LoadBalancer
+  ports:
+    - name: grpc
+      port: 8081
+      targetPort: 8081
+      protocol: TCP
+  selector:
+    app: spire-server
