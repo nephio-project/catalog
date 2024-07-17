@@ -14,7 +14,3 @@ replacements:
       kind: Interface
     fieldPaths:
     - metadata.annotations.[specializer.nephio.org/namespace]
-  - select:
-      kind: IPClaim
-    fieldPaths:
-    - metadata.annotations.[specializer.nephio.org/namespace]
