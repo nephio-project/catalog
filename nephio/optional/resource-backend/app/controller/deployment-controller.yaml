@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations: {}
-  creationTimestamp: null
+  
   name: resource-backend-controller
   namespace: backend-system
 spec:
@@ -14,7 +14,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      
       labels:
         app.kubernetes.io/component: tbd
         app.kubernetes.io/instance: tbd
@@ -87,7 +87,7 @@ spec:
           value: "true"
         - name: ENABLE_RAWTOPOLOGIES
           value: "true"
-        image: docker.io/nephio/resource-backend-controller:v3.0.0
+        image: docker.io/nephio/resource-backend-controller:latest
         livenessProbe:
           httpGet:
             path: /healthz

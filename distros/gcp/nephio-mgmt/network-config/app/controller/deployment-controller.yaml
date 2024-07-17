@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: # kpt-merge: network-config/network-config-controller
-  creationTimestamp: null
+  
   name: network-config-controller
   namespace: network-config
   annotations:
@@ -14,7 +14,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      
       labels:
         app.kubernetes.io/component: tbd
         app.kubernetes.io/instance: tbd

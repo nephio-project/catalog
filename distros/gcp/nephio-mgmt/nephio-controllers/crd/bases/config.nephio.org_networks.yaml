@@ -4,7 +4,7 @@ metadata: # kpt-merge: /networks.config.nephio.org
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
     internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|networks.config.nephio.org'
-  creationTimestamp: null
+  
   name: networks.config.nephio.org
 spec:
   group: config.nephio.org

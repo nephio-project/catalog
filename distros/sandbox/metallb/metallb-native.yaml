@@ -218,7 +218,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.1
-  creationTimestamp: null
+  
   name: bfdprofiles.metallb.io
 spec:
   group: metallb.io
@@ -325,7 +325,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.1
-  creationTimestamp: null
+  
   name: bgpadvertisements.metallb.io
 spec:
   group: metallb.io
@@ -841,7 +841,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.1
-  creationTimestamp: null
+  
   name: communities.metallb.io
 spec:
   group: metallb.io
@@ -900,7 +900,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.1
-  creationTimestamp: null
+  
   name: ipaddresspools.metallb.io
 spec:
   group: metallb.io
@@ -1105,7 +1105,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.1
-  creationTimestamp: null
+  
   name: l2advertisements.metallb.io
 spec:
   group: metallb.io
@@ -1863,7 +1863,7 @@ spec:
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  creationTimestamp: null
+  
   name: metallb-webhook-configuration
 webhooks:
 - admissionReviewVersions:

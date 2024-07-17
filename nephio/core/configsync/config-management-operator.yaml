@@ -4,7 +4,7 @@ metadata: # kpt-merge: /configmanagements.configmanagement.gke.io
   annotations:
     controller-gen.kubebuilder.io/version: v0.5.0
     internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|configmanagements.configmanagement.gke.io'
-  creationTimestamp: null
+  
   name: configmanagements.configmanagement.gke.io
 spec:
   group: configmanagement.gke.io

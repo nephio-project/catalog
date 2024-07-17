@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: # kpt-merge: nephio-system/token-controller
-  creationTimestamp: null
+  
   name: token-controller
   namespace: nephio-system
   annotations:
@@ -14,7 +14,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      
       labels:
         app.kubernetes.io/component: tbd
         app.kubernetes.io/instance: tbd

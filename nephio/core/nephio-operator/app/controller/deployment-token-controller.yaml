@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations: {}
-  creationTimestamp: null
+  
   name: token-controller
   namespace: nephio-system
 spec:
@@ -13,7 +13,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      
       labels:
         app.kubernetes.io/component: tbd
         app.kubernetes.io/instance: tbd
@@ -75,7 +75,7 @@ spec:
           value: gitea
         - name: ENABLE_TOKENS
           value: "true"
-        image: docker.io/nephio/nephio-operator:v3.0.0
+        image: docker.io/nephio/nephio-operator:latest
         livenessProbe:
           httpGet:
             path: /healthz

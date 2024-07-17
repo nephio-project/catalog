@@ -4,7 +4,7 @@ metadata: # kpt-merge: /smfdeployments.workload.nephio.org
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
     internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|smfdeployments.workload.nephio.org'
-  creationTimestamp: null
+  
   name: smfdeployments.workload.nephio.org
 spec:
   group: workload.nephio.org
