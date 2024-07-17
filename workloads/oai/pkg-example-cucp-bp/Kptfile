@@ -18,5 +18,4 @@ pipeline:
   - image: nephio/nfdeploy-fn:v3.0.0
   - image: docker.io/nephio/interface-fn:v3.0.0
   - image: docker.io/nephio/nad-fn:v3.0.0
-  - image: docker.io/nephio/interface-fn:v3.0.0
   - image: nephio/nfdeploy-fn:v3.0.0
