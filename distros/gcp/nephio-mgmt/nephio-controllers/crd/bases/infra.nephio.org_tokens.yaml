@@ -4,7 +4,7 @@ metadata: # kpt-merge: /tokens.infra.nephio.org
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
     internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|tokens.infra.nephio.org'
-  creationTimestamp: null
+  
   name: tokens.infra.nephio.org
 spec:
   group: infra.nephio.org

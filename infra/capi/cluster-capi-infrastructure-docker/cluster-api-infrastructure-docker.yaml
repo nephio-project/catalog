@@ -16,7 +16,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     cluster.x-k8s.io/v1alpha4: v1alpha4
@@ -402,7 +402,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     cluster.x-k8s.io/v1alpha4: v1alpha4
@@ -695,7 +695,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     cluster.x-k8s.io/v1alpha4: v1alpha4
@@ -1115,7 +1115,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     cluster.x-k8s.io/v1alpha4: v1alpha4
@@ -1275,7 +1275,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     cluster.x-k8s.io/v1alpha4: v1alpha4
@@ -1631,7 +1631,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
     controller-gen.kubebuilder.io/version: v0.13.0
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     cluster.x-k8s.io/v1alpha4: v1alpha4
@@ -2034,7 +2034,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     clusterctl.cluster.x-k8s.io: ""
@@ -2052,7 +2052,7 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     clusterctl.cluster.x-k8s.io: ""
@@ -2084,7 +2084,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     clusterctl.cluster.x-k8s.io: ""
@@ -2100,7 +2100,7 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
+      
       labels:
         cluster.x-k8s.io/provider: infrastructure-docker
         control-plane: controller-manager
@@ -2207,7 +2207,7 @@ kind: MutatingWebhookConfiguration
 metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     clusterctl.cluster.x-k8s.io: ""
@@ -2263,7 +2263,7 @@ kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
     cert-manager.io/inject-ca-from: capd-system/capd-serving-cert
-  creationTimestamp: null
+  
   labels:
     cluster.x-k8s.io/provider: infrastructure-docker
     clusterctl.cluster.x-k8s.io: ""

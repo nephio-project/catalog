@@ -4,7 +4,7 @@ metadata: # kpt-merge: /clustercontexts.infra.nephio.org
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
     internal.kpt.dev/upstream-identifier: 'apiextensions.k8s.io|CustomResourceDefinition|default|clustercontexts.infra.nephio.org'
-  creationTimestamp: null
+  
   name: clustercontexts.infra.nephio.org
 spec:
   group: infra.nephio.org
