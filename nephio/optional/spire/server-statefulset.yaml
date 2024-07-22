@@ -73,6 +73,7 @@ spec:
       containers:
         - name: spire-server
           image: ghcr.io/spiffe/spire-server:1.10.0
+          imagePullPolicy: Never
           args:
             - -config
             - /run/spire/config/server.conf
@@ -117,7 +118,7 @@ spec:
           stdin: true
           tty: true
         - name: spire-oidc
-          image: ghcr.io/spiffe/oidc-discovery-provider:1.5.5
+          image: ghcr.io/spiffe/oidc-discovery-provider:1.10.0
           args:
           - -config
           - /run/spire/oidc/config/oidc-discovery-provider.conf
@@ -147,9 +148,7 @@ spec:
           configMap:
             name: spire-server
         - name: spire-server-socket
-          hostPath:
-            path: /run/spire/sockets/server
-            type: DirectoryOrCreate
+          emptyDir: {}
         - name: spire-oidc-config
           configMap:
             name: oidc-discovery-provider
