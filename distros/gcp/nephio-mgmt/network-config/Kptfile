@@ -9,14 +9,7 @@ upstream:
   git:
     repo: https://github.com/nephio-project/nephio-example-packages
     directory: /network-config
-    ref: v1.0.1
+    ref: v3.0.0
   updateStrategy: resource-merge
-upstreamLock:
-  type: git
-  git:
-    repo: https://github.com/nephio-project/nephio-example-packages
-    directory: /network-config
-    ref: v1.0.1
-    commit: 31ee80981fd0fb247a83b54f825f1b9ee86dee23
 info:
   description: network-config controller
