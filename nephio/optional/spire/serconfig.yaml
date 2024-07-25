@@ -41,13 +41,8 @@ data:
       }
 
       NodeAttestor "k8s_psat" {
-        plugin_data {
-          clusters = {
-            # TODO: Change this to your cluster name
             plugin_data_file= "/run/spire/clusters/clusters.conf"
-           }
          }
-       }
 
       KeyManager "disk" {
         plugin_data {

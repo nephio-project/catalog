@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clusters
+  namespace: spire
+data:
+  clusters.conf: |
+    clusters= {       
+      "kind" = {
+        service_account_allow_list = ["spire:spire-agent"]
+       }
+      "regional" = {
+        service_account_allow_list = ["spire:spire-agent"]
+        kube_config_file = "/run/spire/kubeconfigs/kubeconfig-regional"
+      }
+    }
