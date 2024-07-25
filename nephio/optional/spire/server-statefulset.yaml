@@ -73,6 +73,7 @@ spec:
       containers:
         - name: spire-server
           image: ghcr.io/spiffe/spire-server:1.10.0
+          imagePullPolicy: Never
           args:
             - -config
             - /run/spire/config/server.conf
@@ -85,14 +86,12 @@ spec:
             - name: spire-data
               mountPath: /run/spire/data
               readOnly: false
-            # - name: spire-secrets
-            #   mountPath: /run/spire/secrets
-            #   readOnly: true
             - name: spire-server-socket
               mountPath: /tmp/spire-server/private
               readOnly: false
-            # - name: kubeconfigs
-            #   mountPath: /run/spire/kubeconfigs
+            - name: kubeconfigs
+              mountPath: /run/spire/clusters
+              readOnly: false
           livenessProbe:
             httpGet:
               path: /live
@@ -117,7 +116,7 @@ spec:
           stdin: true
           tty: true
         - name: spire-oidc
-          image: ghcr.io/spiffe/oidc-discovery-provider:1.5.5
+          image: ghcr.io/spiffe/oidc-discovery-provider:1.10.0
           args:
           - -config
           - /run/spire/oidc/config/oidc-discovery-provider.conf
@@ -147,19 +146,19 @@ spec:
           configMap:
             name: spire-server
         - name: spire-server-socket
-          hostPath:
-            path: /run/spire/sockets/server
-            type: DirectoryOrCreate
+          emptyDir: {}
         - name: spire-oidc-config
           configMap:
             name: oidc-discovery-provider
         - name: spire-secrets
           secret:
             secretName: spire-server
-        # - name: kubeconfigs
-        #   secret:
-        #     defaultMode: 0400
-        #     secretName: kubeconfigs
+        - name: clusters
+          configMap:
+            name: clusters
+        - name: kubeconfigs
+          configMap:
+            name: kubeconfigs
   volumeClaimTemplates:
     - metadata:
         name: spire-data

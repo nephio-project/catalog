@@ -44,23 +44,7 @@ data:
         plugin_data {
           clusters = {
             # TODO: Change this to your cluster name
-            "kind" = {
-               use_token_review_api_validation = true
-               service_account_allow_list = ["spire:spire-agent"]
-               service_account_allow_list = ["spire:spire-oidc"]
-             }
-            "regional" = {
-               service_account_allow_list = ["spire:spire-agent"]
-               kube_config_file = "/run/spire/kubeconfigs/regional"
-             }
-            "edge01" = {
-               service_account_allow_list = ["spire:spire-agent"]
-               kube_config_file = "/run/spire/kubeconfigs/edge01"
-             }
-            "edge02" = {
-               service_account_allow_list = ["spire:spire-agent"]
-               kube_config_file = "/run/spire/kubeconfigs/edge02"
-             }
+            plugin_data_file= "/run/spire/clusters/clusters.conf"
            }
          }
        }
