@@ -1,0 +1,15 @@
+kind: SecurityContextConstraints
+apiVersion: security.openshift.io/v1
+metadata:
+  name: scc-capd-system-capd-manager
+allowHostDirVolumePlugin: true
+allowPrivilegedContainer: true
+groups:
+- system:cluster-admins
+- system:nodes
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+users:
+- system:serviceaccount:capd-system:capd-manager
