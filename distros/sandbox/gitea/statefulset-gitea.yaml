@@ -28,7 +28,7 @@ spec:
       initContainers:
         - name: init-directories
           image: "gitea/gitea:1.19.3"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["/usr/sbin/init_directory_structure.sh"]
           env:
             - name: GITEA_APP_INI
@@ -54,7 +54,7 @@ spec:
               memory: 128Mi
         - name: init-app-ini
           image: "gitea/gitea:1.19.3"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["/usr/sbin/config_environment.sh"]
           env:
             - name: GITEA_APP_INI
@@ -83,7 +83,7 @@ spec:
         - name: configure-gitea
           image: "gitea/gitea:1.19.3"
           command: ["/usr/sbin/configure_gitea.sh"]
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           securityContext:
             runAsUser: 1000
           env:
@@ -123,7 +123,7 @@ spec:
       containers:
         - name: gitea
           image: "gitea/gitea:1.19.3"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             # SSH Port values have to be set here as well for openssh configuration
             - name: SSH_LISTEN_PORT
