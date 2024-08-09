@@ -1,0 +1,21 @@
+kind: SecurityContextConstraints
+apiVersion: security.openshift.io/v1
+allowPrivilegeEscalation: false
+readOnlyRootFilesystem: true
+metadata:
+  name: scc-config-management-monitoring-default
+fsGroup:
+  type: MustRunAs
+  ranges:
+    - min: 2000
+      max: 2000
+groups:
+- system:cluster-admins
+- system:nodes
+runAsUser:
+  type: MustRunAsNonRoot
+  uid: 1000
+seLinuxContext:
+  type: RunAsAny
+users:
+- system:serviceaccount:config-management-monitoring:default

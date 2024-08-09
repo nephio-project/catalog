@@ -1,0 +1,28 @@
+kind: SecurityContextConstraints
+apiVersion: security.openshift.io/v1
+metadata:
+  name: scc-capi-system-capi-manager
+allowPrivilegeEscalation: false
+groups:
+- system:cluster-admins
+- system:nodes
+fsGroup:
+  ranges:
+    - min: 65532
+      max: 65532 
+  type: MustRunAs
+requiredDropCapabilities:
+  - ALL
+runAsUser: 
+  uid: 65532
+  type: MustRunAsNonRoot
+    #seccompProfile:
+    #  type: RuntimeDefault
+seccompProfiles:
+- runtime/default
+seLinuxContext:
+  type: RunAsAny
+users:
+- system:serviceaccount:capi-system:capi-manager
+- system:serviceaccount:capi-kubeadm-bootstrap-system:capi-kubeadm-bootstrap-manager
+- system:serviceaccount:capi-kubeadm-control-plane-system:capi-kubeadm-control-plane-manager

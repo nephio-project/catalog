@@ -1,0 +1,20 @@
+kind: SecurityContextConstraints
+apiVersion: security.openshift.io/v1
+metadata:
+  name: scc-gitea-memcached-default
+allowPrivilegeEscalation: false
+groups:
+- system:cluster-admins
+- system:nodes
+fsGroup:
+  type: MustRunAs
+  ranges:
+    - min: 1001
+      max: 1001
+runAsUser:
+  type: MustRunAsNonRoot
+  uid: 1001
+seLinuxContext:
+  type: RunAsAny
+users:
+- system:serviceaccount:gitea:default
