@@ -46,7 +46,10 @@ spec:
               mountPath: /tmp
             - name: data
               mountPath: /data
-          securityContext: {}
+          securityContext:
+            capabilities:
+              add:
+                - CAP_CHOWN
           resources:
             limits: {}
             requests:
@@ -164,7 +167,8 @@ spec:
               port: http
             timeoutSeconds: 1
           resources: {}
-          securityContext: {}
+          securityContext:
+            privileged: true
           volumeMounts:
             - name: temp
               mountPath: /tmp
