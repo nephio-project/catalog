@@ -1,5 +1,8 @@
 apiVersion: spire.spiffe.io/v1alpha1
 kind: ControllerManagerConfig
+metadata:
+  name: spire-controller-manager-config
+  namespace: spire
 metrics:
   bindAddress: 127.0.0.1:8082
 health:
