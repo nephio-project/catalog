@@ -13,5 +13,5 @@ trustDomain: cluster1.demo
 ignoreNamespaces:
   - kube-system
   - kube-public
-  - spire-system
+  - spire
   - local-path-storage
