@@ -116,6 +116,20 @@ spec:
               - SYS_PTRACE
           stdin: true
           tty: true
+        - name: spire-controller-manager
+          image: ghcr.io/spiffe/spire-controller-manager:nightly
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9443
+          args:
+          - "--config=spire-controller-manager-config.yaml"
+          volumeMounts:
+            - name: spire-server-socket
+              mountPath: /spire-server
+              readOnly: true
+            - name: spire-controller-manager-config
+              mountPath: /spire-controller-manager-config.yaml
+              subPath: spire-controller-manager-config.yaml
         - name: spire-oidc
           image: ghcr.io/spiffe/oidc-discovery-provider:1.10.0
           args:
@@ -160,6 +174,9 @@ spec:
         - name: kubeconfigs
           configMap:
             name: kubeconfigs
+        - name: spire-controller-manager-config
+          configMap:
+            name: spire-controller-manager-config
   volumeClaimTemplates:
     - metadata:
         name: spire-data

@@ -15,3 +15,35 @@ spec:
       protocol: TCP
   selector:
     app: spire-server
+
+# Service definition for SPIRE server bundle endpoint
+apiVersion: v1
+kind: Service
+metadata:
+  name: spire-server-bundle-endpoint
+  namespace: spire-system
+spec:
+  type: NodePort
+  ports:
+    - name: api
+      port: 8443
+      protocol: TCP
+  selector:
+    app: spire-server
+
+
+---
+#
+# Service definition for SPIRE controller manager webhook
+apiVersion: v1
+kind: Service
+metadata:
+  name: spire-controller-manager-webhook-service
+  namespace: spire-system
+spec:
+  ports:
+    - port: 443
+      protocol: TCP
+      targetPort: 9443
+  selector:
+    app: spire-server
