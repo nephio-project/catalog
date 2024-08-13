@@ -7,7 +7,7 @@ health:
 leaderElection:
   leaderElect: true
   resourceName: 98c9c988.spiffe.io
-  resourceNamespace: spire-system
+  resourceNamespace: spire
 clusterName: cluster1
 trustDomain: cluster1.demo
 ignoreNamespaces:
