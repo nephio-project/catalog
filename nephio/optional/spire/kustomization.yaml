@@ -17,6 +17,6 @@ generatorOptions:
 
 configMapGenerator:
 - name: spire-controller-manager-config
-  namespace: spire-system
+  namespace: spire
   files:
   - spire/spire-controller-manager-config.yaml
