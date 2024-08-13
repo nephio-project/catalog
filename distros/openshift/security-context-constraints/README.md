@@ -2,7 +2,7 @@
 
 ## Security Context Constraints
 
-OpenShift deployments require Security Context Constraints to be applied for containers to function properly. The ones defined here were identified through testing the deployment against an OpenShift cluster and creating SCCs.
+OpenShift deployments require Security Context Constraints to be applied for containers to function properly. The ones defined here were identified through testing the deployment against an OpenShift cluster and creating SCCs. These are prerequisites, and should be applied before attempting to install Nephio components.
 
 ## Storage
 
