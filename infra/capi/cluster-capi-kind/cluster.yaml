@@ -30,7 +30,7 @@ spec:
         enabled: true
         enforce: baseline
         warn: restricted
-    version: v1.26.3
+    version: v1.31.0
     workers:
       machineDeployments:
       - class: docker-default-worker
