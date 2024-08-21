@@ -1,0 +1,23 @@
+kind: SecurityContextConstraints
+apiVersion: security.openshift.io/v1
+metadata:
+  name: scc-admin-metallb-system-speaker
+allowHostNetwork: true
+allowHostPorts: true
+allowPrivilegeEscalation: false
+allowedCapabilities:
+- NET_RAW
+groups:
+- system:cluster-admins
+- system:nodes
+fsGroup:
+  type: RunAsAny
+readOnlyRootFilesystem: true
+requiredDropCapabilities:
+  - ALL
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+users:
+- system:serviceaccount:metallb-system:speaker
