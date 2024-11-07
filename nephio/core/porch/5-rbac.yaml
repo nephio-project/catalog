@@ -136,3 +136,12 @@ rules:
       - get
       - watch
       - list
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - create
+      - delete
+      - get
+      - update
