@@ -1,0 +1,8 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: fluxcd
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: Deployment of the following fluxcd core components. Helm controller, Kustomize controller, Source Controller, Notification controller.
