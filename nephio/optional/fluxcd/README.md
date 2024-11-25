@@ -1,7 +1,7 @@
 # fluxcd
 
 ## Description
-sample description
+Deployment of the following fluxcd core components. Helm controller, Kustomize controller, Source Controller, Notification controller
 
 ## Usage
 
