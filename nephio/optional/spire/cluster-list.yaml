@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clusters
+  namespace: spire
+data:
+  clusters.conf: |
+    clusters= {       
+      "kind" = {
+        service_account_allow_list = ["spire:spire-agent"]
+       }
+    }

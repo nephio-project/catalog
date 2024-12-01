@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: spire-agent
+  namespace: spire
+packageMetadata:
+  shortDescription: "Kpt package for deploying spire-agent"
+  keywords:
+    - spire
+    - agent
+    - security
+    - identity
+  site: "https://spiffe.io"
+  maintainers:
+    - name: "Maintainer Name"
+      email: "maintainer@example.com"
+  licenses:
+    - Apache-2.0
+  categories:
+    - security
+    - identity
+  version: "1.0.0"
+inventory:
+  namespace: spire
+  inventoryID: spire-agent
+
