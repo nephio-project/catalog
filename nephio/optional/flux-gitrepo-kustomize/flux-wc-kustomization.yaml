@@ -1,0 +1,15 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: example-cluster-name
+  namespace: default
+spec:
+  interval: 60s
+  path: "./"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: example-cluster-name
+  kubeConfig:
+    secretRef:
+      name: example-cluster-name-kubeconfig
