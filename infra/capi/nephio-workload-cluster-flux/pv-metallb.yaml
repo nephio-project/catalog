@@ -1,0 +1,22 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: example-metallb
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    package: metallb
+    repo: catalog-distros-sandbox
+    revision: main
+  downstream:
+    package: example-metallb
+    repo: mgmt-staging
+  injectors:
+  - kind: WorkloadCluster
+    name: example
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+      configMap:
+        nephio.org/cluster-name: example
