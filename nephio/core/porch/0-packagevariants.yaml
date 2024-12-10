@@ -1,8 +1,22 @@
+# Copyright 2024 The kpt and Nephio Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.1
   name: packagevariants.config.porch.kpt.dev
 spec:
   group: config.porch.kpt.dev
@@ -93,17 +107,20 @@ spec:
                     type: array
                 type: object
               pipeline:
-                description: Pipeline declares a pipeline of functions used to mutate or validate resources.
+                description: Pipeline declares a pipeline of functions used to mutate
+                  or validate resources.
                 properties:
                   mutators:
-                    description: Mutators defines a list of of KRM functions that mutate resources.
+                    description: Mutators defines a list of of KRM functions that
+                      mutate resources.
                     items:
                       description: Function specifies a KRM function.
                       properties:
                         configMap:
                           additionalProperties:
                             type: string
-                          description: '`ConfigMap` is a convenient way to specify a function config of kind ConfigMap.'
+                          description: '`ConfigMap` is a convenient way to specify
+                            a function config of kind ConfigMap.'
                           type: object
                         configPath:
                           description: |-
@@ -146,30 +163,18 @@ spec:
                             type: object
                           type: array
                         exec:
-                          description: |-
-                            Exec specifies the function binary executable.
-                            The executable can be fully qualified or it must exists in the $PATH e.g:
-
-
-                            	 exec: set-namespace
-                            	 exec: /usr/local/bin/my-custom-fn
+                          description: "Exec specifies the function binary executable.\nThe
+                            executable can be fully qualified or it must exists in
+                            the $PATH e.g:\n\n\t exec: set-namespace\n\t exec: /usr/local/bin/my-custom-fn"
                           type: string
                         image:
-                          description: |-
-                            `Image` specifies the function container image.
-                            It can either be fully qualified, e.g.:
-
-
-                            	image: gcr.io/kpt-fn/set-labels
-
-
-                            Optionally, kpt can be configured to use a image
-                            registry host-path that will be used to resolve the image path in case
-                            the image path is missing (Defaults to gcr.io/kpt-fn).
-                            e.g. The following resolves to gcr.io/kpt-fn/set-labels:
-
-
-                            	image: set-labels
+                          description: "`Image` specifies the function container image.\nIt
+                            can either be fully qualified, e.g.:\n\n\timage: gcr.io/kpt-fn/set-labels\n\nOptionally,
+                            kpt can be configured to use a image\nregistry host-path
+                            that will be used to resolve the image path in case\nthe
+                            image path is missing (Defaults to gcr.io/kpt-fn).\ne.g.
+                            The following resolves to gcr.io/kpt-fn/set-labels:\n\n\timage:
+                            set-labels"
                           type: string
                         name:
                           description: |-
@@ -221,7 +226,8 @@ spec:
                         configMap:
                           additionalProperties:
                             type: string
-                          description: '`ConfigMap` is a convenient way to specify a function config of kind ConfigMap.'
+                          description: '`ConfigMap` is a convenient way to specify
+                            a function config of kind ConfigMap.'
                           type: object
                         configPath:
                           description: |-
@@ -264,30 +270,18 @@ spec:
                             type: object
                           type: array
                         exec:
-                          description: |-
-                            Exec specifies the function binary executable.
-                            The executable can be fully qualified or it must exists in the $PATH e.g:
-
-
-                            	 exec: set-namespace
-                            	 exec: /usr/local/bin/my-custom-fn
+                          description: "Exec specifies the function binary executable.\nThe
+                            executable can be fully qualified or it must exists in
+                            the $PATH e.g:\n\n\t exec: set-namespace\n\t exec: /usr/local/bin/my-custom-fn"
                           type: string
                         image:
-                          description: |-
-                            `Image` specifies the function container image.
-                            It can either be fully qualified, e.g.:
-
-
-                            	image: gcr.io/kpt-fn/set-labels
-
-
-                            Optionally, kpt can be configured to use a image
-                            registry host-path that will be used to resolve the image path in case
-                            the image path is missing (Defaults to gcr.io/kpt-fn).
-                            e.g. The following resolves to gcr.io/kpt-fn/set-labels:
-
-
-                            	image: set-labels
+                          description: "`Image` specifies the function container image.\nIt
+                            can either be fully qualified, e.g.:\n\n\timage: gcr.io/kpt-fn/set-labels\n\nOptionally,
+                            kpt can be configured to use a image\nregistry host-path
+                            that will be used to resolve the image path in case\nthe
+                            image path is missing (Defaults to gcr.io/kpt-fn).\ne.g.
+                            The following resolves to gcr.io/kpt-fn/set-labels:\n\n\timage:
+                            set-labels"
                           type: string
                         name:
                           description: |-
@@ -344,26 +338,11 @@ spec:
             description: PackageVariantStatus defines the observed state of PackageVariant
             properties:
               conditions:
-                description: Conditions describes the reconciliation state of the object.
+                description: Conditions describes the reconciliation state of the
+                  object.
                 items:
-                  description: |-
-                    Condition contains details for one aspect of the current state of this API Resource.
-                    ---
-                    This struct is intended for direct use as an array at the field path .status.conditions.  For example,
-
-
-                    	type FooStatus struct{
-                    	    // Represents the observations of a foo's current state.
-                    	    // Known .status.conditions.type are: "Available", "Progressing", and "Degraded"
-                    	    // +patchMergeKey=type
-                    	    // +patchStrategy=merge
-                    	    // +listType=map
-                    	    // +listMapKey=type
-                    	    Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`
-
-
-                    	    // other fields
-                    	}
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
                   properties:
                     lastTransitionTime:
                       description: |-
@@ -404,12 +383,7 @@ spec:
                       - Unknown
                       type: string
                     type:
-                      description: |-
-                        type of condition in CamelCase or in foo.example.com/CamelCase.
-                        ---
-                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
-                        useful (see .node.status.conditions), the ability to deconflict is important.
-                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
                       maxLength: 316
                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
                       type: string
@@ -437,7 +411,8 @@ spec:
                         error:
                           type: string
                         result:
-                          description: ResultList contains aggregated results from multiple functions
+                          description: ResultList contains aggregated results from
+                            multiple functions
                           properties:
                             apiVersion:
                               description: |-
@@ -452,7 +427,8 @@ spec:
                             items:
                               description: Items contain a list of function result
                               items:
-                                description: Result contains the structured result from an individual function
+                                description: Result contains the structured result
+                                  from an individual function
                                 properties:
                                   exec:
                                     description: |-
@@ -461,7 +437,8 @@ spec:
                                       contain the entire input string.
                                     type: string
                                   exitCode:
-                                    description: ExitCode is the exit code from running the function
+                                    description: ExitCode is the exit code from running
+                                      the function
                                     type: integer
                                   image:
                                     description: |-
@@ -469,25 +446,33 @@ spec:
                                       Image and Exec are mutually exclusive
                                     type: string
                                   results:
-                                    description: Results is the list of results for the function
+                                    description: Results is the list of results for
+                                      the function
                                     items:
-                                      description: ResultItem defines a validation result
+                                      description: ResultItem defines a validation
+                                        result
                                       properties:
                                         field:
-                                          description: Field is a reference to the field in a resource this result refers to
+                                          description: Field is a reference to the
+                                            field in a resource this result refers
+                                            to
                                           properties:
                                             currentValue:
-                                              description: CurrentValue is the current field value
+                                              description: CurrentValue is the current
+                                                field value
                                               type: string
                                             path:
-                                              description: Path is the field path. This field is required.
+                                              description: Path is the field path.
+                                                This field is required.
                                               type: string
                                             proposedValue:
-                                              description: ProposedValue is the proposed value of the field to fix an issue.
+                                              description: ProposedValue is the proposed
+                                                value of the field to fix an issue.
                                               type: string
                                           type: object
                                         file:
-                                          description: File references a file containing the resource this result refers to
+                                          description: File references a file containing
+                                            the resource this result refers to
                                           properties:
                                             index:
                                               description: |-
@@ -501,7 +486,8 @@ spec:
                                               type: string
                                           type: object
                                         message:
-                                          description: Message is a human readable message. This field is required.
+                                          description: Message is a human readable
+                                            message. This field is required.
                                           type: string
                                         resourceRef:
                                           description: |-
@@ -524,14 +510,17 @@ spec:
                                                 More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
                                               type: string
                                             name:
-                                              description: Name is the metadata.name field of a Resource
+                                              description: Name is the metadata.name
+                                                field of a Resource
                                               type: string
                                             namespace:
-                                              description: Namespace is the metadata.namespace field of a Resource
+                                              description: Namespace is the metadata.namespace
+                                                field of a Resource
                                               type: string
                                           type: object
                                         severity:
-                                          description: Severity is the severity of this result
+                                          description: Severity is the severity of
+                                            this result
                                           type: string
                                         tags:
                                           additionalProperties:
@@ -544,7 +533,6 @@ spec:
                                     type: array
                                   stderr:
                                     description: |-
-                                      TODO(droot): This is required for making structured results subpackage aware.
                                       Enable this once test harness supports filepath based assertions.
                                       Pkg is OS specific Absolute path to the package.
                                       Pkg string `yaml:"pkg,omitempty"`
