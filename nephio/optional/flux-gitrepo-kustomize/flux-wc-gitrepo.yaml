@@ -1,0 +1,14 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: example-cluster-name
+  namespace: default
+spec:
+  interval: 2m
+  timeout: 60s
+  url: http://172.18.0.200:3000/nephio/example-cluster-name.git
+  ref:
+    branch: main
+  secretRef:
+    name: example-cluster-name-access-token
+
