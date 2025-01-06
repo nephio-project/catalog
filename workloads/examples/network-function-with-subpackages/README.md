@@ -11,7 +11,7 @@ main--+--sub1--+--sub1sub1
       |        |
       |        +--sub1sub2
       |
-main--+--sub2--+--sub2sub1
+      +--sub2--+--sub2sub1
                |
                +--sub2sub2
 ```
