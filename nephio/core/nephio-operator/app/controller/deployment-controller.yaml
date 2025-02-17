@@ -86,7 +86,7 @@ spec:
         - name: ENABLE_NETWORKS
           value: "true"
         - name: ENABLE_WORKLOADIDENTITY
-          value: "true"
+          value: "false"
         - name: CLIENT_PROXY_ADDRESS
           value: resource-backend-controller-grpc-svc.backend-system.svc.cluster.local:9999
         - name: SPIFFE_ENDPOINT_SOCKET
