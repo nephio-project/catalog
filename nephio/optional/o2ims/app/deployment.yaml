@@ -18,8 +18,7 @@ spec:
         app.kubernetes.io/name: nephio-o2ims
     spec:
       securityContext:
-        runAsUser: 0
-        runAsGroup: 0
+        runAsNonRoot: true
       containers:
       - name: nephio-o2ims
         image: docker.io/nephio/o2ims-operator:latest
@@ -36,6 +35,11 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       serviceAccountName: o2ims-operator
