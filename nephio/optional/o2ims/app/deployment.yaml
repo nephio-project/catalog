@@ -19,6 +19,8 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: true
+        runAsGroup: 65535
+        runAsUser: 65535
       containers:
       - name: nephio-o2ims
         image: docker.io/nephio/o2ims-operator:latest
