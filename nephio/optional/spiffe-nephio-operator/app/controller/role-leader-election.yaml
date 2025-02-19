@@ -1,5 +1,5 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
   annotations: {}
   
@@ -10,46 +10,37 @@ metadata:
     app.kubernetes.io/name: nephio
     app.kubernetes.io/part-of: nephio
     app.kubernetes.io/version: tbd
-  name: nephio-controller-bootstrap-role
+  name: nephio-controller-leader-election-role
+  namespace: nephio-system
 rules:
 - apiGroups:
-  - cluster.x-k8s.io
+  - ""
   resources:
-  - clusters
+  - configmaps
   verbs:
   - get
   - list
   - watch
+  - update
+  - patch
+  - create
+  - delete
 - apiGroups:
-  - '*'
+  - coordination.k8s.io
   resources:
-  - secrets
+  - leases
   verbs:
   - get
   - list
   - watch
+  - update
+  - patch
+  - create
+  - delete
 - apiGroups:
-  - porch.kpt.dev
+  - ""
   resources:
-  - packagerevisionresources
-  - packagerevisions
+  - events
   verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - repositories
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - porch.kpt.dev
-  resources:
-  - packagerevisionresources/status
-  - packagerevisions/status
-  - packagerevisions/approval
-  verbs:
-  - get
+  - create
+  - patch
