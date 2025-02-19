@@ -10,46 +10,33 @@ metadata:
     app.kubernetes.io/name: nephio
     app.kubernetes.io/part-of: nephio
     app.kubernetes.io/version: tbd
-  name: nephio-controller-bootstrap-role
+  name: nephio-controller-approval-role
 rules:
 - apiGroups:
-  - cluster.x-k8s.io
-  resources:
-  - clusters
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - '*'
-  resources:
-  - secrets
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
   - porch.kpt.dev
   resources:
-  - packagerevisionresources
   - packagerevisions
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - config.porch.kpt.dev
-  resources:
-  - repositories
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - porch.kpt.dev
-  resources:
-  - packagerevisionresources/status
   - packagerevisions/status
   - packagerevisions/approval
   verbs:
   - get
+  - list
+  - watch
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - config.porch.kpt.dev
+  resources:
+  - packagevariants
+  - packagevariants/status
+  verbs:
+  - get
+  - list
+  - watch

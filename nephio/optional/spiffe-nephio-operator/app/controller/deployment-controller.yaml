@@ -85,9 +85,19 @@ spec:
           value: "true"
         - name: ENABLE_NETWORKS
           value: "true"
+        - name: ENABLE_WORKLOADIDENTITY
+          value: "false"
         - name: CLIENT_PROXY_ADDRESS
           value: resource-backend-controller-grpc-svc.backend-system.svc.cluster.local:9999
+        - name: SPIFFE_ENDPOINT_SOCKET
+          value: unix:///spiffe-workload-api/spire-agent.sock 
+          # Temporary image
         image: docker.io/nephio/nephio-operator:latest
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: spiffe-workload-api
+          mountPath: /spiffe-workload-api
+          readOnly: true
         livenessProbe:
           httpGet:
             path: /healthz
@@ -114,4 +124,10 @@ spec:
             drop:
             - ALL
       serviceAccountName: nephio-controller
+      volumes:
+      - name: spiffe-workload-api
+        csi:
+          driver: "csi.spiffe.io"
+          readOnly: true       
+
 status: {}
