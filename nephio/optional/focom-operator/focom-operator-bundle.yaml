@@ -606,7 +606,7 @@ spec:
         - --health-probe-bind-address=:8081
         command:
         - /manager
-        image: docker.io/nephio/focom-operator:latest
+        image: docker.io/nephio/focom-operator:v4.0.0
         livenessProbe:
           httpGet:
             path: /healthz
