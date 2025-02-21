@@ -8,7 +8,7 @@ spec:
   upstream:
     package: rootsync
     repo: catalog-nephio-optional
-    revision: main
+    revision: v4.0.0
   downstream:
     package: example-rootsync
     repo: mgmt-staging

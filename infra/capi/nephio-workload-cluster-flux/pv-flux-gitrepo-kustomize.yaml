@@ -8,7 +8,7 @@ spec:
   upstream:
     package: flux-gitrepo-kustomize
     repo: catalog-nephio-optional
-    revision: main
+    revision: v4.0.0
   downstream:
     package: example-flux-gitrepo-kustomize
     repo: mgmt

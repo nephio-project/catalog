@@ -74,7 +74,7 @@ spec:
           value: "true"
         - name: ENABLE_NETWORKCONFIGS
           value: "true"
-        image: docker.io/nephio/network-config-operator:latest
+        image: docker.io/nephio/network-config-operator:v4.0.0
         livenessProbe:
           httpGet:
             path: /healthz
