@@ -19,7 +19,7 @@ spec:
       serviceAccountName: oai-ran-operator
       containers:
       - name: operator
-        image: docker.io/nephio/oai-ran-controller:latest
+        image: docker.io/nephio/oai-ran-controller:v4.0.0
         resources:
           limits:
             cpu: 500m
