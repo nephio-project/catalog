@@ -246,7 +246,7 @@ spec:
                   ref:
                     type: string
                   revision:
-                    type: string
+                    type: int
                 type: object
             type: object
           status:
@@ -885,7 +885,7 @@ spec:
                   repo:
                     type: string
                   revision:
-                    type: string
+                    type: int
                 type: object
             type: object
           status:
