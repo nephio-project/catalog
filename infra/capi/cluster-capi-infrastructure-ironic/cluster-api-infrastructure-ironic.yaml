@@ -1,0 +1,204 @@
+apiVersion: v1
+data:
+  CACHEURL: http://172.22.0.1/images
+  DEPLOY_KERNEL_URL: http://172.22.0.2:6180/images/ironic-python-agent.kernel
+  DEPLOY_RAMDISK_URL: http://172.22.0.2:6180/images/ironic-python-agent.initramfs
+  DHCP_RANGE: 172.22.0.10,172.22.0.100
+  HTTP_PORT: "6180"
+  IRONIC_ENDPOINT: http://172.22.0.2:6385/v1/
+  IRONIC_INSPECTOR_VLAN_INTERFACES: all
+  IRONIC_KERNEL_PARAMS: console=ttyS0
+  PROVISIONING_INTERFACE: eth2
+  USE_IRONIC_INSPECTOR: "false"
+kind: ConfigMap
+metadata:
+  name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+  namespace: baremetal-operator-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baremetal-operator-ironic
+  namespace: baremetal-operator-system
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ironic
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: ironic
+    spec:
+      containers:
+      - command:
+        - /bin/rundnsmasq
+        envFrom:
+        - configMapRef:
+            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+        image: quay.io/metal3-io/ironic
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - ss -lun | grep :67 && ss -lun | grep :69
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: ironic-dnsmasq
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - ss -lun | grep :67 && ss -lun | grep :69
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add:
+            - NET_ADMIN
+            - NET_BIND_SERVICE
+            - NET_RAW
+            drop:
+            - ALL
+          privileged: false
+          runAsGroup: 994
+          runAsUser: 997
+        volumeMounts:
+        - mountPath: /shared
+          name: ironic-data-volume
+      - command:
+        - /bin/runironic
+        envFrom:
+        - configMapRef:
+            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+        image: quay.io/metal3-io/ironic
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - /bin/ironic-liveness
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: ironic
+        readinessProbe:
+          exec:
+            command:
+            - /bin/ironic-readiness
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsGroup: 994
+          runAsUser: 997
+        volumeMounts:
+        - mountPath: /shared
+          name: ironic-data-volume
+      - command:
+        - /bin/runlogwatch.sh
+        image: quay.io/metal3-io/ironic
+        imagePullPolicy: Always
+        name: ironic-log-watch
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsGroup: 994
+          runAsUser: 997
+        volumeMounts:
+        - mountPath: /shared
+          name: ironic-data-volume
+      - command:
+        - /bin/runhttpd
+        envFrom:
+        - configMapRef:
+            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+        image: quay.io/metal3-io/ironic
+        imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - curl -sSfk http://127.0.0.1:6180/images
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: ironic-httpd
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - curl -sSfk http://127.0.0.1:6180/images
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsGroup: 994
+          runAsUser: 997
+        volumeMounts:
+        - mountPath: /shared
+          name: ironic-data-volume
+      hostNetwork: true
+      initContainers:
+      - command:
+        - /usr/local/bin/get-resource.sh
+        envFrom:
+        - configMapRef:
+            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+        image: quay.io/metal3-io/ironic-ipa-downloader
+        imagePullPolicy: Always
+        name: ironic-ipa-downloader
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          runAsGroup: 994
+          runAsUser: 997
+        volumeMounts:
+        - mountPath: /shared
+          name: ironic-data-volume
+      securityContext:
+        fsGroup: 994
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+      - emptyDir: {}
+        name: ironic-data-volume
