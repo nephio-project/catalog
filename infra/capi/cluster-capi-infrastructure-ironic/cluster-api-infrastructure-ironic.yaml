@@ -3,16 +3,22 @@ data:
   CACHEURL: http://172.22.0.1/images
   DEPLOY_KERNEL_URL: http://172.22.0.2:6180/images/ironic-python-agent.kernel
   DEPLOY_RAMDISK_URL: http://172.22.0.2:6180/images/ironic-python-agent.initramfs
+  DHCP_HOSTS: b4:96:91:c0:31:64,id:*;b4:96:91:c4:e3:f4,id:*
+  DHCP_IGNORE: tag:!known
   DHCP_RANGE: 172.22.0.10,172.22.0.100
+  DNS_IP: 172.22.0.3
+  GATEWAY_IP: 172.22.0.4
   HTTP_PORT: "6180"
+  IRONIC_BASE_URL: http://172.22.0.2:6385
   IRONIC_ENDPOINT: http://172.22.0.2:6385/v1/
   IRONIC_INSPECTOR_VLAN_INTERFACES: all
   IRONIC_KERNEL_PARAMS: console=ttyS0
+  IRONIC_RAMDISK_SSH_KEY: PLACEHOLDER_SSH_KEY
   PROVISIONING_INTERFACE: eth2
   USE_IRONIC_INSPECTOR: "false"
 kind: ConfigMap
 metadata:
-  name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+  name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
   namespace: baremetal-operator-system
 ---
 apiVersion: apps/v1
@@ -38,7 +44,7 @@ spec:
         - /bin/rundnsmasq
         envFrom:
         - configMapRef:
-            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+            name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
         image: quay.io/metal3-io/ironic
         imagePullPolicy: Always
         livenessProbe:
@@ -83,7 +89,7 @@ spec:
         - /bin/runironic
         envFrom:
         - configMapRef:
-            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+            name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
         image: quay.io/metal3-io/ironic
         imagePullPolicy: Always
         livenessProbe:
@@ -136,7 +142,7 @@ spec:
         - /bin/runhttpd
         envFrom:
         - configMapRef:
-            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+            name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
         image: quay.io/metal3-io/ironic
         imagePullPolicy: Always
         livenessProbe:
@@ -179,7 +185,7 @@ spec:
         - /usr/local/bin/get-resource.sh
         envFrom:
         - configMapRef:
-            name: baremetal-operator-ironic-bmo-configmap-hfkfbf2mhf
+            name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
         image: quay.io/metal3-io/ironic-ipa-downloader
         imagePullPolicy: Always
         name: ironic-ipa-downloader
