@@ -1,4 +1,4 @@
-# Copyright 2024 The kpt and Nephio Authors
+# Copyright 2022-2025 The kpt and Nephio Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -71,8 +70,7 @@ spec:
                 items:
                   properties:
                     objects:
-                      description: 'option 3: a selector against a set of arbitrary
-                        objects'
+                      description: 'option 3: a selector against a set of arbitrary objects'
                       properties:
                         repoName:
                           properties:
@@ -99,17 +97,14 @@ spec:
                                 description: Labels on the target resources
                                 properties:
                                   matchExpressions:
-                                    description: matchExpressions is a list of label
-                                      selector requirements. The requirements are
-                                      ANDed.
+                                    description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                                     items:
                                       description: |-
                                         A label selector requirement is a selector that contains values, a key, and an operator that
                                         relates the key and values.
                                       properties:
                                         key:
-                                          description: key is the label key that the
-                                            selector applies to.
+                                          description: key is the label key that the selector applies to.
                                           type: string
                                         operator:
                                           description: |-
@@ -190,16 +185,14 @@ spec:
                       description: 'option 2: a label selector against a set of repositories'
                       properties:
                         matchExpressions:
-                          description: matchExpressions is a list of label selector
-                            requirements. The requirements are ANDed.
+                          description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                           items:
                             description: |-
                               A label selector requirement is a selector that contains values, a key, and an operator that
                               relates the key and values.
                             properties:
                               key:
-                                description: key is the label key that the selector
-                                  applies to.
+                                description: key is the label key that the selector applies to.
                                 type: string
                               operator:
                                 description: |-
@@ -253,11 +246,9 @@ spec:
             description: PackageVariantSetStatus defines the observed state of PackageVariantSet
             properties:
               conditions:
-                description: Conditions describes the reconciliation state of the
-                  object.
+                description: Conditions describes the reconciliation state of the object.
                 items:
-                  description: Condition contains details for one aspect of the current
-                    state of this API Resource.
+                  description: Condition contains details for one aspect of the current state of this API Resource.
                   properties:
                     lastTransitionTime:
                       description: |-
@@ -348,8 +339,7 @@ spec:
                 items:
                   properties:
                     objectSelector:
-                      description: 'option 3: a selector against a set of arbitrary
-                        objects'
+                      description: 'option 3: a selector against a set of arbitrary objects'
                       properties:
                         apiVersion:
                           description: APIVersion of the target resources
@@ -358,16 +348,14 @@ spec:
                           description: Kind of the target resources
                           type: string
                         matchExpressions:
-                          description: matchExpressions is a list of label selector
-                            requirements. The requirements are ANDed.
+                          description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                           items:
                             description: |-
                               A label selector requirement is a selector that contains values, a key, and an operator that
                               relates the key and values.
                             properties:
                               key:
-                                description: key is the label key that the selector
-                                  applies to.
+                                description: key is the label key that the selector applies to.
                                 type: string
                               operator:
                                 description: |-
@@ -430,16 +418,14 @@ spec:
                       description: 'option 2: a label selector against a set of repositories'
                       properties:
                         matchExpressions:
-                          description: matchExpressions is a list of label selector
-                            requirements. The requirements are ANDed.
+                          description: matchExpressions is a list of label selector requirements. The requirements are ANDed.
                           items:
                             description: |-
                               A label selector requirement is a selector that contains values, a key, and an operator that
                               relates the key and values.
                             properties:
                               key:
-                                description: key is the label key that the selector
-                                  applies to.
+                                description: key is the label key that the selector applies to.
                                 type: string
                               operator:
                                 description: |-
@@ -473,12 +459,10 @@ spec:
                       type: object
                       x-kubernetes-map-type: atomic
                     template:
-                      description: Template specifies how to generate a PackageVariant
-                        from a target
+                      description: Template specifies how to generate a PackageVariant from a target
                       properties:
                         adoptionPolicy:
-                          description: AdoptionPolicy allows overriding the PackageVariant
-                            adoption policy
+                          description: AdoptionPolicy allows overriding the PackageVariant adoption policy
                           type: string
                         annotationExprs:
                           description: |-
@@ -504,16 +488,13 @@ spec:
                         annotations:
                           additionalProperties:
                             type: string
-                          description: Annotations allows specifying the spec.Annotations
-                            field of the generated PackageVariant
+                          description: Annotations allows specifying the spec.Annotations field of the generated PackageVariant
                           type: object
                         deletionPolicy:
-                          description: DeletionPolicy allows overriding the PackageVariant
-                            deletion policy
+                          description: DeletionPolicy allows overriding the PackageVariant deletion policy
                           type: string
                         downstream:
-                          description: Downstream allows overriding the default downstream
-                            package and repository name
+                          description: Downstream allows overriding the default downstream package and repository name
                           properties:
                             package:
                               type: string
@@ -525,8 +506,7 @@ spec:
                               type: string
                           type: object
                         injectors:
-                          description: Injectors allows specifying the spec.Injectors
-                            field of the generated PackageVariant
+                          description: Injectors allows specifying the spec.Injectors field of the generated PackageVariant
                           items:
                             description: |-
                               InjectionSelectorTemplate is used to calculate the injectors field of the
@@ -569,12 +549,10 @@ spec:
                         labels:
                           additionalProperties:
                             type: string
-                          description: Labels allows specifying the spec.Labels field
-                            of the generated PackageVariant
+                          description: Labels allows specifying the spec.Labels field of the generated PackageVariant
                           type: object
                         packageContext:
-                          description: PackageContext allows specifying the spec.PackageContext
-                            field of the generated PackageVariant
+                          description: PackageContext allows specifying the spec.PackageContext field of the generated PackageVariant
                           properties:
                             data:
                               additionalProperties:
@@ -607,8 +585,7 @@ spec:
                               type: array
                           type: object
                         pipeline:
-                          description: Pipeline allows specifying the spec.Pipeline
-                            field of the generated PackageVariant
+                          description: Pipeline allows specifying the spec.Pipeline field of the generated PackageVariant
                           properties:
                             mutators:
                               description: |-
@@ -622,8 +599,7 @@ spec:
                                   configMap:
                                     additionalProperties:
                                       type: string
-                                    description: '`ConfigMap` is a convenient way
-                                      to specify a function config of kind ConfigMap.'
+                                    description: '`ConfigMap` is a convenient way to specify a function config of kind ConfigMap.'
                                     type: object
                                   configMapExprs:
                                     description: |-
@@ -687,20 +663,26 @@ spec:
                                       type: object
                                     type: array
                                   exec:
-                                    description: "Exec specifies the function binary
-                                      executable.\nThe executable can be fully qualified
-                                      or it must exists in the $PATH e.g:\n\n\t exec:
-                                      set-namespace\n\t exec: /usr/local/bin/my-custom-fn"
+                                    description: |-
+                                      Exec specifies the function binary executable.
+                                      The executable can be fully qualified or it must exists in the $PATH e.g:
+
+                                      	 exec: set-namespace
+                                      	 exec: /usr/local/bin/my-custom-fn
                                     type: string
                                   image:
-                                    description: "`Image` specifies the function container
-                                      image.\nIt can either be fully qualified, e.g.:\n\n\timage:
-                                      gcr.io/kpt-fn/set-labels\n\nOptionally, kpt
-                                      can be configured to use a image\nregistry host-path
-                                      that will be used to resolve the image path
-                                      in case\nthe image path is missing (Defaults
-                                      to gcr.io/kpt-fn).\ne.g. The following resolves
-                                      to gcr.io/kpt-fn/set-labels:\n\n\timage: set-labels"
+                                    description: |-
+                                      `Image` specifies the function container image.
+                                      It can either be fully qualified, e.g.:
+
+                                      	image: gcr.io/kpt-fn/set-labels
+
+                                      Optionally, kpt can be configured to use a image
+                                      registry host-path that will be used to resolve the image path in case
+                                      the image path is missing (Defaults to gcr.io/kpt-fn).
+                                      e.g. The following resolves to gcr.io/kpt-fn/set-labels:
+
+                                      	image: set-labels
                                     type: string
                                   name:
                                     description: |-
@@ -754,8 +736,7 @@ spec:
                                   configMap:
                                     additionalProperties:
                                       type: string
-                                    description: '`ConfigMap` is a convenient way
-                                      to specify a function config of kind ConfigMap.'
+                                    description: '`ConfigMap` is a convenient way to specify a function config of kind ConfigMap.'
                                     type: object
                                   configMapExprs:
                                     description: |-
@@ -819,20 +800,26 @@ spec:
                                       type: object
                                     type: array
                                   exec:
-                                    description: "Exec specifies the function binary
-                                      executable.\nThe executable can be fully qualified
-                                      or it must exists in the $PATH e.g:\n\n\t exec:
-                                      set-namespace\n\t exec: /usr/local/bin/my-custom-fn"
+                                    description: |-
+                                      Exec specifies the function binary executable.
+                                      The executable can be fully qualified or it must exists in the $PATH e.g:
+
+                                      	 exec: set-namespace
+                                      	 exec: /usr/local/bin/my-custom-fn
                                     type: string
                                   image:
-                                    description: "`Image` specifies the function container
-                                      image.\nIt can either be fully qualified, e.g.:\n\n\timage:
-                                      gcr.io/kpt-fn/set-labels\n\nOptionally, kpt
-                                      can be configured to use a image\nregistry host-path
-                                      that will be used to resolve the image path
-                                      in case\nthe image path is missing (Defaults
-                                      to gcr.io/kpt-fn).\ne.g. The following resolves
-                                      to gcr.io/kpt-fn/set-labels:\n\n\timage: set-labels"
+                                    description: |-
+                                      `Image` specifies the function container image.
+                                      It can either be fully qualified, e.g.:
+
+                                      	image: gcr.io/kpt-fn/set-labels
+
+                                      Optionally, kpt can be configured to use a image
+                                      registry host-path that will be used to resolve the image path in case
+                                      the image path is missing (Defaults to gcr.io/kpt-fn).
+                                      e.g. The following resolves to gcr.io/kpt-fn/set-labels:
+
+                                      	image: set-labels
                                     type: string
                                   name:
                                     description: |-
@@ -894,11 +881,9 @@ spec:
             description: PackageVariantSetStatus defines the observed state of PackageVariantSet
             properties:
               conditions:
-                description: Conditions describes the reconciliation state of the
-                  object.
+                description: Conditions describes the reconciliation state of the object.
                 items:
-                  description: Condition contains details for one aspect of the current
-                    state of this API Resource.
+                  description: Condition contains details for one aspect of the current state of this API Resource.
                   properties:
                     lastTransitionTime:
                       description: |-
