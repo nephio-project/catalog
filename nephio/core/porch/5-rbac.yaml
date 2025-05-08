@@ -70,6 +70,12 @@ rules:
       - update
       - patch
       - delete
+  - apiGroups:
+      - apiregistration.k8s.io
+    resources:
+      - apiservices
+    verbs:
+      - get
   # Needed for priority and fairness
   - apiGroups:
       - flowcontrol.apiserver.k8s.io
@@ -80,12 +86,6 @@ rules:
       - get
       - watch
       - list
-  - apiGroups:
-      - apiregistration.k8s.io
-    resources: 
-      - apiservices
-    verbs:
-      - get
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
@@ -132,5 +132,5 @@ rules:
     verbs:
       - create
       - delete
-      - get
       - update
+      - get
