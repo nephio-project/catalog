@@ -8,7 +8,7 @@ spec:
   upstream:
     package: rootsync
     repo: catalog-nephio-optional
-    revision: -1
+    workspaceName: main
   downstream:
     package: example-rootsync
     repo: mgmt-staging
