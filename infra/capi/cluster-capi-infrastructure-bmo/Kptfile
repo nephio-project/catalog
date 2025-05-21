@@ -1,0 +1,8 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: cluster-capi-infrastructure-bmo
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: cluster-api bare metal operator provider package
