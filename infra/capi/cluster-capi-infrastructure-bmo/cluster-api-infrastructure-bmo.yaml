@@ -2587,7 +2587,7 @@ spec:
         envFrom:
         - configMapRef:
             name: ironic
-        image: quay.io/metal3-io/baremetal-operator
+        image: quay.io/metal3-io/baremetal-operator:v0.9.1
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 10
