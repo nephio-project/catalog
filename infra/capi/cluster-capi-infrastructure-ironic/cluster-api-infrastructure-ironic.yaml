@@ -45,7 +45,7 @@ spec:
         envFrom:
         - configMapRef:
             name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
-        image: quay.io/metal3-io/ironic
+        image: quay.io/metal3-io/ironic:v29.0.0
         imagePullPolicy: Always
         livenessProbe:
           exec:
@@ -90,7 +90,7 @@ spec:
         envFrom:
         - configMapRef:
             name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
-        image: quay.io/metal3-io/ironic
+        image: quay.io/metal3-io/ironic:v29.0.0
         imagePullPolicy: Always
         livenessProbe:
           exec:
@@ -124,7 +124,7 @@ spec:
           name: ironic-data-volume
       - command:
         - /bin/runlogwatch.sh
-        image: quay.io/metal3-io/ironic
+        image: quay.io/metal3-io/ironic:v29.0.0
         imagePullPolicy: Always
         name: ironic-log-watch
         securityContext:
@@ -143,7 +143,7 @@ spec:
         envFrom:
         - configMapRef:
             name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
-        image: quay.io/metal3-io/ironic
+        image: quay.io/metal3-io/ironic:v29.0.0
         imagePullPolicy: Always
         livenessProbe:
           exec:
@@ -186,7 +186,7 @@ spec:
         envFrom:
         - configMapRef:
             name: baremetal-operator-ironic-bmo-configmap-6cf9t7484b
-        image: quay.io/metal3-io/ironic-ipa-downloader
+        image: quay.io/metal3-io/ironic-ipa-downloader@sha256:dd12162be596a4c23e53c87600292c19030b7029ebadcbd9f3789fa5379d4abf
         imagePullPolicy: Always
         name: ironic-ipa-downloader
         securityContext:
