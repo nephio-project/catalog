@@ -1,0 +1,17 @@
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: BMH_NAME_PLACEHOLDER
+spec:
+  online: true
+  bootMACAddress: BOOT_MAC_ADDRESS
+  bootMode: UEFI
+  disablePowerOff: false
+  rootDeviceHints:
+    deviceName: DEVICE_NAME_PLACEHOLDER
+    serialNumber: DRIVE_SERIAL_NUM_PLACEHOLDER
+  bmc:
+    address: BMC_ADDRESS_PLACEHOLDER
+    credentialsName: BMC_SECRET_PLACEHOLDER
+    disableCertificateVerification: true
