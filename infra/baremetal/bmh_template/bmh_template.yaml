@@ -1,0 +1,17 @@
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: BMH_NAME_PLACEHOLDER
+spec:
+  online: true
+  bootMACAddress: BOOT_MAC_ADDRESS
+  bootMode: UEFI
+  disablePowerOff: false
+  rootDeviceHints:
+    deviceName: /dev/nvme0n1
+    serialNumber: S436NC0R669534
+  bmc:
+    address: BMC_ADDRESS_FORMAT_PLACEHOLDER://BMC_ADDRESS_PLACEHOLDER/redfish/v1/Systems/1
+    credentialsName: BMC_SECRET_PLACEHOLDER
+    disableCertificateVerification: true
