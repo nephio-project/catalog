@@ -1,0 +1,18 @@
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata: # kpt-merge: /BMH_NAME_PLACEHOLDER
+  name: BMH_NAME_PLACEHOLDER # kpt-set: ${bmh-name}
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'metal3.io|BareMetalHost|default|BMH_NAME_PLACEHOLDER' # kpt-set: metal3.io|BareMetalHost|default|${bmh-name}
+spec:
+  online: true
+  bootMACAddress: BOOT_MAC_ADDRESS # kpt-set: ${boot-mac-address}
+  bootMode: UEFI
+  disablePowerOff: false
+  rootDeviceHints:
+    serialNumber: DRIVE_SERIAL_NUM_PLACEHOLDER # kpt-set: ${root-hints-serial-number}
+  bmc:
+    address: BMC_ADDRESS_PLACEHOLDER # kpt-set: ${bmc-address}
+    credentialsName: BMC_SECRET_PLACEHOLDER # kpt-set: ${bmc-creds-name}
+    disableCertificateVerification: true
