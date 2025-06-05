@@ -65,6 +65,10 @@ spec:
               value: /data
             - name: GITEA_TEMP
               value: /tmp/gitea
+            - name: TMP_EXISTING_ENVS_FILE
+              value: /tmp/existing-envs
+            - name: ENV_TO_INI_MOUNT_POINT
+              value: /env-to-ini-mounts
           volumeMounts:
             - name: config
               mountPath: /usr/sbin
@@ -95,6 +99,8 @@ spec:
               value: /data
             - name: GITEA_TEMP
               value: /tmp/gitea
+            - name: GITEA_ADMIN_PASSWORD_MODE
+              value: keepUpdated
             - name: GITEA_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
