@@ -27,7 +27,7 @@ spec:
         fsGroup: 1000
       initContainers:
         - name: init-directories
-          image: "gitea/gitea:1.23.8"
+          image: "gitea/gitea:1.19.3"
           imagePullPolicy: IfNotPresent
           command: ["/usr/sbin/init_directory_structure.sh"]
           env:
@@ -53,7 +53,7 @@ spec:
               cpu: 100m
               memory: 128Mi
         - name: init-app-ini
-          image: "gitea/gitea:1.23.8"
+          image: "gitea/gitea:1.19.3"
           imagePullPolicy: IfNotPresent
           command: ["/usr/sbin/config_environment.sh"]
           env:
@@ -65,10 +65,6 @@ spec:
               value: /data
             - name: GITEA_TEMP
               value: /tmp/gitea
-            - name: TMP_EXISTING_ENVS_FILE
-              value: /tmp/existing-envs
-            - name: ENV_TO_INI_MOUNT_POINT
-              value: /env-to-ini-mounts
           volumeMounts:
             - name: config
               mountPath: /usr/sbin
@@ -85,7 +81,7 @@ spec:
               cpu: 100m
               memory: 128Mi
         - name: configure-gitea
-          image: "gitea/gitea:1.23.8"
+          image: "gitea/gitea:1.19.3"
           command: ["/usr/sbin/configure_gitea.sh"]
           imagePullPolicy: IfNotPresent
           securityContext:
@@ -99,8 +95,6 @@ spec:
               value: /data
             - name: GITEA_TEMP
               value: /tmp/gitea
-            - name: GITEA_ADMIN_PASSWORD_MODE
-              value: keepUpdated
             - name: GITEA_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -128,7 +122,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: gitea
-          image: "gitea/gitea:1.23.8"
+          image: "gitea/gitea:1.19.3"
           imagePullPolicy: IfNotPresent
           env:
             # SSH Port values have to be set here as well for openssh configuration
