@@ -1,0 +1,83 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata:
+  name: replacements-fn-config
+  annotations:
+    config.kubernetes.io/local-config: "true"
+replacements:
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.address
+    targets:
+      - select:
+          kind: BareMetalHost
+        fieldPaths:
+          - spec.bmc.address
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.bmhname
+    targets:
+      - select:
+          kind: BareMetalHost
+        fieldPaths:
+          - metadata.name
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.bootMACAddress
+    targets:
+      - select:
+          kind: BareMetalHost
+        fieldPaths:
+          - spec.bootMACAddress
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.deviceName
+    targets:
+      - select:
+          kind: BareMetalHost
+        fieldPaths:
+          - spec.rootDeviceHints.deviceName
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.serialNumber
+    targets:
+      - select:
+          kind: BareMetalHost
+        fieldPaths:
+          - spec.rootDeviceHints.serialNumber
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.credentialsName
+    targets:
+      - select:
+          kind: BareMetalHost
+        fieldPaths:
+          - spec.bmc.credentialsName
+      - select:
+          kind: Secret
+        fieldPaths:
+          - metadata.name
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.username
+    targets:
+      - select:
+          kind: Secret
+        fieldPaths:
+          - data.username
+  - source:
+      kind: ConfigMap
+      name: inputs
+      fieldPath: data.password
+    targets:
+      - select:
+          kind: Secret
+        fieldPaths:
+          - data.password

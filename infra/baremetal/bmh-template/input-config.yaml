@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: inputs
+data:
+  bmhname: bmh1
+  bootMACAddress: 00:11:22:33:44:55
+  deviceName: /dev/sda
+  serialNumber: PQZ123
+  address: idrac-redfish://10.0.0.1/redfish/v1/Systems/1
+  credentialsName: bmh1-secret
+  username: ZXhwZXJpbWVudFVzZXJuYW1l
+  password: ZXhwZXJpbWVudFBhc3N3b3Jk
