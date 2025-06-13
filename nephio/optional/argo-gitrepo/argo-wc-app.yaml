@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: example-cluster-name
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'http://172.18.0.200:3000/nephio/example-cluster-name.git'
+    targetRevision: main
+    path: '.'
+    plugin:
+      name: kpt-repo
+      env:
+        - name: DESTINATION_NAME
+          value: example-cluster-name
+  destination:
+    name: example-cluster-name
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

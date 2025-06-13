@@ -1,0 +1,22 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: example-argo-gitrepo
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    package: argo-gitrepo
+    repo: catalog-nephio-optional
+    workspaceName: main
+  downstream:
+    package: example-argo-gitrepo
+    repo: mgmt # mgmt-staging used for flux, but fails here. Is this to do with the catalog and how flux is installed at bootstrap?
+  injectors:
+  - kind: WorkloadCluster
+    name: example
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+      configMap:
+        nephio.org/cluster-name: example
