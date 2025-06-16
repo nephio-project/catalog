@@ -1,0 +1,196 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: my-cluster # kpt-set: ${cluster-name}
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks: # kpt-set: ${pods-cidr}
+        - 192.168.0.0/18
+    serviceDomain: cluster.local # kpt-set: ${services-domain}
+    services:
+      cidrBlocks: # kpt-set: ${services-cidr}
+        - 10.96.0.0/12
+  controlPlaneRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+    kind: KubeadmControlPlane
+    name: my-cluster # kpt-set: ${cluster-name}
+    namespace: default # kpt-set: ${namespace-value}
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+    kind: Metal3Cluster
+    name: my-cluster # kpt-set: ${cluster-name}
+    namespace: default # kpt-set: ${namespace-value}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: Metal3Cluster
+metadata:
+  name: my-cluster # kpt-set: ${cluster-name}
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  controlPlaneEndpoint:
+    host: PLACEHOLDER_CLUSTER_APIENDPOINT_HOST # kpt-set: ${ctrl-plane-ip}
+    port: PLACEHOLDER_CLUSTER_APIENDPOINT_PORT # kpt-set: ${ctrl-plane-port}
+  noCloudProvider: true
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: KubeadmControlPlane
+metadata:
+  name: my-cluster # kpt-set: ${cluster-name}
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  kubeadmConfigSpec:
+    initConfiguration:
+      nodeRegistration:
+        kubeletExtraArgs:
+          node-labels: metal3.io/uuid={{ ds.meta_data.uuid }}
+        name: '{{ ds.meta_data.name }}'
+    joinConfiguration:
+      controlPlane: {}
+      nodeRegistration:
+        kubeletExtraArgs:
+          node-labels: metal3.io/uuid={{ ds.meta_data.uuid }}
+        name: '{{ ds.meta_data.name }}'
+    users:
+      - name: PLACEHOLDER_USER_CTRL_NODE # kpt-set: ${ctrl-node-user}
+        passwd: PLACEHOLDER_HASHED_PASSWD_CTRL_NODE # kpt-set: ${ctrl-node-hashed-passwd}
+        sudo: "ALL=(ALL) NOPASSWD:ALL"
+        lockPassword: false
+        shell: /bin/bash
+        sshAuthorizedKeys:
+          - PLACEHOLDER_SSH_KEY_CTRL_NODE # kpt-set: ${ctrl-node-ssh-key}
+  machineTemplate:
+    infrastructureRef:
+      apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+      kind: Metal3MachineTemplate
+      name: my-cluster-controlplane # kpt-set: ${cluster-name}-controlplane
+      namespace: default # kpt-set: ${namespace-value}
+    nodeDrainTimeout: 0s
+  replicas: 1
+  rolloutStrategy:
+    rollingUpdate:
+      maxSurge: 1
+    type: RollingUpdate
+  version: PLACEHOLDER_KUBERNETES_VERSION # kpt-set: ${k8s-version}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: Metal3MachineTemplate
+metadata:
+  name: my-cluster-controlplane # kpt-set: ${cluster-name}-controlplane
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  nodeReuse: false
+  template:
+    spec:
+      automatedCleaningMode: metadata
+      dataTemplate:
+        name: my-cluster-controlplane-template # kpt-set: ${cluster-name}-controlplane-template
+      image:
+        checksum: PLACEHOLDER_IMAGE_CHECKSUM # kpt-set: ${img-checksum}
+        checksumType: PLACEHOLDER_IMAGE_CHECKSUM_TYPE # kpt-set: ${img-checksum-type}
+        format: PLACEHOLDER_IMAGE_FORMAT # kpt-set: ${img-format}
+        url: PLACEHOLDER_IMAGE_URL # kpt-set: ${img-url}
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  labels:
+    cluster.x-k8s.io/cluster-name: my-cluster # kpt-set: ${cluster-name}
+    nodepool: nodepool-0
+  name: my-cluster # kpt-set: ${cluster-name}
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  clusterName: my-cluster # kpt-set: ${cluster-name}
+  replicas: 0
+  selector:
+    matchLabels:
+      cluster.x-k8s.io/cluster-name: my-cluster # kpt-set: ${cluster-name}
+      nodepool: nodepool-0
+  template:
+    metadata:
+      labels:
+        cluster.x-k8s.io/cluster-name: my-cluster # kpt-set: ${cluster-name}
+        nodepool: nodepool-0
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+          kind: KubeadmConfigTemplate
+          name: my-cluster-workers # kpt-set: ${cluster-name}-workers
+      clusterName: my-cluster # kpt-set: ${cluster-name}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: Metal3MachineTemplate
+        name: my-cluster-workers # kpt-set: ${cluster-name}-workers
+      nodeDrainTimeout: 0s
+      version: PLACEHOLDER_KUBERNETES_VERSION # kpt-set: ${k8s-version}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: Metal3MachineTemplate
+metadata:
+  name: my-cluster-workers # kpt-set: ${cluster-name}-workers
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  nodeReuse: false
+  template:
+    spec:
+      automatedCleaningMode: metadata
+      dataTemplate:
+        name: my-cluster-workers-template # kpt-set: ${cluster-name}-workers-template
+      image:
+        checksum: PLACEHOLDER_IMAGE_CHECKSUM # kpt-set: ${img-checksum}
+        checksumType: PLACEHOLDER_IMAGE_CHECKSUM_TYPE # kpt-set: ${img-checksum-type}
+        format: PLACEHOLDER_IMAGE_FORMAT # kpt-set: ${img-format}
+        url: PLACEHOLDER_IMAGE_URL # kpt-set: ${img-url}
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+kind: KubeadmConfigTemplate
+metadata:
+  name: my-cluster-workers # kpt-set: ${cluster-name}-workers
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  template:
+    spec:
+      joinConfiguration:
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: metal3.io/uuid={{ ds.meta_data.uuid }}
+          name: '{{ ds.meta_data.name }}'
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: Metal3DataTemplate
+metadata:
+  name: my-cluster-controlplane-template # kpt-set: ${cluster-name}-controlplane-template
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  clusterName: my-cluster # kpt-set: ${cluster-name}
+  networkData:
+    links:
+      ethernets:
+        - type: "phy"
+          id: "ens1f0" # kpt-set: ${net-link-eth-id}
+          macAddress:
+            fromHostInterface: "ens1f0" # kpt-set: ${net-link-eth-id}
+            string: "b4:96:91:e0:31:64" # kpt-set: ${net-link-eth-mac-addr}
+          mtu: 1500
+    services:
+      dns: # kpt-set: ${net-svc-dns}
+        - 172.168.14.35
+    networks:
+      ipv4:
+        - id: "baremetal" # kpt-set: ${net-ipv4-id}
+          link: "ens1f0" # kpt-set: ${net-link-eth-id}
+          ipAddressFromIPPool: "provisioning-pool" # kpt-set: ${ippool-name}
+          routes:
+            - gateway:
+                string: 172.168.14.33 # kpt-set: ${net-ipv4-gw}
+              network: 0.0.0.0 # kpt-set: ${net-ipv4-nw-addr}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: Metal3DataTemplate
+metadata:
+  name: my-cluster-workers-template # kpt-set: ${cluster-name}-workers-template
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  clusterName: my-cluster # kpt-set: ${cluster-name}
