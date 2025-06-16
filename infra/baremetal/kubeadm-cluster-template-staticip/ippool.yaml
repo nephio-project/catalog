@@ -1,0 +1,12 @@
+apiVersion: ipam.metal3.io/v1alpha1
+kind: IPPool
+metadata:
+  name: provisioning-pool # kpt-set: ${ippool-name}
+  namespace: default # kpt-set: ${namespace-value}
+spec:
+  clusterName: my-cluster # kpt-set: ${cluster-name}
+  namePrefix: my-cluster-prov # kpt-set: ${cluster-name}-prov
+  pools:
+    - start: 172.168.14.37 # kpt-set: ${ippool-start-ip}
+      end: 172.168.14.47 # kpt-set: ${ippool-end-ip}
+  prefix: 27 # kpt-set: ${ippoot-prefix}
