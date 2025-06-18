@@ -11,7 +11,7 @@ spec:
     workspaceName: main
   downstream:
     package: example-argo-gitrepo
-    repo: mgmt # mgmt-staging used for flux, but fails here. Is this to do with the catalog and how flux is installed at bootstrap?
+    repo: mgmt
   injectors:
   - kind: WorkloadCluster
     name: example
