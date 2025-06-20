@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apply-setters-fn-config
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  bmc-username: ZXhwZXJpbWVudFVzZXJuYW1l
+  bmc-password: ZXhwZXJpbWVudFBhc3N3b3Jk
+  bmh-name: bmh1
+  boot-mac-address: 00:11:22:33:44:55
+  root-hints-serial-number: PQZ123
+  bmc-address: idrac-redfish://10.0.0.1/redfish/v1/Systems/1
+  bmc-creds-name: bmc-secret1
