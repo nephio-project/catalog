@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-setters-fn-config
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  cluster-name: my-cluster
+  namespace-value: default
+  pods-cidr: |
+    - 192.168.0.0/18
+  services-cidr: |
+    - 10.96.0.0/12
+  services-domain: cluster.local
+  ctrl-plane-ip: PLACEHOLDER_CLUSTER_APIENDPOINT_HOST
+  ctrl-plane-port: PLACEHOLDER_CLUSTER_APIENDPOINT_PORT
+  k8s-version: PLACEHOLDER_KUBERNETES_VERSION
+  img-checksum: PLACEHOLDER_IMAGE_CHECKSUM
+  img-checksum-type: PLACEHOLDER_IMAGE_CHECKSUM_TYPE
+  img-format: PLACEHOLDER_IMAGE_FORMAT
+  img-url: PLACEHOLDER_IMAGE_URL
+  ippool-name: provisioning-pool
+  ippool-start-ip: 172.168.14.37
+  ippool-end-ip: 172.168.14.47
+  ippool-prefix: 27
+  net-link-eth-id: "ens1f0"
+  net-link-eth-mac-addr: "b4:96:91:e0:31:64"
+  net-svc-dns: |
+    - 172.168.14.35
+  net-ipv4-id: "baremetal"
+  net-ipv4-gw: 172.168.14.33
+  net-ipv4-nw-addr: 0.0.0.0
+  ctrl-node-user: PLACEHOLDER_USER_CTRL_NODE
+  ctrl-node-hashed-passwd: PLACEHOLDER_HASHED_PASSWD_CTRL_NODE
+  ctrl-node-ssh-key: PLACEHOLDER_SSH_KEY_CTRL_NODE
