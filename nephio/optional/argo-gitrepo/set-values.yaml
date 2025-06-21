@@ -1,0 +1,110 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: StarlarkRun
+metadata: # kpt-merge: /generate-values
+  name: generate-values
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: fn.kpt.dev|StarlarkRun|default|generate-values
+source: |-
+  load("krmfn.star", "krmfn")
+  load("encoding/yaml.star", "yaml")
+  def set_values(resources):
+    # this package can be cloned manually and used without injection; in that case base
+    # the repository name on the package name
+    for r in resources:
+      if krmfn.match_gvk(r, "v1", "ConfigMap") and krmfn.match_name(r, "kptfile.kpt.dev"):
+        clusterName = r["data"]["name"]
+        print("cm")
+        print(clusterName)
+    # if a WorkloadCluster exists, and was injected, then use that for the name
+    for r in resources:
+      if krmfn.match_gvk(r, "infra.nephio.org/v1alpha1", "WorkloadCluster") and "annotations" in r["metadata"] and "kpt.dev/injected-resource" in r["metadata"]["annotations"]:
+        clusterName = r["spec"]["clusterName"]
+        print("workload")
+        print(clusterName)
+    for r in resources:
+      if krmfn.match_gvk(r, "v1", "ConfigMap") and "template.yaml" in r["data"]:
+        print("repo-template")
+        print(clusterName)
+        template_string = r.get("data", {}).get("template.yaml")
+        decoded_secret = yaml.loads(template_string)
+        if "labels" in decoded_secret["metadata"] and "argocd.argoproj.io/secret-type" in decoded_secret["metadata"]["labels"]:
+          if decoded_secret["metadata"]["labels"]["argocd.argoproj.io/secret-type"] == "repository":
+            r["metadata"]["name"] = clusterName + "-repo"
+            decoded_secret["stringData"]["url"] = "http://172.18.0.200:3000/nephio/" + clusterName + ".git"
+            decoded_secret["metadata"]["name"] = clusterName + "-repo"
+          elif decoded_secret["metadata"]["labels"]["argocd.argoproj.io/secret-type"] == "cluster":
+            r["metadata"]["name"] = clusterName + "-cluster"
+        new_template_string = yaml.dumps(decoded_secret)
+        r["data"]["template.yaml"] = new_template_string
+    for r in resources:
+      if krmfn.match_gvk(r, "argoproj.io/v1alpha1", "Application"):
+        print("app")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName
+        r["spec"]["source"]["repoURL"] = "http://172.18.0.200:3000/nephio/" + clusterName + ".git"
+        r["spec"]["destination"]["name"] = "in-cluster"
+        envs = r["spec"]["source"]["plugin"]["env"]
+        for i, env in enumerate(envs):
+          if env["name"] == "DESTINATION_NAME":
+            r["spec"]["source"]["plugin"]["env"][i]["value"] = clusterName
+    for r in resources:
+      if krmfn.match_gvk(r, "batch/v1", "Job") and "create-argocd-cluster-from-kubeconfig" in r["metadata"]["name"]:
+        print("create-cluster")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName + "-create-argocd-cluster-from-kubeconfig"
+        r["spec"]["template"]["spec"]["serviceAccountName"] = clusterName + "-argocd-secret-manager-sa"
+        volumes = r["spec"]["template"]["spec"]["volumes"]
+        for i, volume in enumerate(volumes):
+          if volume["name"] == "source-kubeconfig-vol":
+            r["spec"]["template"]["spec"]["volumes"][i]["secret"]["secretName"] = clusterName + "-kubeconfig"
+          elif volume["name"] == "template-vol":
+            r["spec"]["template"]["spec"]["volumes"][i]["configMap"]["name"] = clusterName + "-cluster"
+    for r in resources:
+      if krmfn.match_gvk(r, "batch/v1", "Job") and "create-argocd-repo-secret-from-porch" in r["metadata"]["name"]:
+        print("create-repo")
+        print(clusterName)
+        r["spec"]["template"]["spec"]["serviceAccountName"] = clusterName + "-argocd-secret-manager-sa"
+        volumes = r["spec"]["template"]["spec"]["volumes"]
+        r["metadata"]["name"] = clusterName + "-create-argocd-repo-secret-from-porch"
+        for i, volume in enumerate(volumes):
+          if volume["name"] == "source-creds-vol":
+            r["spec"]["template"]["spec"]["volumes"][i]["secret"]["secretName"] = clusterName + "-access-token-porch"
+          elif volume["name"] == "template-vol":
+            r["spec"]["template"]["spec"]["volumes"][i]["configMap"]["name"] = clusterName + "-repo"
+    for r in resources:
+      if krmfn.match_gvk(r, "rbac.authorization.k8s.io/v1", "ClusterRole") and "secret-manager" in r["metadata"]["name"]:
+        print("source-rbac")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName + "-secret-manager"
+        rules = r["rules"]
+        for i, rule in enumerate(rules):
+          if "secrets" in rule["resources"] and "resourceNames" in rule:
+            r["rules"][i]["resourceNames"] = [clusterName + "-kubeconfig", clusterName + "-access-token-porch"]
+    for r in resources:
+      if krmfn.match_gvk(r, "rbac.authorization.k8s.io/v1", "RoleBinding") and "secret-manager-binding-default" in r["metadata"]["name"]:
+        print("source-binding")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName + "-secret-manager-binding-default"
+        r["roleRef"]["name"] = clusterName + "-secret-manager"
+        subjects = r["subjects"]
+        for i, subject in enumerate(subjects):
+          if subject["kind"] == "ServiceAccount":
+            r["subjects"][i]["name"] = clusterName + "-argocd-secret-manager-sa"
+    for r in resources:
+      if krmfn.match_gvk(r, "rbac.authorization.k8s.io/v1", "RoleBinding") and "secret-manager-binding-argocd" in r["metadata"]["name"]:
+        print("argo-binding")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName + "-secret-manager-binding-argocd"
+        r["roleRef"]["name"] = clusterName + "-secret-manager"
+        subjects = r["subjects"]
+        for i, subject in enumerate(subjects):
+          if subject["kind"] == "ServiceAccount":
+            r["subjects"][i]["name"] = clusterName + "-argocd-secret-manager-sa"
+    for r in resources:
+      if krmfn.match_gvk(r, "v1", "ServiceAccount") and "argocd-secret-manager-sa" in r["metadata"]["name"]:
+        print("service-account")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName + "-argocd-secret-manager-sa"
+
+  set_values(ctx.resource_list["items"])
