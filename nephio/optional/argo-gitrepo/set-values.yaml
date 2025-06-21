@@ -53,6 +53,7 @@ source: |-
         print("create-cluster")
         print(clusterName)
         r["metadata"]["name"] = clusterName + "-create-argocd-cluster-from-kubeconfig"
+        r["spec"]["template"]["spec"]["serviceAccountName"] = clusterName + "-argocd-secret-manager-sa"
         volumes = r["spec"]["template"]["spec"]["volumes"]
         for i, volume in enumerate(volumes):
           if volume["name"] == "source-kubeconfig-vol":
@@ -63,6 +64,7 @@ source: |-
       if krmfn.match_gvk(r, "batch/v1", "Job") and "create-argocd-repo-secret-from-porch" in r["metadata"]["name"]:
         print("create-repo")
         print(clusterName)
+        r["spec"]["template"]["spec"]["serviceAccountName"] = clusterName + "-argocd-secret-manager-sa"
         volumes = r["spec"]["template"]["spec"]["volumes"]
         r["metadata"]["name"] = clusterName + "-create-argocd-repo-secret-from-porch"
         for i, volume in enumerate(volumes):
@@ -85,12 +87,24 @@ source: |-
         print(clusterName)
         r["metadata"]["name"] = clusterName + "-secret-manager-binding-default"
         r["roleRef"]["name"] = clusterName + "-secret-manager"
+        subjects = r["subjects"]
+        for i, subject in enumerate(subjects):
+          if subject["kind"] == "ServiceAccount":
+            r["subjects"][i]["name"] = clusterName + "-argocd-secret-manager-sa"
     for r in resources:
       if krmfn.match_gvk(r, "rbac.authorization.k8s.io/v1", "RoleBinding") and "secret-manager-binding-argocd" in r["metadata"]["name"]:
         print("argo-binding")
         print(clusterName)
         r["metadata"]["name"] = clusterName + "-secret-manager-binding-argocd"
         r["roleRef"]["name"] = clusterName + "-secret-manager"
-
+        subjects = r["subjects"]
+        for i, subject in enumerate(subjects):
+          if subject["kind"] == "ServiceAccount":
+            r["subjects"][i]["name"] = clusterName + "-argocd-secret-manager-sa"
+    for r in resources:
+      if krmfn.match_gvk(r, "v1", "ServiceAccount") and "argocd-secret-manager-sa" in r["metadata"]["name"]:
+        print("service-account")
+        print(clusterName)
+        r["metadata"]["name"] = clusterName + "-argocd-secret-manager-sa"
 
   set_values(ctx.resource_list["items"])
