@@ -1,8 +1,9 @@
 # argocd-full
 
 ## Description
-kpt package for deploying argocd-full
+kpt package for deploying argocd-full v3.0.6
 
+Source: https://github.com/argoproj/argo-cd/blob/master/manifests/install.yaml
 ## Usage
 
 ### Fetch the package
