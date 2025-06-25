@@ -2,7 +2,7 @@
 
 ## Description
 
-Provisions an ArgoCD Applicationion, Respository, and Secrets for a Nephio workload cluster.
+Provisions an ArgoCD Application and the Argo specific Secrets for a Nephio workload cluster.
 The provisioned resources will be named after the package name.
 
 This package is designed to be deployed to the mgmt cluster's default namespace as a PackageVariant in  
