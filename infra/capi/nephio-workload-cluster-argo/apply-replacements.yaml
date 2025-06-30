@@ -1,0 +1,30 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata:
+  name: propagate-name
+  annotations:
+    config.kubernetes.io/local-config: "true"
+replacements:
+- source:
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.name
+  targets:
+  - select:
+      kind: PackageVariant
+    fieldPaths:
+    - metadata.name
+    - spec.downstream.package
+    options:
+      delimiter: '-'
+      index: 0
+  - select:
+      kind: PackageVariant
+    fieldPaths:
+    - spec.injectors.[kind=WorkloadCluster].name
+    - spec.pipeline.mutators.[image=gcr.io/kpt-fn/set-annotations:v0.1.4].configMap.[nephio.org/cluster-name]
+  - select:
+      kind: WorkloadCluster
+    fieldPaths:
+    - metadata.name
+    - spec.clusterName
