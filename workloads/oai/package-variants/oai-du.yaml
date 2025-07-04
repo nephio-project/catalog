@@ -6,7 +6,7 @@ spec:
   upstream:
     repo: catalog-workloads-oai
     package: pkg-example-du-bp
-    workspaceName: main
+    workspaceName: v5
   downstream:
     repo: edge
     package: oai-ran-du
