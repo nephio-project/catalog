@@ -23,7 +23,7 @@ spec:
         runAsUser: 65535
       containers:
       - name: nephio-o2ims
-        image: docker.io/nephio/o2ims-operator:latest
+        image: docker.io/nephio/o2ims-operator:v5.0.0
         imagePullPolicy: IfNotPresent
         env:
         - name: 'UPSTREAM_PKG_REPO'
