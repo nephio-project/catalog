@@ -8,7 +8,7 @@ spec:
   upstream:
     package: kindnet
     repo: catalog-infra-capi
-    workspaceName: v5.0.0
+    workspaceName: v5
   downstream:
     package: example-kindnet
     repo: mgmt-staging

@@ -8,7 +8,7 @@ spec:
   upstream:
     package: flux-gitrepo-kustomize
     repo: catalog-nephio-optional
-    workspaceName: v5.0.0
+    workspaceName: v5
   downstream:
     package: example-flux-gitrepo-kustomize
     repo: mgmt

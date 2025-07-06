@@ -8,7 +8,7 @@ spec:
   upstream:
     package: argo-cd-app
     repo: catalog-nephio-optional
-    workspaceName: v5.0.0
+    workspaceName: v5
   downstream:
     package: example-argo-gitrepo
     repo: mgmt
