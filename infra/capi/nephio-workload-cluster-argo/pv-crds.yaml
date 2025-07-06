@@ -8,7 +8,7 @@ spec:
   upstream:
     package: workload-crds
     repo: catalog-nephio-core
-    workspaceName: v5.0.0
+    workspaceName: v5
   downstream:
     package: example-crds
     repo: mgmt-staging

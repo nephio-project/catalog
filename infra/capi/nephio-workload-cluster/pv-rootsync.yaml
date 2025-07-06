@@ -8,7 +8,7 @@ spec:
   upstream:
     package: rootsync
     repo: catalog-nephio-optional
-    workspaceName: v5.0.0
+    workspaceName: v5
   downstream:
     package: example-rootsync
     repo: mgmt-staging
