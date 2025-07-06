@@ -6,7 +6,7 @@ spec:
   upstream:
     repo: catalog-workloads-oai
     package: oai-ran-operator
-    workspaceName: v5
+    workspaceName: v5.0.0
   targets:
   - objectSelector:
       apiVersion: infra.nephio.org/v1alpha1
