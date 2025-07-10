@@ -25,16 +25,16 @@ spec:
       - name: regcred
       containers:
       - name: nr-ue
-        image: "oaisoftwarealliance/oai-nr-ue:v2.1.0"
+        image: "docker.io/oaisoftwarealliance/oai-nr-ue:v2.3.0"
         securityContext:
           privileged: true
         env:
         - name: USE_ADDITIONAL_OPTIONS
-        # oai-gnb-du.oai-ran-du
-          value: "--sa --rfsim --log_config.global_log_options level,nocolor,time -r 51 --numerology 1 -C 3450720000 --ssb 186 --uicc0.imsi 001010000000100"
+        # oai-du.oai-ran-du
+          value: "--rfsim --log_config.global_log_options level,nocolor,time -r 51 --numerology 1 -C 3609120000 --ssb 234 --uicc0.imsi 001010000000100"
         command: ["/bin/bash", "-c"]
         args:
-        - RFSIM_IP_ADDRESS=$(getent hosts oai-gnb-du.oai-ran-du | awk '{print $1}');
+        - RFSIM_IP_ADDRESS=$(getent hosts oai-du.oai-ran-du | awk '{print $1}');
           exec /opt/oai-nr-ue/bin/nr-uesoftmodem -O /opt/oai-nr-ue/etc/nr-ue.conf $USE_ADDITIONAL_OPTIONS --rfsimulator.serveraddr $RFSIM_IP_ADDRESS;
         volumeMounts:
         - mountPath: /opt/oai-nr-ue/etc/nr-ue.conf
