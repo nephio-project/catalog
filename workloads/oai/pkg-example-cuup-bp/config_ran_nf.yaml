@@ -40,4 +40,4 @@ spec:
       name: oai-nf-config
       namespace: default
     spec:
-      image: "oaisoftwarealliance/oai-nr-cuup:v2.1.0"
+      image: "docker.io/oaisoftwarealliance/oai-nr-cuup:v2.3.0"
