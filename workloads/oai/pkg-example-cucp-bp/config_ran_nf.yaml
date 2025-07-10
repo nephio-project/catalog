@@ -41,4 +41,4 @@ spec:
       namespace: default
     spec:
       # The following image is temporary and will be replaced in the future
-      image: "arorasagar/testing-images:oai-gnb-telnet"
+      image: "docker.io/oaisoftwarealliance/oai-gnb:v2.3.0"
