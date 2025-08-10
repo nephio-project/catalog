@@ -70,9 +70,9 @@ spec:
               apiVersion: v1
               fieldPath: status.hostIP
         - name: GIT_URL
-          value: http://172.18.0.200:3000
+          value: http://172.18.0.200:3000 # kpt-set: ${git_url}
         - name: GIT_NAMESPACE
-          value: gitea
+          value: gitea # kpt-set: ${git_namespace}
         - name: ENABLE_TOKENS
           value: "true"
         image: docker.io/nephio/nephio-operator:latest
