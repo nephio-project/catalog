@@ -39,7 +39,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: memcached
-          image: docker.io/bitnami/memcached:1.6.19-debian-11-r7
+          image: docker.io/bitnamilegacy/memcached:1.6.19-debian-11-r7
           imagePullPolicy: "IfNotPresent"
           securityContext:
             runAsNonRoot: true
