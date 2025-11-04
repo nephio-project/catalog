@@ -101,7 +101,7 @@ spec:
                       - name
                       type: object
                     image:
-                      description: '`Image` specifies the function image, such as `gcr.io/kpt-fn/gatekeeper:v0.2`. Use of `Image` is mutually exclusive with `FunctionRef`.'
+                      description: '`Image` specifies the function image, such as `ghcr.io/kptdev/krm-functions-catalog/gatekeeper:v0.2`. Use of `Image` is mutually exclusive with `FunctionRef`.'
                       type: string
                   type: object
                 type: array
@@ -206,7 +206,7 @@ spec:
                       - name
                       type: object
                     image:
-                      description: '`Image` specifies the function image, such as `gcr.io/kpt-fn/gatekeeper:v0.2`. Use of `Image` is mutually exclusive with `FunctionRef`.'
+                      description: '`Image` specifies the function image, such as `ghcr.io/kptdev/krm-functions-catalog/gatekeeper:v0.2`. Use of `Image` is mutually exclusive with `FunctionRef`.'
                       type: string
                   type: object
                 type: array
