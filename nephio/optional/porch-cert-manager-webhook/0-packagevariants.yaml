@@ -126,7 +126,7 @@ spec:
                           description: "Exec specifies the function binary executable. The executable can be fully qualified or it must exists in the $PATH e.g: \n exec: set-namespace exec: /usr/local/bin/my-custom-fn"
                           type: string
                         image:
-                          description: "`Image` specifies the function container image. It can either be fully qualified, e.g.: \n image: gcr.io/kpt-fn/set-labels \n Optionally, kpt can be configured to use a image registry host-path that will be used to resolve the image path in case the image path is missing (Defaults to gcr.io/kpt-fn). e.g. The following resolves to gcr.io/kpt-fn/set-labels: \n image: set-labels"
+                          description: "`Image` specifies the function container image. It can either be fully qualified, e.g.: \n image: ghcr.io/kptdev/krm-functions-catalog/set-labels \n Optionally, kpt can be configured to use a image registry host-path that will be used to resolve the image path in case the image path is missing (Defaults to ghcr.io/kptdev/krm-functions-catalog). e.g. The following resolves to ghcr.io/kptdev/krm-functions-catalog/set-labels: \n image: set-labels"
                           type: string
                         name:
                           description: '`Name` is used to uniquely identify the function declaration this is primarily used for merging function declaration with upstream counterparts'
@@ -208,7 +208,7 @@ spec:
                           description: "Exec specifies the function binary executable. The executable can be fully qualified or it must exists in the $PATH e.g: \n exec: set-namespace exec: /usr/local/bin/my-custom-fn"
                           type: string
                         image:
-                          description: "`Image` specifies the function container image. It can either be fully qualified, e.g.: \n image: gcr.io/kpt-fn/set-labels \n Optionally, kpt can be configured to use a image registry host-path that will be used to resolve the image path in case the image path is missing (Defaults to gcr.io/kpt-fn). e.g. The following resolves to gcr.io/kpt-fn/set-labels: \n image: set-labels"
+                          description: "`Image` specifies the function container image. It can either be fully qualified, e.g.: \n image: ghcr.io/kptdev/krm-functions-catalog/set-labels \n Optionally, kpt can be configured to use a image registry host-path that will be used to resolve the image path in case the image path is missing (Defaults to ghcr.io/kptdev/krm-functions-catalog). e.g. The following resolves to ghcr.io/kptdev/krm-functions-catalog/set-labels: \n image: set-labels"
                           type: string
                         name:
                           description: '`Name` is used to uniquely identify the function declaration this is primarily used for merging function declaration with upstream counterparts'
