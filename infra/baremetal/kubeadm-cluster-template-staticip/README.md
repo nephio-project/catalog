@@ -190,7 +190,7 @@ cp create-setters.yaml /tmp/kpt_setter
 
 kpt pkg init
 
-kpt fn eval --image gcr.io/kpt-fn/create-setters:v0.1.0 --fn-config create-setters.yaml 
+kpt fn eval --image ghcr.io/kptdev/krm-functions-catalog/create-setters:v0.1.0 --fn-config create-setters.yaml 
 ```
 
 ##### Upload the transformed `ippools.yaml` file and `kubeadm-cluster-template-staticip.yaml` file to the catalog repo
