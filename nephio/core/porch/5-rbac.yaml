@@ -38,6 +38,15 @@ rules:
       - patch
       - delete
   - apiGroups:
+      - admissionregistration.k8s.io
+    resources:
+      - validatingadmissionpolicybindings
+      - validatingadmissionpolicies
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
       - config.porch.kpt.dev
     resources:
       - repositories
