@@ -8,11 +8,11 @@ info:
   description: example smf blueprint package
 pipeline:
   mutators:
-    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    - image: ghcr.io/kptdev/krm-functions-catalog/apply-replacements:v0.1.1
       configPath: apply-replacements-owner.yaml
-    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    - image: ghcr.io/kptdev/krm-functions-catalog/apply-replacements:v0.1.1
       configPath: apply-replacements-namespace.yaml
-    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    - image: ghcr.io/kptdev/krm-functions-catalog/set-namespace:v0.4.1
       configPath: cm-namespace.yaml
     - image: docker.io/nephio/nfdeploy-fn:latest
     - image: docker.io/nephio/interface-fn:latest

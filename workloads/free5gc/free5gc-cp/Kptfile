@@ -8,5 +8,5 @@ info:
   description: this package represents free5gc NFs, which are required to perform E2E conn testing
 pipeline:
   mutators:
-    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    - image: ghcr.io/kptdev/krm-functions-catalog/set-namespace:v0.4.1
       configPath: package-context.yaml
