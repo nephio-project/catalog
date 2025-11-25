@@ -8,5 +8,5 @@ info:
   description: nephio workload cluster package
 pipeline:
   mutators:
-  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+  - image: ghcr.io/kptdev/krm-functions-catalog/apply-replacements:v0.1.1
     configPath: apply-replacements.yaml
