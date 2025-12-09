@@ -8,5 +8,5 @@ info:
   description: Provisions FluxCD GitRepo source and Kustomize CRs for a Nephio workload cluster
 pipeline:
   mutators:
-  - image: gcr.io/kpt-fn/starlark:v0.4.3
+  - image: ghcr.io/kptdev/krm-functions-catalog/starlark:v0.4.3
     configPath: set-values.yaml
