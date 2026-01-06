@@ -9,15 +9,35 @@ metadata:
 data:
   webuicfg.yaml: |
     info:
-      version: 1.0.0
+      version: 1.0.3
       description: WEBUI initial local configuration
 
     configuration:
       mongodb:
         name: free5gc
         url: mongodb://mongodb:27017
+      nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem
+      webServer:
+        scheme: http
+        ipv4Address: 0.0.0.0
+        port: 5000
+      billingServer:
+        enable: true
+        hostIPv4: webui
+        listenPort: 2121
+        portRange:
+          start: 2123
+          end: 2130
+        basePath: /tmp/webconsole
+        port: 2122
+        tls:
+          pem: cert/chf.pem
+          key: cert/chf.key
+      
+
         
     logger:
-      WEBUI:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

@@ -9,7 +9,7 @@ metadata:
 data:
   pcfcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.0.2
       description: PCF initial local configuration
 
     configuration:
@@ -22,27 +22,38 @@ data:
           suppFeat: 3
         - serviceName: npcf-eventexposure
         - serviceName: npcf-ue-policy-control
-
+      
       sbi:
         scheme: http
         registerIPv4: pcf-npcf  # IP used to register to NRF
         bindingIPv4: 0.0.0.0    # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/pcf.key
-          pem: config/TLS/pcf.pem
+          key: cert/pcf.key
+          pem: cert/pcf.pem
       
       mongodb:       # the mongodb connected by this PCF
         name: free5gc                  # name of the mongodb
         url: mongodb://mongodb:27017 # a valid URL of the mongodb
       
       nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem
       pcfName: PCF
       timeFormat: 2019-01-02 15:04:05
       defaultBdtRefId: BdtPolicyId-
       locality: area1
 
+      metrics:
+        enable: false
+        scheme: http
+        bindingIPv4: 0.0.0.0
+        port: 9091
+        tls:
+          pem: cert/pcf.pem
+          key: cert/pcf.key
+        namespace: free5gc-cp
+
     logger:
-      PCF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

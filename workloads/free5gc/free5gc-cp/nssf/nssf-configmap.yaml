@@ -9,24 +9,24 @@ metadata:
 data:
   nssfcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.0.2
       description: NSSF initial local configuration
 
     configuration:
       serviceNameList:
         - nnssf-nsselection
         - nnssf-nssaiavailability
-
       sbi:
         scheme: http
         registerIPv4: nssf-nnssf  # IP used to register to NRF
         bindingIPv4: 0.0.0.0      # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/nssf.key
-          pem: config/TLS/nssf.pem
+          key: cert/nssf.key
+          pem: cert/nssf.pem
       
       nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem
       
       nsiList:
         - snssai:
@@ -335,9 +335,19 @@ data:
                 sd: 2
               homeSnssai:
                 sst: 1
-                sd: 3      
+                sd: 3    
+
+      metrics:
+        enable: false
+        scheme: http
+        bindingIPv4: 0.0.0.0
+        port: 9091
+        tls:
+          pem: cert/nssf.pem
+          key: cert/nssf.pem
+        namespace: free5gc-cp 
 
     logger:
-      NSSF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

@@ -9,7 +9,7 @@ metadata:
 data:
   udrcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.1.0
       description: UDR initial local configuration
 
     configuration:
@@ -19,25 +19,28 @@ data:
         bindingIPv4: 0.0.0.0  # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/udr.key
-          pem: config/TLS/udr.pem
-
+          key: cert/udr.key
+          pem: cert/udr.pem
+      dbConnectorType: mongodb
       mongodb:
         name: free5gc
         url: mongodb://mongodb:27017       
       
       nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem
+
+
+      metrics:
+        enable: false
+        scheme: http
+        bindingIPv4: 0.0.0.0
+        port: 9091
+        tls:
+          pem: cert/udr.pem
+          key: cert/udr.key
+        namespace: free5gc-cp
 
     logger:
-      MongoDBLibrary:
-        ReportCaller: false
-        debugLevel: info
-      OpenApi:
-        ReportCaller: false
-        debugLevel: info
-      PathUtil:
-        ReportCaller: false
-        debugLevel: info
-      UDR:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

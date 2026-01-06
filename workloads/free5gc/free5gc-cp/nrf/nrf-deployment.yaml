@@ -28,14 +28,14 @@ spec:
         command: ["sh", "-c", "until nc -z $DEPENDENCIES; do echo waiting for the MongoDB; sleep 2; done;"]
       containers:
       - name: nrf
-        image: towards5gs/free5gc-nrf:v3.1.1
+        image: free5gc/nrf:v4.1.0
         imagePullPolicy: IfNotPresent
         securityContext:
             {}
         ports:
         - containerPort: 8000
         command: ["./nrf"]
-        args: ["-c", "../config/nrfcfg.yaml"]
+        args: ["-c", "./config/nrfcfg.yaml"]
         env: 
           - name: DB_URI
             value: mongodb://mongodb/free5gc

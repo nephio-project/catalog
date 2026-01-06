@@ -29,14 +29,14 @@ spec:
       
       containers:
       - name: ausf
-        image: towards5gs/free5gc-ausf:v3.1.1
+        image: free5gc/ausf:v4.1.0
         imagePullPolicy: IfNotPresent
         securityContext:
             {}
         ports:
         - containerPort: 80
         command: ["./ausf"]
-        args: ["-c", "../config/ausfcfg.yaml"]
+        args: ["-c", "./config/ausfcfg.yaml"]
         env:
           - name: GIN_MODE
             value: release
