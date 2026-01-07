@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: udr
-        image: free5gc/udr:v4.1.0
+        image: docker.io/nephio/free5gc-udr:4.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

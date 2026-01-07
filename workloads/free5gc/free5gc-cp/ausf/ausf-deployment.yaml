@@ -29,7 +29,7 @@ spec:
       
       containers:
       - name: ausf
-        image: free5gc/ausf:v4.1.0
+        image: docker.io/nephio/free5gc-ausf:4.1.0
         imagePullPolicy: IfNotPresent
         securityContext:
             {}

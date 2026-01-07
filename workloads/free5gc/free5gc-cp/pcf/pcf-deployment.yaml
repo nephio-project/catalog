@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: pcf
-        image: free5gc/pcf:v4.1.0
+        image: docker.io/nephio/free5gc-pcf:4.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

@@ -28,7 +28,7 @@ spec:
         command: ["sh", "-c", "until nc -z $DEPENDENCIES; do echo waiting for the MongoDB; sleep 2; done;"]
       containers:
       - name: webui
-        image: free5gc/webui:v4.1.0
+        image: docker.io/nephio/free5gc-webui:4.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000

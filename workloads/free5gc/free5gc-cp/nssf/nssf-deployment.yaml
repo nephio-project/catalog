@@ -29,7 +29,7 @@ spec:
 
       containers:
       - name: nssf
-        image: free5gc/nssf:v4.1.0
+        image: docker.io/nephio/free5gc-nssf:4.1.0
         imagePullPolicy: IfNotPresent
         securityContext:
             {}
