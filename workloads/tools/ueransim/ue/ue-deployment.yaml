@@ -19,7 +19,7 @@ spec:
         component: ue
     spec:
       containers:
-      - image: towards5gs/ueransim-ue:v3.2.6
+      - image: free5gc/ueransim:v4.0.1
         imagePullPolicy: IfNotPresent
         name: ue
         securityContext:
