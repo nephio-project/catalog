@@ -19,7 +19,7 @@ spec:
         component: gnb
     spec:
       containers:
-      - image: free5gc/ueranism:v4.0.1
+      - image: free5gc/ueransim:v4.0.1
         imagePullPolicy: IfNotPresent
         name: gnb
         ports:
