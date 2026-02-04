@@ -19,7 +19,7 @@ spec:
         component: gnb
     spec:
       containers:
-      - image: towards5gs/ueransim-gnb:v3.2.6
+      - image: free5gc/ueransim:v4.0.1
         imagePullPolicy: IfNotPresent
         name: gnb
         ports:
@@ -30,7 +30,7 @@ spec:
           capabilities:
             add: ["NET_ADMIN"]
         command: ["./nr-gnb"]
-        args: ["-c", "/ueransim/config/gnb-config.yaml"]
+        args: ["-c", "./config/gnb-config.yaml"]
         volumeMounts:
         - mountPath: /ueransim/config
           name: gnb-volume
