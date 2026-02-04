@@ -29,14 +29,14 @@ spec:
 
       containers:
       - name: nssf
-        image: towards5gs/free5gc-nssf:v3.1.1
+        image: docker.io/nephio/free5gc-nssf:4.1.0
         imagePullPolicy: IfNotPresent
         securityContext:
             {}
         ports:
         - containerPort: 80
         command: ["./nssf"]
-        args: ["-c", "../config/nssfcfg.yaml"]
+        args: ["-c", "./config/nssfcfg.yaml"]
         env: 
           - name: GIN_MODE
             value: release

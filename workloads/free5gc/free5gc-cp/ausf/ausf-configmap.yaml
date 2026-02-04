@@ -9,7 +9,7 @@ metadata:
 data:
   ausfcfg.yaml: |
     info:
-      version: 1.0.2
+      version: 1.0.3
       description: AUSF initial local configuration
 
     configuration:
@@ -22,10 +22,11 @@ data:
         bindingIPv4: 0.0.0.0      # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/ausf.key
-          pem: config/TLS/ausf.pem
+          key: cert/ausf.key
+          pem: cert/ausf.pem
       
       nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem  
       plmnSupportList:
         - mcc: 208
           mnc: 93
@@ -34,7 +35,17 @@ data:
       groupId: ausfGroup001
       eapAkaSupiImsiPrefix: false
 
+      metrics:
+        enable: false
+        scheme: http
+        bindingIPv4: 0.0.0.0
+        port: 9091
+        tls:
+          pem: cert/ausf.pem
+          key: cert/ausf.key
+        namespace: free5gc-cp
+
     logger:
-      AUSF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

@@ -9,7 +9,7 @@ metadata:
 data:
   udmcfg.yaml: |
     info:
-      version: 1.0.2
+      version: 1.0.3
       description: UDM initial local configuration
 
     configuration:
@@ -26,10 +26,11 @@ data:
         bindingIPv4: 0.0.0.0  # IP used to bind the service
         port: 80
         tls:
-          key: config/TLS/udm.key
-          pem: config/TLS/udm.pem
+          key: cert/udm.key
+          pem: cert/udm.pem
       
       nrfUri: http://nrf-nnrf:8000
+      nrfCertPem: cert/nrf.pem
       # test data set from TS33501-f60 Annex C.4
       SuciProfile:
         - ProtectionScheme: 1 # Protect Scheme: Profile A
@@ -39,7 +40,18 @@ data:
           PrivateKey: F1AB1074477EBCC7F554EA1C5FC368B1616730155E0041AC447D6301975FECDA
           PublicKey: 0472DA71976234CE833A6907425867B82E074D44EF907DFB4B3E21C1C2256EBCD15A7DED52FCBB097A4ED250E036C7B9C8C7004C4EEDC4F068CD7BF8D3F900E3B4
 
+
+      metrics:
+        enable: false
+        scheme: http
+        bindingIPv4: 0.0.0.0
+        port: 9091
+        tls:
+          pem: cert/udm.pem
+          key: cert/udm.key
+        namespace: free5gc-cp
+
     logger:
-      UDM:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

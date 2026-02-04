@@ -12,3 +12,9 @@ spec:
   pools:
     - name: pool1
       prefixLength: 24
+    - name: pool2
+      prefixLength: 24
+    - name: pool3
+      prefixLength: 24
+
+

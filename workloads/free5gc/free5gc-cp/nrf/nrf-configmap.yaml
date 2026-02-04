@@ -6,12 +6,13 @@ metadata:
   labels:
     app.kubernetes.io/version: "v3.1.1"
     app: free5gc
+  namespace: free5gc-cp
 data:
   nrfcfg.yaml: |
     info:
-      version: 1.0.1
+      version: 1.0.2
       description: NRF initial local configuration
-    
+
     configuration:
       MongoDBName: free5gc
       MongoDBUrl: mongodb://mongodb:27017
@@ -26,13 +27,26 @@ data:
         bindingIPv4: 0.0.0.0    # IP used to bind the service
         port: 8000
         tls:
-          key: config/TLS/nrf.key
-          pem: config/TLS/nrf.pem
+          key: cert/nrf.key
+          pem: cert/nrf.pem
+        rootcert:
+          pem: cert/nrf.pem
+          key: cert/nrf.key
+        oauth: true
       DefaultPlmnId:
         mcc: 208
         mnc: 93
 
+      metrics:
+        enable: false
+        scheme: http
+        bindingIPv4: 0.0.0.0
+        port: 9091
+        tls:
+          pem: cert/nrf.pem
+          key: cert/nrf.key
+        namespace: free5gc-cp
     logger:
-      NRF:
-        ReportCaller: false
-        debugLevel: info
+      enable: true
+      level: info
+      reportCaller: false

@@ -29,12 +29,12 @@ spec:
 
       containers:
       - name: udm
-        image: towards5gs/free5gc-udm:v3.1.1
+        image: docker.io/nephio/free5gc-udm:4.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         command: ["./udm"]
-        args: ["-c", "../config/udmcfg.yaml"]
+        args: ["-c", "./config/udmcfg.yaml"]
         env: 
           - name: GIN_MODE
             value: release
