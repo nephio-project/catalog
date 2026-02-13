@@ -6,7 +6,7 @@ spec:
   upstream:
     repo: catalog-workloads-oai
     package: pkg-example-cucp-bp
-    workspaceName: v6.0.0
+    workspaceName: v6
   downstream:
     repo: regional
     package: oai-ran-cucp
