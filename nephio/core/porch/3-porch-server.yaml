@@ -43,7 +43,7 @@ spec:
       containers:
         - name: porch-server
           # Update image to the image of your porch apiserver build.
-          image: docker.io/nephio/porch-server:latest
+          image: docker.io/nephio/porch-server:v1.5.6
           imagePullPolicy: IfNotPresent
           securityContext:
             runAsNonRoot: true
@@ -62,6 +62,7 @@ spec:
               name: webhook-certs
             - name: api-server-certs
               mountPath: /tmp/certs
+          envFrom: []
           env:
             # Uncomment to enable trace-reporting to jaeger
             #- name: OTEL
@@ -80,6 +81,7 @@ spec:
             - --repo-sync-frequency=3m
             - --repo-operation-retry-attempts=3
             - --max-request-body-size=6291456 # Keep this in sync with function-runner's corresponding argument
+            - --cache-type=cr
           #adding livenessProbes and readinessProbes for porch server
           livenessProbe:
             httpGet:
