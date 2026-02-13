@@ -8,7 +8,7 @@ spec:
   upstream:
     package: local-path-provisioner
     repo: catalog-infra-capi
-    workspaceName: v6.0.0
+    workspaceName: v6
   downstream:
     package: example-local-path-provisioner
     repo: mgmt-staging
