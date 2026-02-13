@@ -8,7 +8,7 @@ spec:
   upstream:
     package: repository
     repo: catalog-distros-sandbox
-    workspaceName: main
+    workspaceName: v6.0.0
   downstream:
     package: example-repo
     repo: mgmt

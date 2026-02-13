@@ -92,7 +92,7 @@ spec:
         - name: SPIFFE_ENDPOINT_SOCKET
           value: unix:///spiffe-workload-api/spire-agent.sock 
           # Temporary image
-        image: docker.io/nephio/nephio-operator:latest
+        image: docker.io/nephio/nephio-operator:v6.0.0
         imagePullPolicy: Always
         volumeMounts:
         - name: spiffe-workload-api

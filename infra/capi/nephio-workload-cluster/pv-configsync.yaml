@@ -8,7 +8,7 @@ spec:
   upstream:
     package: configsync
     repo: catalog-nephio-core
-    workspaceName: main
+    workspaceName: v6.0.0
   downstream:
     package: example-configsync
     repo: mgmt-staging

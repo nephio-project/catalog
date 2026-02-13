@@ -38,7 +38,7 @@ spec:
       containers:
       - name: porch-controllers
         # Update to the image of your porch-controllers build.
-        image: docker.io/nephio/porch-controllers:latest
+        image: docker.io/nephio/porch-controllers:v1.5.6
         imagePullPolicy: IfNotPresent
         # Note: only the existence of the variable matters for enabling the reconciler
         # So, be sure to remove the var not just change the value to false
