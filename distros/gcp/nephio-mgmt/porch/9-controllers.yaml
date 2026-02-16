@@ -44,12 +44,35 @@ spec:
       - name: porch-controllers
         # Update to the image of your porch-controllers build.
         image: docker.io/nephio/porch-controllers:latest
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 10001
+          runAsGroup: 10001
         # Note: only the existence of the variable matters for enabling the reconciler
         # So, be sure to remove the var not just change the value to false
         env:
-        - name: ENABLE_PACKAGEVARIANTSETS
-          value: "true"
         - name: ENABLE_PACKAGEVARIANTS
           value: "true"
-        - name: ENABLE_FLEETSYNCS
+        - name: ENABLE_PACKAGEVARIANTSETS
           value: "true"
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: 8081
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /readyz
+            port: 8081
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 3
