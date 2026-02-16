@@ -1,4 +1,4 @@
-# Copyright 2022-2025 The kpt and Nephio Authors
+# Copyright 2022-2026 The kpt and Nephio Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ apiVersion: v1
 metadata:
   name: porch-fn-runner
   namespace: porch-system
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,10 +38,14 @@ spec:
         - name: function-runner
           image: docker.io/nephio/porch-function-runner:v1.5.6
           imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            runAsGroup: 10001
           command:
-            - /server
-            - --config=/config.yaml
-            - --functions=/functions
+            - /home/nonroot/server
+            - --config=/home/nonroot/config.yaml
+            - --functions=/home/nonroot/functions
             - --pod-namespace=porch-fn-system
             - --max-request-body-size=6291456 # Keep this in sync with porch-server's corresponding argument
             - --warm-up-pod-cache=true
@@ -53,13 +58,13 @@ spec:
           readinessProbe:
             exec:
               command:
-                - /grpc-health-probe
+                - /home/nonroot/grpc-health-probe
                 - -addr
                 - localhost:9445
           resources:
             requests:
-              memory: 64Mi
-              cpu: 125m
+              memory: "64Mi"
+              cpu: "125m"
           volumeMounts:
             - mountPath: /pod-cache-config
               name: pod-cache-config-volume
