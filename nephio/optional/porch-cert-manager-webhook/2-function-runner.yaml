@@ -42,9 +42,9 @@ spec:
             runAsUser: 10001
             runAsGroup: 10001
           command:
-            - /home/nonroot/server
-            - --config=/home/nonroot/config.yaml
-            - --functions=/home/nonroot/functions
+            - /server
+            - --config=/config.yaml
+            - --functions=/functions
             - --pod-namespace=porch-fn-system
             - --max-request-body-size=6291456 # Keep this in sync with porch-server's corresponding argument
             - --warm-up-pod-cache=true
@@ -57,7 +57,7 @@ spec:
           readinessProbe:
             exec:
               command:
-                - /home/nonroot/grpc-health-probe
+                - /grpc-health-probe
                 - -addr
                 - localhost:9445
           resources:
